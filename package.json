@@ -1,0 +1,13 @@
+{
+  "name": "scd-explore-doon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Smoke/golden test harness for scd-explore-doon.html (manual-run, not wired into CI)",
+  "type": "module",
+  "scripts": {
+    "test": "node test/smoke.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "30.1.2"
+  }
+}

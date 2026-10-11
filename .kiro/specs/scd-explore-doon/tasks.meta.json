@@ -1,0 +1,421 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Fix responsive layout overflow in `scd-explore-doon.html`": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647240699
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647266667
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647363812
+      }
+    ],
+    "2.1 Rename the `ama` entry's `n` field from `'Kalsang Ama Café'` to `'AMA Café'`, leaving `hr`, `u:1`, `tg`, and all other fields unchanged.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647241347
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647373406
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647434553
+      }
+    ],
+    "2.2 Delete the `mlc` (\"Mussoorie Lights Café & Bar\") object literal entirely from `E`.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647241517
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647444546
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647498822
+      }
+    ],
+    "2.3 Delete the `ycf` (\"Y Café & Restaurant\") object literal entirely from `E`.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647241619
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647503700
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647593128
+      }
+    ],
+    "2.4 Rename the `hig` entry's `n` field from `'Highland Café'` to `'The Highland Bakehouse & Pizzeria'`. Keep `u:1`, the generic `hr:'Check address and hours'`, and the existing placeholder `note` text unchanged — do not fabricate address, real hours, price, or tags; those remain an open question (requirements.md Open Question #1) until the owner supplies them.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647241728
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647598727
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647636863
+      }
+    ],
+    "2.5 Leave the `rdr` (Readers Coffee House) and `koi` entries byte-for-byte unchanged — both stay `u:1` with their existing `'Check hours'`/`'Check address and hours'` placeholder text. Do not fetch or invent data for either (requirements.md Open Questions #2 and #3).": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647241834
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647642269
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647686456
+      }
+    ],
+    "3. Fix the `pk()` peak-window call site for flight Return_Deadline math": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647241940
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647713217
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647960911
+      }
+    ],
+    "4. Fix the Maggi on-route inclusion operator-precedence bug": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647242053
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647724907
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647961970
+      }
+    ],
+    "5.1 Declare a module-level `let tuned=false;` alongside the other top-level state in the IIFE.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647242196
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647752638
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647963101
+      }
+    ],
+    "5.2 Extend the existing delegated `document.addEventListener('change', e=>{...})` handler to update `tuned`: for the fine-tune time/mode fields (`id` of `st`, `dm`, `dt`), set `tuned` true when the new value differs from that field's current default; for any other named fine-tune control that changed (`tr`, `gr`, `pc`, vibe checkboxes named `in`), set `tuned=true` unconditionally on change. Do this without adding a second listener — extend the existing delegated handler body per design.md section \"Control_Panel and the `change` dispatcher\".": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647242314
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648317475
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648410555
+      }
+    ],
+    "5.3 In the existing `document.querySelectorAll('input[name=md]').forEach(i=>i.onchange=()=>{...})` mode-change handler, add `tuned=false;` so Tuned_State resets whenever mode changes between \"Sunday day\" and \"Evening & night\".": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647242425
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648415744
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648495797
+      }
+    ],
+    "5.4 In both `run()` and `eve()`, change the Summary_Tiles construction so the `barH(...)` markup is only included when `tuned` is true (e.g. `let h = tuned ? barH(...) : '';`), while leaving warnings (`W`), the daylight notice, `tline(...)`, and `row(...)` output unconditional/unaffected by `tuned`.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647242552
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648502398
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648598797
+      }
+    ],
+    "6.1 Remove the `'<span class=\"pl ok\">Looks open</span>'` branch from the `pill()` helper so non-unverified entries render no status pill (type/Hill-trip/Strenuous pills, if applicable, are unaffected).": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647242652
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647754373
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647964633
+      }
+    ],
+    "6.2 Add `display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden` to the `.by p` CSS rule (the `.mini p` 3-line clamp stays as-is).": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647242754
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648611984
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648668606
+      }
+    ],
+    "6.3 Shorten the hero `<h2>` and `.lead` paragraph markup in place, keeping the official accent/token usage (`#AD5CFF`, existing font stacks) unchanged.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647242856
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648674953
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648802597
+      }
+    ],
+    "6.4 Shorten the footer `.ft` paragraph while retaining, in condensed form, all three Req 16.3 warnings: hours/prices/entry-rules change often, Unverified/Check-hours items need a call before visiting, and alcohol is for adults only.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647243006
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648809847
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648894998
+      }
+    ],
+    "6.5 Reduce spacing token values: `.hd{margin-bottom:20px}` → `16px`, `.hero{padding:4px 0 18px}` → `2px 0 14px` (and its `@media(min-width:900px)` override `8px 0 24px` → `6px 0 18px`), and `.grid{gap:20px}` → `16px` (its desktop override `gap:28px` → `22px`). Do not change border-radius values, button shadow tokens, or color tokens.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647243118
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648901186
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791649106212
+      }
+    ],
+    "7. Set up a Node + jsdom smoke-test harness": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647243236
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647754826
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648300399
+      }
+    ],
+    "8.1 Peak-window golden test: set `dm=flight`, `dt=20:00` (8:00 PM), trigger a change so `tuned` becomes true, and assert the rendered Summary_Tiles \"Back by\" value reads `3:55 PM` — the Req 10.5 worked example, exercising the task-3 fix.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647243348
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791649117891
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791649403607
+      }
+    ],
+    "8.2 Maggi inclusion golden tests, three cases against a Mountain_Trip-eligible day-mode window with `tr=car`: (a) zero vibes selected → assert the `id==='maggi'` card is present; (b) one vibe selected that matches a Maggi tag → assert present; (c) vibes selected that share no tag with Maggi → assert absent. Covers the task-4 fix as three independent branches.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647243476
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791649415550
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791649590412
+      }
+    ],
+    "8.3 Tuned-state visibility golden test: on initial render (no interaction) assert `.bar` is absent from `#out`; dispatch one `change` on `#st` with a non-default value and assert `.bar` is now present; dispatch a mode-change event and assert `.bar` is absent again. Covers the task-5 fix.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647243582
+      },
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791649596095
+      },
+      {
+        "executionId": "53ac937e-0586-4773-af4d-9f407a008d39",
+        "chatSessionId": "sess_625df2a1-51f7-492e-8416-d808a2596587",
+        "timestamp": 1791687812692
+      },
+      {
+        "executionId": "53ac937e-0586-4773-af4d-9f407a008d39",
+        "chatSessionId": "sess_625df2a1-51f7-492e-8416-d808a2596587",
+        "timestamp": 1791688094136
+      }
+    ],
+    "8.4 Catalog-correction assertions: assert the loaded page's `E` table (or its rendered output across the relevant suggestion rails) contains no entry named `'Kalsang Ama Café'` and no `id==='mlc'`/`id==='ycf'`, does contain `'AMA Café'` and `'The Highland Bakehouse & Pizzeria'`, and that `rdr`/`koi` still render a `Check hours` badge with their original placeholder `hr` text (not fabricated data). Covers task 2.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647243727
+      },
+      {
+        "executionId": "53ac937e-0586-4773-af4d-9f407a008d39",
+        "chatSessionId": "sess_625df2a1-51f7-492e-8416-d808a2596587",
+        "timestamp": 1791688106595
+      }
+    ],
+    "8.5 \"Looks open\" pill removal assertion: render at least one non-unverified entry and assert no element with class `pl ok` / text \"Looks open\" appears anywhere in `#out`. Covers task 6.1.": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647243843
+      }
+    ],
+    "9. Write property-style checks for the Correctness Properties that are practical under jsdom (depends on task 8's harness)": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647243943
+      }
+    ],
+    "10. Final verification pass (depends on tasks 1–9)": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647244051
+      }
+    ],
+    "2. Apply catalog data corrections to the `E` (Eatery_Catalog) array": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791647686598
+      }
+    ],
+    "5. Add Tuned_State (`tuned`) flag and gate Summary_Tiles on it": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791648598892
+      }
+    ],
+    "6. Apply the minimal text/UI pass": [
+      {
+        "executionId": "7896cc56-4ca8-46e9-9024-4d8e43a72828",
+        "chatSessionId": "sess_832c799b-e137-45e0-9ffd-856b7887d0a7",
+        "timestamp": 1791649106376
+      }
+    ]
+  }
+}
