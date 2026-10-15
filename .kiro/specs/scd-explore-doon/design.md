@@ -347,3 +347,67 @@ These are **not resolved** by this design — they are implementation placeholde
 6. **Lunch-stop trim priority on relaxed-pace Mountain_Trip days** — the lunch stop keeps its existing `sc:.4` with no special trim-order protection; this design does not add trim-priority weighting for it, consistent with the requirement explicitly leaving this undecided.
 
 Any future implementation step that touches items 1–3 must come from the owner-supplied real data, not from this design or from the implementer's inference.
+
+---
+
+## Extended Modular Architecture (Master Prompt Specification)
+
+In accordance with the Master Prompt, the system is upgraded to a modular TypeScript static architecture while preserving full backwards compatibility for embedders and a single-file build option (`npm run build:single`).
+
+### 1. Directory Structure
+```
+├── data/
+│   ├── places.json          # Sightseeing places, viewpoints, temples, trails
+│   ├── eateries.json        # Cafes, restaurants, bakeries, bars, clubs
+│   ├── clusters.json        # Clement Town, Rajpur, Mussoorie Town, Landour, etc.
+│   ├── routes.json          # O-D travel matrix with freeFlowMin per mode
+│   ├── traffic.json         # Time-of-day × day-type × direction multipliers
+│   ├── rules.json           # Mussoorie tourist registration, Mall Rd bans, etc.
+│   ├── copy.json            # Template phrasings (EN & HI) keyed by reason code
+│   └── config.json          # Event dates, venue coords, weights, default buffers
+├── src/
+│   ├── engine/
+│   │   ├── types.ts         # Pure domain types (TripRequest, Place, Itinerary)
+│   │   ├── daylight.ts      # NOAA-style sunrise/sunset calculation
+│   │   ├── traffic.ts       # Directional traffic multiplier engine
+│   │   ├── matrix.ts        # Travel duration and distance lookup
+│   │   ├── filters.ts       # Stage A/B hard feasibility filters
+│   │   ├── scorer.ts        # Stage C objective evaluation & diversity credit
+│   │   ├── assembler.ts     # Beam search itinerary generation
+│   │   ├── replan.ts        # Interactive swap/lock/drop/extend mutations
+│   │   └── narration.ts     # Deterministic human-guide template generator
+│   ├── maps/
+│   │   ├── links.ts         # Google Maps search & dir URL generators (Layer 1)
+│   │   ├── embed.ts         # Lazy-loaded Google Maps Embed controller (Layer 2)
+│   │   └── route-map.ts     # MapLibre/vector canvas route visualizer (Layer 3)
+│   ├── styles/
+│   │   ├── tokens.css       # AWS SBG GEU palette & Apple-grade motion tokens
+│   │   └── main.css         # Glass materials, Day Dial, cards & timeline
+│   └── ui/
+│       ├── day-dial.ts      # Draggable 5AM-11PM dual-handle scrubber
+│       ├── timeline.ts      # Route ribbon with FLIP animations
+│       ├── swap-sheet.ts    # Detent bottom sheet for stop alternatives
+│       ├── practical.ts     # Weather, rules, and pack-checklist cards
+│       └── app.ts           # Main reactive application controller
+├── scripts/
+│   ├── lint-data.ts         # Schema & verification validator
+│   └── build-matrix.ts      # Travel matrix generator
+├── docs/
+│   ├── ENGINE-DIAGNOSIS.md
+│   ├── DATA-VERIFICATION-CHECKLIST.md
+│   ├── IMAGE-CREDITS.md
+│   └── CHANGELOG-ENGINE.md
+└── infra/
+    └── cloudformation.yaml  # S3 + CloudFront static site hosting
+```
+
+### 2. Pure Engine Evaluation Pipeline
+
+Given `(request, datasets, seed)`:
+1. **Net Budget Derivation:** Calculate net sightseeing time deducting travel, parking, meal baseline, and P80 contingency buffers.
+2. **Candidate Filtering:** Eliminate candidates incompatible with mode, party, daylight cutoff, or operating hours.
+3. **Beam Search:** Build candidate itineraries up to beam width 20, scoring candidate skeletons against:
+   $$\text{Score} = w_1 \cdot \text{interestCredit} + w_2 \cdot \text{timeOfDayFit} + w_3 \cdot \text{mealFit} + w_4 \cdot \text{diversity} + w_5 \cdot \text{paceFit} - w_6 \cdot \text{travelCost} - w_7 \cdot \text{backtracking} - w_8 \cdot \text{riskPenalty} - w_9 \cdot \text{detourPenalty}$$
+4. **Deadline Verification:** Hard cutoff validation that return under P80 traffic is $\le \text{returnBy} - \text{buffer}$.
+5. **Alternatives Extraction:** Identify top runner-up candidate for each primary swappable stop from same or adjacent cluster.
+

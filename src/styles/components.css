@@ -1,0 +1,572 @@
+/* ==========================================================================
+   APPLE-GRADE COMPONENT LIBRARY
+   CSS Building Blocks for Explore Doon × Mussoorie
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BUTTONS (Tactile 3D Physical & Glass Buttons)
+   -------------------------------------------------------------------------- */
+.btn-apple-primary,
+.scd-btn-3d-primary {
+  color: #FFFFFF !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  background: linear-gradient(135deg, #B265FF 0%, #9A40F5 100%) !important;
+  border: none !important;
+  border-radius: var(--r-md) !important;
+  padding: 12px 22px !important;
+  font-family: var(--font-display) !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-shadow: 0 2.5px 0 var(--ac-edge), 0 4px 14px var(--ac-glow) !important;
+  transition: transform var(--dur-fast) var(--ease-apple), box-shadow var(--dur-fast) var(--ease-apple), filter var(--dur-fast) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-apple-primary:hover,
+.scd-btn-3d-primary:hover {
+  filter: brightness(1.07) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3.5px 0 var(--ac-edge), 0 8px 20px var(--ac-glow) !important;
+}
+
+.btn-apple-primary:active,
+.scd-btn-3d-primary:active {
+  transform: translateY(2px) !important;
+  box-shadow: 0 0.5px 0 var(--ac-edge), 0 2px 6px var(--ac-glow) !important;
+}
+
+.btn-apple-orange,
+.scd-btn-3d-orange {
+  color: #FFFFFF !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  background: linear-gradient(135deg, #FFA726 0%, #FF9100 100%) !important;
+  border: none !important;
+  border-radius: var(--r-md) !important;
+  padding: 12px 22px !important;
+  font-family: var(--font-display) !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-shadow: 0 2.5px 0 var(--orange-edge), 0 4px 14px var(--orange-glow) !important;
+  transition: transform var(--dur-fast) var(--ease-apple), box-shadow var(--dur-fast) var(--ease-apple), filter var(--dur-fast) !important;
+}
+
+.btn-apple-orange:hover,
+.scd-btn-3d-orange:hover {
+  filter: brightness(1.07) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3.5px 0 var(--orange-edge), 0 8px 20px var(--orange-glow) !important;
+}
+
+.btn-apple-orange:active,
+.scd-btn-3d-orange:active {
+  transform: translateY(2px) !important;
+  box-shadow: 0 0.5px 0 var(--orange-edge), 0 2px 6px var(--orange-glow) !important;
+}
+
+.btn-apple-secondary,
+.scd-btn-3d-secondary {
+  color: var(--tx) !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  background: var(--panel) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--r-md) !important;
+  padding: 11px 20px !important;
+  font-family: var(--font-display) !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  transition: all var(--dur-fast) var(--ease-apple) !important;
+}
+
+.btn-apple-secondary:hover,
+.scd-btn-3d-secondary:hover {
+  background: var(--sec) !important;
+  border-color: var(--line-active) !important;
+  transform: translateY(-1px) !important;
+  color: #FFFFFF !important;
+}
+
+.btn-apple-secondary:active,
+.scd-btn-3d-secondary:active {
+  transform: translateY(1.5px) !important;
+  box-shadow: 0 0.5px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+.btn-apple-ghost {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: var(--t2) !important;
+  font-weight: 700 !important;
+  padding: 10px 16px !important;
+  border-radius: var(--r-md) !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all var(--dur-fast) var(--ease-apple) !important;
+}
+
+.btn-apple-ghost:hover {
+  color: var(--tx) !important;
+  background: var(--line-soft) !important;
+}
+
+.btn-apple-icon,
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--t2);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-apple);
+}
+
+.btn-apple-icon:hover,
+.icon-btn:hover {
+  background: var(--sec);
+  color: var(--ac);
+  border-color: var(--ac);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   2. CHIPS & BADGES
+   -------------------------------------------------------------------------- */
+.chip-apple,
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px; /* WCAG 2.2 touch target requirement */
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--t2);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-apple);
+  user-select: none;
+}
+
+.chip-apple:hover,
+.filter-chip:hover {
+  background: var(--sec);
+  color: var(--tx);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.chip-apple.active,
+.filter-chip.active {
+  color: #FFFFFF;
+  background: var(--ac);
+  border-color: var(--ac);
+  box-shadow: 0 2px 10px var(--ac-glow);
+}
+
+.badge-apple-pill,
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  background: var(--sec);
+  color: var(--t2);
+  border: 1px solid var(--line);
+}
+
+.badge-apple-pill.verified,
+.chip.verified {
+  background: var(--ok-soft);
+  color: var(--ok);
+  border-color: rgba(0, 212, 146, 0.35);
+}
+
+.badge-apple-pill.warning,
+.chip.unverified {
+  background: var(--wa-soft);
+  color: var(--wa);
+  border-color: rgba(255, 185, 0, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   3. CARDS & BENTO SURFACES
+   -------------------------------------------------------------------------- */
+.card-apple-glass {
+  background: var(--glass-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-elevated);
+}
+
+.card-apple-interactive {
+  transition: transform var(--dur-base) var(--ease-apple), border-color var(--dur-base) var(--ease-apple), box-shadow var(--dur-base) var(--ease-apple);
+}
+
+.card-apple-interactive:hover {
+  transform: translateY(-4px);
+  border-color: var(--ac);
+  box-shadow: 0 16px 36px -12px var(--ac-glow), 0 0 0 1px var(--ac);
+}
+
+/* --------------------------------------------------------------------------
+   4. TABS & SEGMENTED CONTROLS
+   -------------------------------------------------------------------------- */
+.tabs-apple-segmented,
+.segmented {
+  display: inline-flex;
+  gap: 4px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 4px;
+}
+
+.segmented label {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.segmented input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.segmented span {
+  display: block;
+  padding: 8px 14px;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--t2);
+  transition: all var(--dur-fast) var(--ease-apple);
+}
+
+.segmented label:hover span {
+  color: var(--tx);
+}
+
+.segmented input[type="radio"]:checked + span {
+  background: var(--sec);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   5. SKELETON SHIMMER & LOADING
+   -------------------------------------------------------------------------- */
+.skeleton-apple-shimmer {
+  background: linear-gradient(90deg, var(--card) 25%, var(--panel) 50%, var(--card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--r-md);
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --------------------------------------------------------------------------
+   6. STAT COUNTERS & TABULAR NUMERALS
+   -------------------------------------------------------------------------- */
+.stat-counter-apple {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-counter-val {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900;
+  letter-spacing: var(--tracking-tight);
+  color: var(--tx);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.stat-counter-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--t2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   7. MAP MARKERS (Leaflet Neon Pins)
+   -------------------------------------------------------------------------- */
+.neon-pin-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #0A0A0C;
+  border: 2px solid var(--ac);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 13px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 14px var(--ac-glow), 0 2px 6px rgba(0, 0, 0, 0.5);
+  transition: transform var(--dur-fast) var(--ease-apple);
+}
+
+.neon-pin-wrap:hover {
+  transform: scale(1.15);
+  border-color: #FFA726;
+  box-shadow: 0 0 18px var(--orange-glow);
+}
+
+.neon-pin-origin {
+  border-color: #FF9900;
+  box-shadow: 0 0 16px var(--orange-glow);
+  font-size: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   8. TOOLTIP & TOAST
+   -------------------------------------------------------------------------- */
+.tooltip-apple {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltip-apple::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(10, 10, 12, 0.95);
+  color: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: var(--r-sm);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-fast) var(--ease-apple), transform var(--dur-fast) var(--ease-apple);
+  box-shadow: var(--shadow-elevated);
+  border: 1px solid var(--line);
+  z-index: var(--z-popover);
+}
+
+.tooltip-apple:hover::after,
+.tooltip-apple:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast-apple {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 20px;
+  background: rgba(15, 17, 23, 0.94);
+  color: var(--tx);
+  border: 1px solid var(--line-active);
+  border-radius: var(--r-md);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(173, 92, 255, 0.2);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  z-index: var(--z-toast);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform var(--dur-base) var(--ease-apple), opacity var(--dur-base) var(--ease-apple);
+}
+
+.toast-apple.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   9. SHEET / SLIDE-OVER DRAWER (Practical Companion)
+   -------------------------------------------------------------------------- */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: var(--z-modal);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-base) var(--ease-apple), visibility var(--dur-base);
+}
+
+.drawer-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(520px, 94vw);
+  background: var(--bg);
+  border-left: 1px solid var(--line);
+  z-index: calc(var(--z-modal) + 1);
+  overflow-y: auto;
+  padding: 32px 28px;
+  box-shadow: -16px 0 48px rgba(0, 0, 0, 0.6);
+  transform: translateX(100%);
+  transition: transform var(--dur-slow) var(--ease-apple);
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-backdrop.open .drawer-panel {
+  transform: translateX(0);
+}
+
+/* --------------------------------------------------------------------------
+   10. TIMELINE (Vertical Route Stop Sequence)
+   -------------------------------------------------------------------------- */
+.timeline-apple {
+  position: relative;
+  padding-left: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.timeline-apple::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 24px;
+  left: 14px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--ac) 0%, rgba(173, 92, 255, 0.2) 100%);
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-bullet {
+  position: absolute;
+  left: -36px;
+  top: 4px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--ac);
+  color: var(--tx);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 10px var(--ac-glow);
+}
+
+/* --------------------------------------------------------------------------
+   11. SCROLL PROGRESS BAR & DESKTOP CURSOR
+   -------------------------------------------------------------------------- */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #AD5CFF, #FF9900);
+  z-index: var(--z-nav);
+  transition: width 0.08s linear;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: #AD5CFF;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s ease-out, opacity 0.2s;
+  }
+  .custom-cursor-ring {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid rgba(173, 92, 255, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   12. WORD-BY-WORD SCROLL LIGHTING & PROMISE BEATS
+   -------------------------------------------------------------------------- */
+.word-lighting-char {
+  color: rgba(255, 255, 255, 0.16);
+  transition: color 0.25s ease-out;
+  display: inline-block;
+  margin-right: 0.28em;
+}
+
+.word-lighting-char.lit {
+  color: #FFFFFF;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.25);
+}
+
+.light .word-lighting-char {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.light .word-lighting-char.lit {
+  color: #0A0A0C;
+  text-shadow: none;
+}
+

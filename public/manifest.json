@@ -1,0 +1,21 @@
+{
+  "name": "Explore Doon × Mussoorie · SCD 2026",
+  "short_name": "Explore Doon",
+  "description": "Smart, feasible, daylight-safe travel recommendations for AWS Student Community Day 2026 at Graphic Era Deemed to be University, Dehradun.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0d0914",
+  "theme_color": "#ad5cff",
+  "icons": [
+    {
+      "src": "images/mind.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "images/mind.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

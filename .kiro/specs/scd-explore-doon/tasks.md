@@ -65,21 +65,21 @@ This plan covers 10 tasks to fix and polish `scd-explore-doon.html`: a CSS overf
   - Files: `package.json`, `test/smoke.mjs`
   - Verify: `node test/smoke.mjs` runs to completion without throwing (even before the golden-test assertions in tasks 8–9 are added, a trivial smoke load-and-render should succeed).
 
-- [ ] 8. Write golden tests for the behavioral fixes (depends on tasks 2, 3, 4, 5)
+- [x] 8. Write golden tests for the behavioral fixes (depends on tasks 2, 3, 4, 5)
   - [x] 8.1 Peak-window golden test: set `dm=flight`, `dt=20:00` (8:00 PM), trigger a change so `tuned` becomes true, and assert the rendered Summary_Tiles "Back by" value reads `3:55 PM` — the Req 10.5 worked example, exercising the task-3 fix.
     - _Requirements: 10.5_
   - [x] 8.2 Maggi inclusion golden tests, three cases against a Mountain_Trip-eligible day-mode window with `tr=car`: (a) zero vibes selected → assert the `id==='maggi'` card is present; (b) one vibe selected that matches a Maggi tag → assert present; (c) vibes selected that share no tag with Maggi → assert absent. Covers the task-4 fix as three independent branches.
     - _Requirements: 7.1, 7.2, 7.3_
   - [x] 8.3 Tuned-state visibility golden test: on initial render (no interaction) assert `.bar` is absent from `#out`; dispatch one `change` on `#st` with a non-default value and assert `.bar` is now present; dispatch a mode-change event and assert `.bar` is absent again. Covers the task-5 fix.
     - _Requirements: 23.1, 23.2, 23.3_
-  - [ ] 8.4 Catalog-correction assertions: assert the loaded page's `E` table (or its rendered output across the relevant suggestion rails) contains no entry named `'Kalsang Ama Café'` and no `id==='mlc'`/`id==='ycf'`, does contain `'AMA Café'` and `'The Highland Bakehouse & Pizzeria'`, and that `rdr`/`koi` still render a `Check hours` badge with their original placeholder `hr` text (not fabricated data). Covers task 2.
+  - [x] 8.4 Catalog-correction assertions: assert the loaded page's `E` table (or its rendered output across the relevant suggestion rails) contains no entry named `'Kalsang Ama Café'` and no `id==='mlc'`/`id==='ycf'`, does contain `'AMA Café'` and `'The Highland Bakehouse & Pizzeria'`, and that `rdr`/`koi` still render a `Check hours` badge with their original placeholder `hr` text (not fabricated data). Covers task 2.
     - _Requirements: 18.1, 18.2, 18.3, 18.4, 18.5, 18.6, 16.2_
-  - [ ] 8.5 "Looks open" pill removal assertion: render at least one non-unverified entry and assert no element with class `pl ok` / text "Looks open" appears anywhere in `#out`. Covers task 6.1.
+  - [x] 8.5 "Looks open" pill removal assertion: render at least one non-unverified entry and assert no element with class `pl ok` / text "Looks open" appears anywhere in `#out`. Covers task 6.1.
     - _Requirements: 24.2_
   - Files: `test/smoke.mjs` (extended)
   - Verify: `node test/smoke.mjs` — all assertions in 8.1–8.5 pass (process exits 0; any failed assertion throws/exits non-zero).
 
-- [ ] 9. Write property-style checks for the Correctness Properties that are practical under jsdom (depends on task 8's harness)
+- [x] 9. Write property-style checks for the Correctness Properties that are practical under jsdom (depends on task 8's harness)
   - Implement lightweight randomized/fuzz checks (fixed small seed set is acceptable, no new dependency beyond `jsdom`) for the properties that don't require real CSS layout:
     - Property 1 (Return_Deadline consistency) and Property 2 (peak-window argument) by calling the extracted `pk`/ret-formula logic with varied `dt` values.
     - Property 3 (Mountain_Trip daylight bound) and Property 4 (at most one Mountain_Trip/Full_Day_Trip stop) and Property 5 (itinerary finishes within deadline) by driving `run()` across varied `st`/`dm`/`dt`/`tr`/`gr`/`pc` combinations and inspecting the rendered stop list/times.
@@ -91,12 +91,67 @@ This plan covers 10 tasks to fix and polish `scd-explore-doon.html`: a CSS overf
   - Files: `test/smoke.mjs` (extended) or a new `test/properties.mjs` loaded by the same `node` invocation.
   - Verify: `node test/smoke.mjs` (and/or `node test/properties.mjs`) — all property checks pass across the sampled input combinations.
 
-- [ ] 10. Final verification pass (depends on tasks 1–9)
+- [x] 10. Final verification pass (depends on tasks 1–9)
   - Run the full smoke/property test suite (`node test/smoke.mjs` plus any separate property script from task 9) and confirm all assertions pass.
   - Manually verify no horizontal page scroll at 1280px, 1440px, and 1920px viewport widths by opening `scd-explore-doon.html` directly in a real browser (jsdom cannot compute CSS Grid layout, so this step cannot be automated without adding a browser-automation dependency such as Playwright, which is out of scope here) — document the result as a manual check per design.md's Testing Strategy, not an automated one.
   - Confirm the file still satisfies the single-file/no-build constraint: `scd-explore-doon.html` remains the only file required to run the page (no new `<script src>`/`<link>` to local build artifacts were introduced), and the new `package.json`/`test/` files are test-only tooling that the page itself does not depend on at runtime.
   - Re-skim the diff against `requirements.md` Open Questions #1–#6 to confirm none were silently resolved with invented data (Highland real fields, Readers Coffee House, "koi", image filename list, city-to-city travel estimate, lunch trim-priority all remain untouched/placeholder).
   - _Requirements: 21.5, 22.1, 22.2, 22.3, 22.4_
+
+- [x] 11. Phase 0: Characterization Tests & Repo Hygiene
+  - Freeze today's baseline behavior in `test/characterization.mjs`
+  - Move images from `scd images/` to `public/images/` and update `.gitignore` to ignore `node_modules/`
+  - Set up steering files and engine diagnosis documentation
+
+- [x] 12. Phase 1: Data Schemas, Extraction & Linting
+  - Extract datasets to `data/` (`places.json`, `eateries.json`, `clusters.json`, `routes.json`, `traffic.json`, `rules.json`, `copy.json`, `config.json`)
+  - Create `scripts/lint-data.ts` and configure `npm run data:lint`
+  - Auto-generate `docs/DATA-VERIFICATION-CHECKLIST.md`
+
+- [x] 13. Phase 1: Core Engine Implementation
+  - Pure TypeScript engine in `src/engine/` (`types.ts`, `daylight.ts`, `traffic.ts`, `matrix.ts`, `filters.ts`, `scorer.ts`, `assembler.ts`, `narration.ts`)
+  - Objective scoring function with max-affinity credit, diversity penalties, and P80 return buffer
+  - Golden Scenarios 1–10 automated test suite
+
+- [x] 14. Phase 2: Mussoorie & Landour Content Expansion
+  - Seed cluster definitions for Clement Town, Rajpur, Mussoorie Town, Landour, Park Estate, East Doon
+  - Calibrate O-D matrix and directional traffic profiles
+  - Encode regulatory rules (tourist registration, Mall Road evening closures, two-wheeler advisories)
+  - Verify engine discovers the 7 blueprints without hardcoding
+
+- [x] 15. Phase 3: Alternatives & `replan()` Engine
+  - Contextual alternatives generator (up to 2 per swappable stop with delta time)
+  - Interactive mutation operators: swap, drop, lock, extend, shiftStart
+  - "Another plan" and flavor variants (Closer, Calmer, Bolder)
+
+- [x] 16. Phase 4: Apple-Grade Design System & UI Rebuild
+  - Token system in `src/styles/tokens.css` with dark/light themes and glass materials
+  - Signature Day Dial 5 AM–11 PM scrubber with traffic heat strip and sunset markers
+  - Interactive Route Ribbon timeline with FLIP transitions
+  - Detent bottom sheets for stop detail and alternatives
+
+- [x] 17. Phase 5: Maps Integration & Deep Links
+  - Layer 1: Google Maps deep links (`/maps/dir/` and `/maps/search/`) with waypoints
+  - Layer 2: On-demand Google Maps Embed API integration with lazy loading
+  - Layer 3: Keyless offline-capable route visualizer styled in brand tokens
+
+- [x] 18. Phase 5: Missing Product Features
+  - Shareable itinerary URL hash state & ICS calendar file export
+  - Offline-first Service Worker and PWA manifest
+  - Multi-language Hindi / English translation
+  - Event helper ("Plan around SCD keynote / sessions")
+  - Diet (veg-first) and budget filters with party size cost splitting
+
+- [x] 19. Phase 6: Performance, Accessibility & Embedding
+  - Lighthouse mobile audit >= 95, WCAG AA compliance, allow pinch-zoom
+  - `<iframe>` embed contract with auto-height postMessage
+  - Single-file build generator (`npm run build:single`)
+
+- [x] 20. Phase 6: Cloud Deployment & Documentation
+  - AWS CloudFormation static hosting template in `infra/`
+  - GitHub Actions CI/CD workflow
+  - Complete `docs/CHANGELOG-ENGINE.md` and user calibration guide
+
 
 ## Task Dependency Graph
 

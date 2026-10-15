@@ -1,0 +1,65 @@
+[
+  {
+    "id": "clement-town",
+    "name": "Clement Town (Campus & Tibetan Area)",
+    "character": "Zero-travel, 1–2 h trips. Peaceful monasteries, towering stupa, authentic Tibetan cafes.",
+    "center": { "lat": 30.269, "lng": 77.998 },
+    "elevationM": 640
+  },
+  {
+    "id": "rajpur",
+    "name": "Rajpur Road & Malsi Stretch",
+    "character": "Cafe-hopping, rooftop bars, nightlife, and the gateway corridor ascending to Mussoorie.",
+    "center": { "lat": 30.366, "lng": 78.078 },
+    "elevationM": 820
+  },
+  {
+    "id": "city-center",
+    "name": "City Center & FRI Heritage",
+    "character": "Paltan Bazaar, colonial Forest Research Institute, Clock Tower bakeries and markets.",
+    "center": { "lat": 30.334, "lng": 78.005 },
+    "elevationM": 660
+  },
+  {
+    "id": "east-doon",
+    "name": "East Doon Streams & Springs",
+    "character": "Robber's Cave (Gucchupani) and Sahastradhara. Nature, river walking and canyon streams.",
+    "center": { "lat": 30.378, "lng": 78.118 },
+    "elevationM": 750
+  },
+  {
+    "id": "mussoorie-approach",
+    "name": "Mussoorie Road & Approach",
+    "character": "Winding mountain highway with scenic roadside Maggi/tea viewpoints, Mussoorie Lake, and Jharipani.",
+    "center": { "lat": 30.418, "lng": 78.072 },
+    "elevationM": 1450
+  },
+  {
+    "id": "mussoorie-town",
+    "name": "Mussoorie Town & Mall Road",
+    "character": "Library Chowk, Mall Road, Gun Hill cable car, and Camel's Back sunset promenade.",
+    "center": { "lat": 30.457, "lng": 78.075 },
+    "elevationM": 2005
+  },
+  {
+    "id": "landour",
+    "name": "Landour Heritage Ridge",
+    "character": "Lal Tibba highest viewpoint, Char Dukan, Landour Bakehouse, Sisters' Bazaar, St Paul's.",
+    "center": { "lat": 30.462, "lng": 78.096 },
+    "elevationM": 2290
+  },
+  {
+    "id": "park-estate",
+    "name": "Park Estate & George Everest",
+    "character": "Sir George Everest's House, Hathipaon, Wish Well, 360° Himalayan panoramas.",
+    "center": { "lat": 30.461, "lng": 78.026 },
+    "elevationM": 2080
+  },
+  {
+    "id": "out-of-scope-default",
+    "name": "Extended Valley & Foothills",
+    "character": "Full-day standalone expeditions: Bhadraj Trek (11 km) and Rishikesh (42 km).",
+    "center": { "lat": 30.125, "lng": 78.295 },
+    "elevationM": 350
+  }
+]

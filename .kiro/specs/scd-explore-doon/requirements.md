@@ -295,13 +295,149 @@ This document captures both the existing baseline behavior of the page (so the s
 4. THE Explore_Doon_Page SHALL present a shortened footer disclaimer compared to the current longer footer text, while retaining the core warnings from Requirement 16, acceptance criterion 3.
 5. THE Explore_Doon_Page SHALL reduce vertical spacing between Control_Panel and Output_Panel sections compared to the current spacing, while preserving the defined token-based radii and shadows.
 
-## Open Questions / Known Limitations
+### Requirement 25: Origin-Destination Travel Matrix & Geographic Clustering
 
-The following items are not yet resolved with verified facts or a confirmed design decision. They are recorded here rather than given fabricated answers:
+**User Story:** As a visitor, I want travel times between consecutive stops to reflect real geographic distances and topography, so that I am not sent across town on unrealistic time estimates.
+
+#### Acceptance Criteria
+1. THE Recommendation_Engine SHALL replace flat travel constants with an Origin-Destination matrix (`routes.json`) storing distance and mode-specific `freeFlowMin` between all defined clusters and places.
+2. Outbound (campus-to-place), intermediate (place-to-place), and return (place-to-campus) travel legs SHALL each be looked up independently with directional awareness (`up` vs `down`).
+3. WHERE coordinates are unavailable, the Recommendation_Engine SHALL fall back to cluster-to-cluster travel time and mark the leg status as `estimated`.
+
+### Requirement 26: Multi-Dimensional Traffic & Daylight Safety Model
+
+**User Story:** As a visitor, I want travel times to adjust realistically for weekend mountain traffic and sunset cutoffs, so that I reach campus safely in daylight.
+
+#### Acceptance Criteria
+1. THE Recommendation_Engine SHALL apply time-of-day × day-type × direction multipliers to free-flow travel times, evaluating scheduling under P50 and return-deadline compliance under P80.
+2. THE Recommendation_Engine SHALL compute sunrise and sunset based on the selected date and latitude/longitude coordinates (30.32° N, 78.03° E).
+3. FOR mountain trips, car return legs SHALL depart by sunset minus 30 minutes, and two-wheeler return legs SHALL depart by sunset minus 45 minutes.
+
+### Requirement 27: Complete Itinerary Objective Evaluation & Beam Search
+
+**User Story:** As a visitor, I want the system to optimize my entire route holistically rather than greedily picking stops, so that my day is free of needless backtracking.
+
+#### Acceptance Criteria
+1. THE Recommendation_Engine SHALL generate complete candidate itineraries using beam search and score them against an objective function penalizing total travel time, backtracking, and deadline risks.
+2. THE Recommendation_Engine SHALL never combine mutually distant clusters (e.g. Landour and Clement Town) in a single trip under 6 hours unless physically along the direct return route.
+3. WHEN the usable window is under 6 hours, the assembled plan SHALL contain at most one cluster transition.
+
+### Requirement 28: Per-Interest Affinity & Experience Diversity Scoring
+
+**User Story:** As a visitor with specific preferences, I want my plan to match my interests without repeating the exact same kind of experience multiple times.
+
+#### Acceptance Criteria
+1. THE Recommendation_Engine SHALL compute interest credit using max-affinity capping per interest, preventing venues with multiple tags from artificially dominating scores.
+2. THE Recommendation_Engine SHALL penalize repeated stops of the same `experienceType` within a single day plan.
+3. THE Recommendation_Engine SHALL schedule at most one primary viewpoint per trip, permitting a second viewpoint only for plans of 8 hours or longer at distinct times of day.
+
+### Requirement 29: Coherent Meal & Café Scheduling
+
+**User Story:** As a visitor out during meal times, I want lunch and tea stops scheduled at the right time and right place along my route, not appended as an afterthought.
+
+#### Acceptance Criteria
+1. WHEN an itinerary spans a meal window (Breakfast 07:00–10:30, Lunch 12:00–15:00, Snack/Tea 15:00–18:00, Dinner 19:00–22:00) by 45 minutes or more, THE Recommendation_Engine SHALL schedule a meal stop adjacent to preceding/subsequent stops.
+2. Meal stops SHALL have an added detour cost of no more than 15 minutes relative to the primary route.
+3. On-route roadside stops (e.g., Mussoorie Road tea/Maggi) SHALL be modeled as directional stops with explicit detour minutes rather than static flat-rate additions.
+
+### Requirement 30: Interactive Swappable Alternatives & Replanning
+
+**User Story:** As a visitor viewing my plan, I want to swap a specific stop for a sensible alternative in one tap and have the rest of my schedule automatically recalculated.
+
+#### Acceptance Criteria
+1. FOR each swappable primary stop, THE Explore_Doon_Page SHALL surface up to 2 contextually relevant alternatives with explicit delta travel time and delta return time.
+2. WHEN the visitor selects an alternative, THE Recommendation_Engine SHALL execute `replan()`, updating all arrival/departure times and verifying deadline compliance.
+3. IF a swap would violate the return deadline under P80 traffic, THE Explore_Doon_Page SHALL reject the swap and display the explicit timing conflict reason.
+4. Alternatives SHALL NOT be counted as part of the active schedule duration or visit totals unless swapped in.
+
+### Requirement 31: Transport Modes with Cost & Logistics Intelligence
+
+**User Story:** As a visitor without a private vehicle, I want realistic options for cabs, shared transit, and walking, including fare estimates.
+
+#### Acceptance Criteria
+1. THE Control_Panel SHALL offer five transport modes: "Own car", "Two-wheeler", "Cab / taxi for the day", "Bus / shared taxi", and "Walk / auto only".
+2. WHEN "Cab / taxi for the day" is selected, THE Output_Panel SHALL display an estimated fare range with a per-person split based on selected party size.
+3. WHEN "Walk / auto only" is selected and the visitor requests a hill trip, THE Explore_Doon_Page SHALL explain that hill transit requires a hired cab and provide a one-tap option to toggle cab mode.
+
+### Requirement 32: Date, Day-Type & Astronomical Calculations
+
+**User Story:** As an attendee visiting on any day of the conference weekend, I want recommendations tailored to my specific day and sunset timing.
+
+#### Acceptance Criteria
+1. THE Control_Panel SHALL provide a date/day-type selector with presets for "Before event", "Event day", and "Day after", deriving day type (weekday/Saturday/Sunday) dynamically.
+2. THE Explore_Doon_Page SHALL compute sunrise and sunset dynamically from date and coordinates, replacing all hardcoded "Sunday" and "5:30 PM" references.
+
+### Requirement 33: Mussoorie & Landour Real-World Regulatory Rules
+
+**User Story:** As a visitor driving to Mussoorie, I want warnings about tourist registration, Mall Road vehicle bans, and parking constraints before I set out.
+
+#### Acceptance Criteria
+1. THE Output_Panel SHALL render advisories for Mussoorie trips regarding tourist pre-registration requirements, Mall Road evening vehicle closures (4:30 PM onward), and Landour narrow-road parking limitations.
+2. WHEN two-wheeler mode is selected on peak hill traffic days, THE Output_Panel SHALL display a caution regarding potential administrative two-wheeler restrictions at barrier checkpoints.
+
+### Requirement 34: Apple-Grade Design System & Day Dial Signature Scrubber
+
+**User Story:** As a user on mobile, I want a smooth, tactile, gesture-friendly interface that feels like a native iOS application.
+
+#### Acceptance Criteria
+1. THE Control_Panel SHALL feature the signature Day Dial: a 5 AM–11 PM horizontal scrubber with dual draggable handles (Start, Return), live usable duration calculation, traffic heat strip, and sunset safety markers.
+2. THE Explore_Doon_Page SHALL adhere to the official AWS SBG GEU dark/light design tokens (`--ac: #AD5CFF`, `--panel: #090E1E`, glass surfaces with backdrop blur).
+3. THE Explore_Doon_Page SHALL provide tactile feedback with `scale(0.97)` on press and `navigator.vibrate?.(8)` on selection where supported.
+4. When scrolling, a sticky glass summary pill ("Dynamic Island") SHALL compact and display real-time plan status and return time.
+
+### Requirement 35: Maps Integration & Deep Links
+
+**User Story:** As a visitor navigating to stops, I want direct Google Maps routes, deep links, and an in-app route visualizer.
+
+#### Acceptance Criteria
+1. Layer 1: Every stop card and plan summary SHALL provide well-formed Google Maps deep links (`/maps/dir/` and `/maps/search/`) with waypoints and campus origin/destination without requiring any API keys.
+2. Layer 2: When configured via environment variable `VITE_GOOGLE_EMBED_KEY`, THE Explore_Doon_Page SHALL load interactive direction embeds on demand inside bottom detail sheets.
+3. Layer 3: THE Explore_Doon_Page SHALL render an offline-capable interactive route map using MapLibre/vector rendering styled with brand tokens without external runtime API billing dependencies.
+
+### Requirement 36: Offline PWA & Service Worker
+
+**User Story:** As a visitor in the Mussoorie hills with spotty cellular data, I want my itinerary and maps to work offline.
+
+#### Acceptance Criteria
+1. THE Explore_Doon_Page SHALL install a Service Worker and PWA web manifest, caching the application shell, datasets, and the most recently generated itinerary.
+2. The application SHALL load and function seamlessly when disconnected from the network after initial load.
+
+### Requirement 37: Multi-Language Hindi / English Support
+
+**User Story:** As an attendee from Uttarakhand or across India, I want to switch between English and Hindi.
+
+#### Acceptance Criteria
+1. THE Explore_Doon_Page SHALL provide a locale toggle (EN / HI) translating UI labels, copy fragments, directions, and safety advisories based on `data/copy.json`.
+
+### Requirement 38: Data Integrity & Automated Linting
+
+**User Story:** As the system owner, I want automated validation that all venue and route data adheres to schema rules with zero fabricated facts.
+
+#### Acceptance Criteria
+1. `npm run data:lint` SHALL validate all JSON files in `data/` against strict schema rules, ensuring every venue has a valid cluster, visit time, and explicit verification status.
+2. THE build process SHALL automatically generate `docs/DATA-VERIFICATION-CHECKLIST.md` tracking all venues and routes marked `reported`, `estimated`, or `unknown`.
+
+### Requirement 39: Event-Aware Trip Planning
+
+**User Story:** As an AWS SCD attendee, I want to plan excursions specifically before the keynote or after the conference sessions.
+
+#### Acceptance Criteria
+1. THE Control_Panel SHALL offer "Plan around SCD" shortcuts utilizing conference schedule metadata (`config.json`), prioritizing immediate walking-distance clusters (Clement Town / Mindrolling) for short conference breaks.
+
+### Requirement 40: Privacy-Friendly Analytics & AWS Static Hosting
+
+**User Story:** As the organizer, I want aggregate usage metrics without tracking personal data, and a deployment pipeline for AWS S3 and CloudFront.
+
+#### Acceptance Criteria
+1. THE Explore_Doon_Page SHALL emit anonymous event counts (plan generated, swap used, share link created) without collecting any personal identifiable information (PII).
+2. THE repository SHALL include AWS CloudFormation / CDK static hosting infrastructure in `infra/` for S3 + CloudFront deployment with HTTPS and caching headers.
+
+## Open Questions / Known Limitations
 
 1. **The Highland Bakehouse & Pizzeria** — the owner has indicated verified facts exist for this entry, but the specific name/address/hours/price/tag values were not included in this handoff. Requirement 18.4 requires the swap once those fields are supplied.
 2. **Readers Coffee House** — real address and hours have not yet been fetched from https://readerscoffeehouse.in/. The entry remains a "Check hours" placeholder per Requirement 18.5.
 3. **"Koi" venue** — no verified details have been supplied by the venue owner yet. The entry remains a "Check hours" placeholder per Requirement 18.6.
-4. **Image asset list** — the owner has indicated roughly 28 photos will be supplied later with a filename convention of `<entry-id>.jpg`, but the specific filename list was not included in this handoff. Requirement 19 specifies the convention generically; the concrete list should be confirmed before implementation closes.
-5. **City-to-city travel leg estimate** — city-to-city travel legs currently use a flat 25-minute estimate regardless of actual distance between two city-area stops. Whether this flat estimate is acceptable as-is or needs refinement has not been decided, and no change is specified for it in this document.
-6. **Relaxed pace vs. lunch retention on long hill days** — on long Mountain_Trip days with Pace set to "Relaxed", the lunch stop added under Requirement 8 may be trimmed by the Requirement 6 trimming loop before lower-priority sightseeing stops, since it is not currently given trimming priority. Whether lunch should be protected from trimming ahead of sightseeing stops has not been decided, and no specific prioritization is mandated in this document beyond Requirement 8.2.
+4. **Image asset list** — roughly 28 photos exist in `public/images/`. Attribution is tracked in `docs/IMAGE-CREDITS.md`.
+5. **Event Date Confirmation** — Configured defaults to Saturday 31 Oct 2026 for AWS Student Community Day. Excursions can be planned for event day or post-event Sunday 1 Nov 2026.
+6. **Build-Time Travel Matrix** — In the absence of third-party routing API keys, precomputed baseline matrix in `data/routes.json` is calibrated against typical local transit times.
+

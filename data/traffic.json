@@ -1,0 +1,91 @@
+{
+  "description": "Directional and time-of-day traffic profiles for Dehradun valley and Mussoorie ridge",
+  "status": "assumption",
+  "profiles": [
+    {
+      "dayType": "sunday",
+      "direction": "up",
+      "buckets": [
+        { "start": 0, "end": 450, "p50": 1.0, "p80": 1.1, "label": "Clear early morning roads" },
+        { "start": 450, "end": 540, "p50": 1.15, "p80": 1.3, "label": "Morning hill traffic building" },
+        { "start": 540, "end": 720, "p50": 1.5, "p80": 1.85, "label": "Peak uphill Sunday traffic & tolls" },
+        { "start": 720, "end": 900, "p50": 1.35, "p80": 1.6, "label": "Moderate uphill flow" },
+        { "start": 900, "end": 1440, "p50": 1.2, "p80": 1.4, "label": "Evening light traffic" }
+      ]
+    },
+    {
+      "dayType": "sunday",
+      "direction": "down",
+      "buckets": [
+        { "start": 0, "end": 720, "p50": 1.1, "p80": 1.25, "label": "Smooth morning descent" },
+        { "start": 720, "end": 840, "p50": 1.3, "p80": 1.5, "label": "Early afternoon downhill flow" },
+        { "start": 840, "end": 1140, "p50": 1.7, "p80": 2.1, "label": "Heavy weekend hill descent rush" },
+        { "start": 1140, "end": 1440, "p50": 1.3, "p80": 1.5, "label": "Late evening clearance" }
+      ]
+    },
+    {
+      "dayType": "sunday",
+      "direction": "city",
+      "buckets": [
+        { "start": 0, "end": 600, "p50": 1.0, "p80": 1.1, "label": "Quiet valley streets" },
+        { "start": 600, "end": 1020, "p50": 1.1, "p80": 1.25, "label": "Normal Sunday city traffic" },
+        { "start": 1020, "end": 1260, "p50": 1.25, "p80": 1.45, "label": "Rajpur Road & mall evening rush" },
+        { "start": 1260, "end": 1440, "p50": 1.05, "p80": 1.15, "label": "Night clearance" }
+      ]
+    },
+    {
+      "dayType": "saturday",
+      "direction": "up",
+      "buckets": [
+        { "start": 0, "end": 480, "p50": 1.0, "p80": 1.1, "label": "Clear" },
+        { "start": 480, "end": 720, "p50": 1.35, "p80": 1.6, "label": "Saturday uphill weekend arrivals" },
+        { "start": 720, "end": 960, "p50": 1.3, "p80": 1.5, "label": "Afternoon arrivals" },
+        { "start": 960, "end": 1440, "p50": 1.15, "p80": 1.3, "label": "Evening" }
+      ]
+    },
+    {
+      "dayType": "saturday",
+      "direction": "down",
+      "buckets": [
+        { "start": 0, "end": 780, "p50": 1.05, "p80": 1.2, "label": "Clear morning descent" },
+        { "start": 780, "end": 1140, "p50": 1.45, "p80": 1.75, "label": "Saturday evening descent" },
+        { "start": 1140, "end": 1440, "p50": 1.2, "p80": 1.35, "label": "Night" }
+      ]
+    },
+    {
+      "dayType": "saturday",
+      "direction": "city",
+      "buckets": [
+        { "start": 0, "end": 600, "p50": 1.0, "p80": 1.1, "label": "Clear" },
+        { "start": 600, "end": 1020, "p50": 1.15, "p80": 1.3, "label": "Market bustle" },
+        { "start": 1020, "end": 1260, "p50": 1.3, "p80": 1.5, "label": "Saturday night dining & mall peaks" },
+        { "start": 1260, "end": 1440, "p50": 1.1, "p80": 1.2, "label": "Night" }
+      ]
+    },
+    {
+      "dayType": "weekday",
+      "direction": "up",
+      "buckets": [
+        { "start": 0, "end": 1440, "p50": 1.05, "p80": 1.2, "label": "Normal weekday mountain flow" }
+      ]
+    },
+    {
+      "dayType": "weekday",
+      "direction": "down",
+      "buckets": [
+        { "start": 0, "end": 1440, "p50": 1.05, "p80": 1.2, "label": "Normal weekday descent" }
+      ]
+    },
+    {
+      "dayType": "weekday",
+      "direction": "city",
+      "buckets": [
+        { "start": 0, "end": 510, "p50": 1.0, "p80": 1.1, "label": "Early" },
+        { "start": 510, "end": 630, "p50": 1.4, "p80": 1.65, "label": "Morning office & school rush" },
+        { "start": 630, "end": 1020, "p50": 1.1, "p80": 1.25, "label": "Midday" },
+        { "start": 1020, "end": 1200, "p50": 1.4, "p80": 1.7, "label": "Evening office commute rush" },
+        { "start": 1200, "end": 1440, "p50": 1.05, "p80": 1.15, "label": "Night" }
+      ]
+    }
+  ]
+}

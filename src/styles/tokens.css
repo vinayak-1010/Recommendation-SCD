@@ -1,0 +1,129 @@
+:root {
+  /* ==========================================================================
+     APPLE-GRADE DESIGN SYSTEM TOKENS
+     AWS Student Community Day 2026 · Graphic Era University, Dehradun
+     ========================================================================== */
+
+  /* Neutral Dark Canvas & Surfaces (Near-black #0A0A0C default) */
+  --bg: #0A0A0C;
+  --card: #121216;
+  --panel: #18181F;
+  --sec: #22222C;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-soft: rgba(255, 255, 255, 0.05);
+  --line-active: rgba(173, 92, 255, 0.45);
+
+  /* Typography Text Hierarchy (Off-white #F5F5F7) */
+  --tx: #F5F5F7;
+  --t2: #A1A1A6;
+  --mu: #6E6E73;
+  --inv-tx: #0A0A0C;
+
+  /* SCD Signature Violet Accent (#AD5CFF) */
+  --ac: #AD5CFF;
+  --ac-hover: #BE7DFF;
+  --ac-edge: #731ED0;
+  --ac-glow: rgba(173, 92, 255, 0.28);
+  --ac-soft: rgba(173, 92, 255, 0.12);
+  --purple-dark: #8E35EA;
+
+  /* AWS Brand Cloud Orange (#FF9900) */
+  --orange: #FF9900;
+  --orange-light: #FFA726;
+  --orange-edge: #C66900;
+  --orange-glow: rgba(255, 153, 0, 0.28);
+  --orange-soft: rgba(255, 153, 0, 0.12);
+
+  /* Secondary Accents */
+  --blue: #1E51EC;
+  --blue-glow: rgba(30, 81, 236, 0.25);
+  --blue-soft: rgba(30, 81, 236, 0.12);
+  --cyan: #00A5EF;
+  --pink: #F44159;
+
+  /* Semantic State Colors */
+  --ok: #00D492;
+  --ok-edge: #047857;
+  --ok-soft: rgba(0, 212, 146, 0.14);
+  --wa: #FFB900;
+  --wa-soft: rgba(255, 185, 0, 0.14);
+  --bd: #FF4A3C;
+  --bd-soft: rgba(255, 74, 60, 0.14);
+
+  /* Fluid Display Typography Scale */
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-accent: 'Outfit', sans-serif;
+
+  --fs-hero: clamp(3rem, 7vw, 9rem);
+  --fs-display: clamp(2.5rem, 5vw, 5rem);
+  --fs-h1: clamp(2rem, 3.8vw, 3.25rem);
+  --fs-h2: clamp(1.5rem, 2.8vw, 2.35rem);
+  --fs-h3: clamp(1.2rem, 2vw, 1.65rem);
+  --fs-body: clamp(0.95rem, 1.1vw, 1.1rem);
+  --fs-small: clamp(0.8rem, 0.9vw, 0.875rem);
+  --fs-tiny: 0.75rem;
+
+  --tracking-tight: -0.04em;
+  --tracking-display: -0.03em;
+  --tracking-h: -0.02em;
+  --tracking-wide: 0.06em;
+
+  /* Motion & Easings */
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 600ms;
+  --dur-epic: 1000ms;
+  --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: linear(0, 0.62 8%, 1.08 20%, 0.97 34%, 1.01 50%, 1);
+
+  /* Radii */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-2xl: 36px;
+  --r-pill: 9999px;
+
+  /* Glass Surfaces & Specular Highlights */
+  --glass-panel: rgba(18, 18, 22, 0.78);
+  --glass-blur: blur(28px) saturate(190%);
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --shadow-elevated: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-floating: 0 24px 64px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  /* Z-Index Hierarchy */
+  --z-base: 1;
+  --z-nav: 90;
+  --z-drawer: 150;
+  --z-modal: 200;
+  --z-toast: 300;
+}
+
+/* Light Theme Variables */
+.light {
+  --bg: #F5F5F7;
+  --card: #FFFFFF;
+  --panel: #EBEBEF;
+  --sec: #DFDFE5;
+  --line: rgba(0, 0, 0, 0.08);
+  --line-soft: rgba(0, 0, 0, 0.04);
+  --line-active: #AD5CFF;
+
+  --tx: #1D1D1F;
+  --t2: #515154;
+  --mu: #86868B;
+  --inv-tx: #F5F5F7;
+
+  --ac-glow: rgba(173, 92, 255, 0.16);
+  --ac-soft: rgba(173, 92, 255, 0.08);
+  --orange-glow: rgba(255, 153, 0, 0.16);
+  --orange-soft: rgba(255, 153, 0, 0.08);
+
+  --glass-panel: rgba(255, 255, 255, 0.85);
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-elevated: 0 16px 40px rgba(0, 0, 0, 0.1);
+  --shadow-floating: 0 24px 64px -12px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.06);
+}

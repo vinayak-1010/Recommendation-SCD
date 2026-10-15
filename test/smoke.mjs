@@ -399,6 +399,23 @@ async function testCatalogCorrections() {
   }
 }
 
+/**
+ * Task 8.5 — "Looks open" pill removal assertion.
+ * Render non-unverified entries and assert no element with class "pl ok" / text "Looks open"
+ * appears anywhere in #out (Req 24.2).
+ */
+async function testLooksOpenPillRemoval() {
+  const { document, errors } = loadPage();
+  const outHTML = getOutHTML(document);
+
+  assert(!outHTML.includes('Looks open'), `"Looks open" text should not appear anywhere in rendered output — got: ${outHTML}`);
+  assert(!outHTML.includes('pl ok'), `"pl ok" class should not appear anywhere in rendered output — got: ${outHTML}`);
+
+  if (errors.length) {
+    throw new Error(`Page raised ${errors.length} error(s) during Looks open test: ${errors.map(String).join('; ')}`);
+  }
+}
+
 Promise.resolve()
   .then(smokeTest)
   .then(testPeakWindowGolden)
@@ -407,6 +424,7 @@ Promise.resolve()
   .then(testMaggiInclusionNonMatchingVibe)
   .then(testTunedStateVisibility)
   .then(testCatalogCorrections)
+  .then(testLooksOpenPillRemoval)
   .then(() => {
     console.log('smoke: OK — page loaded, inline script executed, #out rendered, no errors thrown');
     console.log('golden (8.1): OK — flight dt=20:00 peak-window Return_Deadline renders "Back by 3:55 PM"');
@@ -415,8 +433,10 @@ Promise.resolve()
     console.log('golden (8.2c): OK — vibe "adventure" (no shared tag) selected, Maggi stop absent');
     console.log('golden (8.3): OK — .bar absent initially, present after a fine-tune change, absent again after a mode change');
     console.log('golden (8.4): OK — mlc/ycf deleted and absent, ama/hig renamed names present, rdr/koi unchanged with placeholder hr text');
+    console.log('golden (8.5): OK — "Looks open" pill (pl ok) removed from all entries');
   })
   .catch((err) => {
     console.error('smoke test FAILED:', err);
     process.exitCode = 1;
   });
+

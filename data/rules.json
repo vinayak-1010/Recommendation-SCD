@@ -1,0 +1,60 @@
+[
+  {
+    "id": "tourist-registration",
+    "appliesTo": "mussoorie-town",
+    "clusters": ["mussoorie-town", "landour", "park-estate"],
+    "effect": "advise",
+    "text": "Tourist pre-registration may be checked at entry barriers (Kincraig / Picture Palace). Keep your digital receipt or QR ready.",
+    "status": "reported",
+    "source": "Uttarakhand Smart City portal & District Advisory"
+  },
+  {
+    "id": "mall-road-vehicle-closure",
+    "appliesTo": "mall-road",
+    "clusters": ["mussoorie-town"],
+    "when": { "start": 990, "end": 1380 },
+    "effect": "block-vehicle",
+    "text": "Mall Road is strictly closed to motor vehicles from 4:30 PM to 10:30 PM. Vehicles must park at multi-level lots (Kingcraig or Picture Palace).",
+    "status": "verified",
+    "source": "Mussoorie Traffic Police standing notification"
+  },
+  {
+    "id": "landour-parking-narrow-roads",
+    "appliesTo": "landour",
+    "clusters": ["landour"],
+    "effect": "advise",
+    "text": "Landour has steep, narrow single-lane roads with very limited parking. On busy weekends, strict one-way circulation is enforced. Hill ATMs frequently run dry — carry cash.",
+    "status": "verified",
+    "source": "Landour Cantonment Board local advisories"
+  },
+  {
+    "id": "weekend-hill-traffic-diversion",
+    "appliesTo": "mussoorie-approach",
+    "clusters": ["mussoorie-approach", "mussoorie-town", "landour"],
+    "when": { "days": ["saturday", "sunday"] },
+    "effect": "extra-time",
+    "delayMin": 25,
+    "text": "Dehradun police operate weekend diversion plans via Purkul / Kuthal Gate. Delays of 30–60 minutes can occur during midday uphill surges.",
+    "status": "reported",
+    "source": "Dehradun Police traffic updates"
+  },
+  {
+    "id": "two-wheeler-surge-restriction",
+    "appliesTo": "mussoorie-approach",
+    "clusters": ["mussoorie-approach", "mussoorie-town", "landour"],
+    "when": { "days": ["saturday", "sunday"] },
+    "effect": "advise",
+    "text": "Authorities periodically restrict tourist two-wheelers during heavy weekend surges. Always carry helmet and full vehicle registration documents.",
+    "status": "reported",
+    "source": "District checkpoint reports"
+  },
+  {
+    "id": "daylight-hill-safety",
+    "appliesTo": "mussoorie-approach",
+    "clusters": ["mussoorie-approach", "mussoorie-town", "landour", "park-estate"],
+    "effect": "block-after-dark",
+    "text": "Mountain descents must conclude before nightfall. Two-wheelers should start descent 45 min before sunset; cars 30 min before sunset.",
+    "status": "verified",
+    "source": "Road safety standard for ghat sections"
+  }
+]

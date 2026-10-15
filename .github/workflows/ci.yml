@@ -1,0 +1,51 @@
+name: CI / Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js 22
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run data lint and verification checklist
+      run: npm run data:lint
+
+    - name: Run unit, smoke and property checks
+      run: npm test
+
+    - name: Run engine 10 Golden Scenarios suite
+      run: npm run test:engine
+
+    - name: Run Mussoorie blueprint scenario tests
+      run: node --experimental-strip-types test/engine-blueprints.ts
+
+    - name: Run replanning & alternatives tests
+      run: node --experimental-strip-types test/engine-replan.ts
+
+    - name: Run maps deep links tests
+      run: node --experimental-strip-types test/maps-links.ts
+
+    - name: Build production app & single-file bundle
+      run: npm run build:single
+
+    - name: Verify build artifacts
+      run: |
+        test -f dist/index.html
+        test -f dist/scd-explore-doon.html
+        echo "Build artifacts verified successfully!"

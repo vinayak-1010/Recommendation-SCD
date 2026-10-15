@@ -1,0 +1,78 @@
+{
+  "en": {
+    "titles": {
+      "landour_morning": "A Slow Landour Morning & Mountain Views",
+      "mussoorie_classic": "Classic Mussoorie Ridge & Promenade",
+      "doon_nature": "Doon Nature Streams & Heritage Retreat",
+      "culture_clement": "Tibetan Culture, Stupas & Local Bites",
+      "rajpur_cafes": "Rajpur Road Cafés & Valley Outing",
+      "evening_unwind": "Evening Cafés, Dinner & City Lights",
+      "night_out": "Night Out: Cocktails, Rooftops & Beats",
+      "expedition": "Full-Day Valley Expedition"
+    },
+    "reasons": {
+      "best_time": "Timed for the optimal hours when views are clearest and crowds are lightest.",
+      "same_cluster": "Located in the immediate vicinity to maximize your exploring and minimize transit.",
+      "on_the_way_home": "Positions you along the direct return route back to campus.",
+      "meal_window": "Timed perfectly for a relaxing meal break without detouring off course.",
+      "diversity": "Adds a refreshing contrast to your itinerary.",
+      "scd_nearby": "Right beside the Graphic Era campus — zero transit stress."
+    },
+    "transitions": {
+      "adjacent": "Just a short hop away.",
+      "scenic_climb": "A scenic mountain drive taking you up to the ridge.",
+      "smooth_descent": "A smooth downhill descent towards the valley.",
+      "homeward": "Direct return route heading back to Graphic Era campus."
+    },
+    "compromises": {
+      "george_everest_traffic": "Excluded George Everest House: the 1.5 km hike and Sunday traffic would exceed your safe return deadline.",
+      "mussoorie_time_short": "Mussoorie hills bypassed: a safe round trip needs at least 5 hours on weekend roads.",
+      "night_hills_safety": "Hill roads not recommended after dark; evening activities kept within Rajpur Road corridor.",
+      "single_viewpoint": "Limited to one primary mountain viewpoint to keep your day relaxed rather than rushed."
+    },
+    "advisories": {
+      "carry_jacket": "Carry a light jacket: temperatures drop quickly in the hills by late afternoon.",
+      "carry_cash": "Carry cash: hill ATMs frequently run out of currency on busy weekends.",
+      "cab_booking": "Pre-arrange return cab rides before heading uphill as return hill bookings are harder to find.",
+      "photo_id": "Carry valid photo ID: required for heritage checkpoints and evening venues."
+    }
+  },
+  "hi": {
+    "titles": {
+      "landour_morning": "लैंडौर की शांत सुबह और हिमालयी नजारे",
+      "mussoorie_classic": "क्लासिक मसूरी रिज और माल रोड",
+      "doon_nature": "दून की वादियां, गुफाएं और प्राकृतिक सौंदर्य",
+      "culture_clement": "तिब्बती संस्कृति, स्तूप और स्थानीय स्वाद",
+      "rajpur_cafes": "राजपुर रोड कैफे और सुकून भरा दिन",
+      "evening_unwind": "शाम के कैफे, डिनर और जगमगाता शहर",
+      "night_out": "नाइट आउट: रूफटॉप, संगीत और कॉकटेल",
+      "expedition": "पूरे दिन का रोमांचक भ्रमण"
+    },
+    "reasons": {
+      "best_time": "यह समय सबसे बेहतरीन दृश्यों और कम भीड़ के लिए चुना गया है।",
+      "same_cluster": "नजदीक स्थित है ताकि सफर का समय कम और घूमने का समय ज्यादा मिले।",
+      "on_the_way_home": "कैंपस वापसी के सीधे रास्ते पर स्थित है।",
+      "meal_window": "सही समय पर भोजन का आनंद लेने के लिए उपयुक्त।",
+      "diversity": "आपकी यात्रा में नया और अलग अनुभव जोड़ता है।",
+      "scd_nearby": "ग्राफिक एरा कैंपस के ठीक पास — बिना किसी सफर की चिंता के।"
+    },
+    "transitions": {
+      "adjacent": "बस कुछ ही कदमों की दूरी पर।",
+      "scenic_climb": "पहाड़ों की खूबसूरत वादियों से होकर ऊपर की ओर सफर।",
+      "smooth_descent": "घाटी की ओर आरामदायक ढलान का सफर।",
+      "homeward": "सीधे ग्राफिक एरा कैंपस की ओर वापसी का मार्ग।"
+    },
+    "compromises": {
+      "george_everest_traffic": "जॉर्ज एवरेस्ट को शामिल नहीं किया गया: लंबी चढ़ाई और सप्ताहांत ट्रैफिक से वापसी में देरी हो सकती थी।",
+      "mussoorie_time_short": "मसूरी की यात्रा नहीं रखी गई: सप्ताहांत में सुरक्षित यात्रा के लिए कम से कम 5 घंटे आवश्यक हैं।",
+      "night_hills_safety": "रात में पहाड़ी रास्तों पर सफर असुरक्षित है; रात का कार्यक्रम शहर में ही रखा गया है।",
+      "single_viewpoint": "एक ही मुख्य व्यूप्वाइंट रखा गया है ताकि सफर थकाऊ न हो।"
+    },
+    "advisories": {
+      "carry_jacket": "हल्की जैकेट साथ रखें: शाम को पहाड़ों में ठंड बढ़ जाती है।",
+      "carry_cash": "कैश साथ रखें: पहाड़ी इलाकों के एटीएम में अक्सर नकदी समाप्त हो जाती है।",
+      "cab_booking": "पहाड़ पर जाने से पहले ही वापसी की टैक्सी तय कर लें।",
+      "photo_id": "पहचान पत्र (आईडी) साथ रखें: सुरक्षा और प्रवेश के लिए आवश्यक।"
+    }
+  }
+}

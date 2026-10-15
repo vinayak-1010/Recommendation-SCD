@@ -1,0 +1,48 @@
+{
+  "eventName": "AWS Student Community Day 2026 · The Highland Edition",
+  "eventDate": "2026-10-31",
+  "venue": {
+    "name": "Graphic Era (Deemed to be University), Clement Town, Dehradun",
+    "shortName": "Graphic Era Campus",
+    "coords": {
+      "lat": 30.2705,
+      "lng": 77.9965,
+      "source": "osm"
+    }
+  },
+  "sessions": {
+    "start": "09:30",
+    "end": "17:00",
+    "keynoteEnd": "11:30"
+  },
+  "buffers": {
+    "baseMin": 15,
+    "drivePercent": 0.12,
+    "hillDayMin": 20,
+    "peakHillDescentMin": 15,
+    "flightAirportTravelNormalMin": 120,
+    "flightAirportTravelPeakMin": 150,
+    "flightCheckinMin": 75,
+    "flightCampusExitMin": 20,
+    "trainStationTravelMin": 45,
+    "trainStationBufferMin": 45,
+    "trainCampusExitMin": 20
+  },
+  "weights": {
+    "w1_interestCredit": 35.0,
+    "w2_timeOfDayFit": 15.0,
+    "w3_mealFit": 20.0,
+    "w4_experienceDiversity": 18.0,
+    "w5_paceFit": 12.0,
+    "w6_travelCost": 40.0,
+    "w7_backtracking": 45.0,
+    "w8_riskPenalty": 30.0,
+    "w9_detourPenalty": 25.0
+  },
+  "mealWindows": {
+    "breakfast": { "start": 420, "end": 630 },
+    "lunch": { "start": 720, "end": 900 },
+    "snack": { "start": 900, "end": 1080 },
+    "dinner": { "start": 1140, "end": 1320 }
+  }
+}
