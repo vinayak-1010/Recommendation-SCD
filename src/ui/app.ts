@@ -1286,9 +1286,15 @@ export class ExploreDoonApp {
     const qrModal = this.rootEl.querySelector('#qr-share-modal') as HTMLElement;
     const closeQrBtn = this.rootEl.querySelector('#btn-close-qr-modal') as HTMLElement;
     if (closeQrBtn && qrModal) {
-      closeQrBtn.addEventListener('click', () => { qrModal.style.display = 'none'; });
+      closeQrBtn.addEventListener('click', () => {
+        qrModal.classList.remove('open');
+        qrModal.style.display = 'none';
+      });
       qrModal.addEventListener('click', (e) => {
-        if (e.target === qrModal) qrModal.style.display = 'none';
+        if (e.target === qrModal) {
+          qrModal.classList.remove('open');
+          qrModal.style.display = 'none';
+        }
       });
     }
 
@@ -1899,6 +1905,7 @@ export class ExploreDoonApp {
         if (qrModal && qrMount) {
           qrMount.innerHTML = `<img src="${getQRCodeUrl(window.location.href, 220)}" width="220" height="220" alt="QR Code to phone">`;
           qrModal.style.display = 'flex';
+          qrModal.classList.add('open');
         }
       });
     }

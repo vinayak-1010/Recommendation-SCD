@@ -10,6 +10,7 @@
     "build:single": "vite build && node --experimental-strip-types scripts/build-single.ts",
     "test": "node test/smoke.mjs && node test/properties.mjs && node test/characterization.mjs",
     "test:engine": "node --experimental-strip-types test/engine-golden.ts",
+    "test:e2e": "node test/e2e.mjs",
     "data:lint": "node --experimental-strip-types scripts/lint-data.ts"
   },
   "devDependencies": {
