@@ -1,0 +1,324 @@
+{
+  "task": "Find and download high-quality tourist place images for Dehradun/Mussoorie attractions",
+  "status": "Image sources identified - manual download required",
+  "date": "2026-10-20",
+  "targetDirectory": "public/images/",
+  "requiredImages": [
+    {
+      "id": "mind",
+      "filename": "mind.jpg",
+      "placeName": "Mindrolling Monastery & Great Stupa",
+      "status": "Source found",
+      "sources": [
+        {
+          "url": "https://unsplash.com/photos/i3xO9BAfCnM",
+          "platform": "Unsplash",
+          "license": "Unsplash License (Free to use)",
+          "description": "Great Stupa at Mindrolling Monastery Dehradun",
+          "quality": "High resolution",
+          "recommended": true
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Category:Mindrolling_Monastery_(Dehradun)",
+          "platform": "Wikimedia Commons",
+          "license": "CC BY-SA / Public Domain",
+          "description": "Various views of the monastery and stupa"
+        }
+      ]
+    },
+    {
+      "id": "fri",
+      "filename": "fri.jpg",
+      "placeName": "Forest Research Institute (FRI) Dehradun",
+      "status": "Source found",
+      "sources": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:FRI_Dehradun,_Uttarakhand.jpg",
+          "platform": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "description": "Front view of FRI main building with iconic colonial architecture",
+          "quality": "4096x2304 px",
+          "recommended": true,
+          "note": "Rate-limited during download - retry with user agent or manual download"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:FRI_Dehradun_Mar_2024.png",
+          "platform": "Wikimedia Commons",
+          "license": "CC BY-SA",
+          "description": "Panoramic view of FRI building"
+        }
+      ]
+    },
+    {
+      "id": "rob",
+      "filename": "rob.jpg",
+      "placeName": "Robber's Cave (Gucchupani)",
+      "status": "Source found",
+      "sources": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Robber's_Cave_Dehradun.jpg",
+          "platform": "Wikimedia Commons",
+          "license": "CC BY-SA 4.0",
+          "description": "Water flowing through the narrow gorge inside Robber's Cave",
+          "quality": "3456x5184 px",
+          "recommended": true
+        }
+      ]
+    },
+    {
+      "id": "sahas",
+      "filename": "sahas.jpg",
+      "placeName": "Sahastradhara Sulphur Springs",
+      "status": "Generic search required",
+      "sources": [
+        {
+          "searchTerms": "Sahastradhara waterfall Dehradun",
+          "platforms": ["Pixabay", "Pexels", "Unsplash"],
+          "note": "Search for limestone cascade and sulphur water pools"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Category:Sahastradhara",
+          "platform": "Wikimedia Commons",
+          "license": "Various CC licenses"
+        }
+      ]
+    },
+    {
+      "id": "land",
+      "filename": "land.jpg",
+      "placeName": "Landour: Lal Tibba & Char Dukan",
+      "status": "Generic search required",
+      "sources": [
+        {
+          "searchTerms": "Lal Tibba Landour viewpoint telescope",
+          "platforms": ["Unsplash", "Pexels"],
+          "note": "Look for Himalayan viewpoint with telescope or Char Dukan cafe street"
+        },
+        {
+          "searchTerms": "Landour heritage cantonment Mussoorie",
+          "platforms": ["Flickr CC", "Wikimedia Commons"]
+        }
+      ]
+    },
+    {
+      "id": "camels",
+      "filename": "camels.jpg",
+      "placeName": "Camel's Back Road Promenade",
+      "status": "Generic search required",
+      "sources": [
+        {
+          "searchTerms": "Camel Back Road Mussoorie promenade sunset",
+          "platforms": ["Unsplash", "Pexels", "Pixabay"],
+          "note": "3km ridge walk with valley views - look for walking path with mountain backdrop"
+        }
+      ]
+    },
+    {
+      "id": "gunhill",
+      "filename": "gunhill.jpg",
+      "placeName": "Gun Hill Mussoorie Ropeway & Viewpoint",
+      "status": "Generic search required",
+      "sources": [
+        {
+          "searchTerms": "Gun Hill Mussoorie ropeway cable car",
+          "platforms": ["Pexels", "Unsplash"],
+          "note": "Look for aerial ropeway or hilltop viewpoint with valley panorama"
+        }
+      ]
+    },
+    {
+      "id": "mall",
+      "filename": "mall.jpg",
+      "placeName": "Mall Road Mussoorie & Library Chowk",
+      "status": "Generic search required",
+      "sources": [
+        {
+          "searchTerms": "Mall Road Mussoorie Library Chowk street",
+          "platforms": ["Unsplash", "Pexels"],
+          "note": "Colonial lampposts, busy market street, Gandhi Chowk"
+        },
+        {
+          "searchTerms": "Mussoorie shopping street colonial buildings",
+          "platforms": ["Flickr CC", "Pixabay"]
+        }
+      ]
+    },
+    {
+      "id": "geo",
+      "filename": "geo.jpg",
+      "placeName": "Sir George Everest's House & Observatory",
+      "status": "Generic search required",
+      "sources": [
+        {
+          "searchTerms": "George Everest House Mussoorie heritage ruins",
+          "platforms": ["Unsplash", "Wikimedia Commons"],
+          "note": "Historic 1832 estate with cliff ridge trail views"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Category:George_Everest_House",
+          "platform": "Wikimedia Commons",
+          "license": "CC licenses"
+        }
+      ]
+    },
+    {
+      "id": "bha",
+      "filename": "bha.jpg",
+      "placeName": "Bhadraj Temple Hilltop Trek",
+      "status": "Generic search required",
+      "sources": [
+        {
+          "searchTerms": "Bhadraj temple trek Mussoorie hilltop",
+          "platforms": ["Unsplash", "Pexels"],
+          "note": "Mountain temple at 2200m with oak forest trail"
+        },
+        {
+          "searchTerms": "Bhadraj Hill Mussoorie Himalayan temple",
+          "platforms": ["Flickr CC"]
+        }
+      ]
+    },
+    {
+      "id": "mussoorie-lake",
+      "filename": "mussoorie-lake.jpg",
+      "placeName": "Mussoorie Lake & Valley Stop",
+      "status": "Generic search required",
+      "sources": [
+        {
+          "searchTerms": "Mussoorie Lake artificial pedal boats",
+          "platforms": ["Pexels", "Unsplash", "Pixabay"],
+          "note": "Artificial lake on Mussoorie-Dehradun highway with pedal boats"
+        }
+      ]
+    },
+    {
+      "id": "maggi",
+      "filename": "maggi.jpg",
+      "placeName": "Mussoorie Road Highway Viewpoint & Maggi Point",
+      "status": "Generic search required",
+      "sources": [
+        {
+          "searchTerms": "Mussoorie highway viewpoint Doon valley vista",
+          "platforms": ["Unsplash", "Pexels"],
+          "note": "Roadside viewpoint with mountain views - can use generic Mussoorie mountain view"
+        }
+      ]
+    },
+    {
+      "id": "rish",
+      "filename": "rish.jpg",
+      "placeName": "Rishikesh: Ganga Aarti & River Expedition",
+      "status": "Source found",
+      "sources": [
+        {
+          "url": "https://pixabay.com/images/search/ganga%20aarti/",
+          "platform": "Pixabay",
+          "license": "CC0 / Public Domain",
+          "description": "300+ free Ganga Aarti images available",
+          "searchTerms": "Ganga Aarti Triveni Ghat Rishikesh evening ceremony lamps",
+          "recommended": true
+        },
+        {
+          "url": "https://pixabay.com/images/search/rishikesh/",
+          "platform": "Pixabay",
+          "license": "CC0 / Public Domain",
+          "description": "70+ free Rishikesh images including river and ghat views"
+        },
+        {
+          "url": "https://unsplash.com/s/photos/rishikesh",
+          "platform": "Unsplash",
+          "license": "Unsplash License",
+          "description": "Various Rishikesh river and temple images"
+        }
+      ]
+    }
+  ],
+  "downloadInstructions": {
+    "wikimediaCommons": {
+      "steps": [
+        "1. Visit the Wikimedia Commons URL provided",
+        "2. Click on the image thumbnail to open full size",
+        "3. Right-click and select 'Save image as...'",
+        "4. Save with the specified filename to public/images/"
+      ],
+      "note": "Wikimedia has rate limits for automated downloads - manual download recommended"
+    },
+    "unsplash": {
+      "steps": [
+        "1. Visit the Unsplash photo URL",
+        "2. Click the 'Download' button (free, no account required)",
+        "3. Rename the downloaded file to match the specified filename",
+        "4. Move to public/images/"
+      ],
+      "license": "Free to use for commercial and non-commercial purposes, no attribution required (but appreciated)"
+    },
+    "pixabay": {
+      "steps": [
+        "1. Visit https://pixabay.com and search using the provided search terms",
+        "2. Select a high-quality image (look for 1920px or higher resolution)",
+        "3. Click 'Free Download' button",
+        "4. Choose 'Original' size",
+        "5. Save with the specified filename to public/images/"
+      ],
+      "license": "Pixabay License - Free for commercial use, no attribution required"
+    },
+    "pexels": {
+      "steps": [
+        "1. Visit https://www.pexels.com and search using the provided search terms",
+        "2. Select a relevant high-quality image",
+        "3. Click the 'Download' button",
+        "4. Choose 'Original' size",
+        "5. Save with the specified filename to public/images/"
+      ],
+      "license": "Pexels License - Free for commercial and personal use, no attribution required"
+    }
+  },
+  "imageQualityGuidelines": {
+    "minResolution": "1920x1080 px (Full HD)",
+    "preferredResolution": "2560x1440 px or higher",
+    "aspectRatio": "16:9 or 4:3 landscape preferred",
+    "fileFormat": "JPG for photographs, WebP for better compression (optional)",
+    "fileSize": "Keep under 500KB for web performance (compress if needed using tools like TinyPNG or Squoosh)"
+  },
+  "licenseCompliance": {
+    "approvedLicenses": [
+      "Public Domain (CC0)",
+      "Creative Commons Attribution (CC BY)",
+      "Creative Commons Attribution-ShareAlike (CC BY-SA)",
+      "Unsplash License",
+      "Pexels License",
+      "Pixabay License"
+    ],
+    "attributionRequired": {
+      "wikimediaCommons": "Yes - include photographer name and license in attribution file",
+      "unsplash": "No (but recommended)",
+      "pixabay": "No",
+      "pexels": "No"
+    },
+    "attributionFile": "Create public/images/ATTRIBUTIONS.txt with source credits for Wikimedia Commons images"
+  },
+  "alternativeApproach": {
+    "note": "If specific location images are hard to find, use representative images that capture the essence",
+    "examples": {
+      "landour": "Use general Mussoorie viewpoint or Himalayan vista images",
+      "camelBack": "Use Mussoorie ridge walk or mountain promenade images",
+      "maggiPoint": "Use highway viewpoint with mountain valley vista",
+      "mussoorieLake": "Use artificial lake with mountain backdrop from Uttarakhand region"
+    }
+  },
+  "nextSteps": [
+    "1. Start with confirmed sources: FRI, Robber's Cave, and Mindrolling from Wikimedia Commons",
+    "2. Download Rishikesh Ganga Aarti images from Pixabay (largest selection)",
+    "3. Search Unsplash for Mussoorie-specific locations (Landour, Mall Road, Gun Hill)",
+    "4. Use Pexels for generic mountain/viewpoint images where specific locations aren't available",
+    "5. Compress all images to under 500KB using online tools",
+    "6. Create ATTRIBUTIONS.txt file with required credits",
+    "7. Update places.json if filenames change from .jpg to .webp"
+  ],
+  "estimatedTime": "2-3 hours for comprehensive high-quality image collection",
+  "toolsNeeded": [
+    "Web browser for manual downloads",
+    "Image compression tool (TinyPNG.com, Squoosh.app, or ImageOptim)",
+    "Photo editor (optional) for cropping to consistent aspect ratios"
+  ]
+}
