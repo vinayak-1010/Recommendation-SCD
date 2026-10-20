@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Copy",
+  "type": "object",
+  "properties": {
+    "headings": { "type": "object", "additionalProperties": { "type": "string" } },
+    "labels": { "type": "object", "additionalProperties": { "type": "string" } },
+    "messages": { "type": "object", "additionalProperties": { "type": "string" } },
+    "descriptions": { "type": "object", "additionalProperties": { "type": "string" } }
+  }
+}

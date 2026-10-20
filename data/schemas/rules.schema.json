@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Rules",
+  "type": "object",
+  "required": ["constraints"],
+  "properties": {
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "maxPlacesPerDay": { "type": "number", "minimum": 1 },
+        "maxDrivingPerDay": { "type": "number", "minimum": 0 },
+        "minBreakDuration": { "type": "number", "minimum": 0 },
+        "dayStartTime": { "type": "number", "minimum": 0, "maximum": 23 },
+        "dayEndTime": { "type": "number", "minimum": 0, "maximum": 23 }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Clusters",
+  "type": "object",
+  "required": ["clusters"],
+  "properties": {
+    "clusters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "center"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "name": { "type": "string", "minLength": 1 },
+          "center": {
+            "type": "object",
+            "required": ["lat", "lng"],
+            "properties": {
+              "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+              "lng": { "type": "number", "minimum": -180, "maximum": 180 }
+            }
+          }
+        }
+      }
+    }
+  }
+}
