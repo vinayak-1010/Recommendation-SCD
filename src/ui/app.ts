@@ -52,6 +52,23 @@ function clusterDriveTime(cluster: string): string {
   return times[cluster] || '35m drive';
 }
 
+function areaLabel(cluster: string): string {
+  const labels: Record<string, string> = {
+    'clement-town': 'Clement Town · Near GEU',
+    'city-center': 'Dehradun City Heart',
+    'east-doon': 'East Doon & Song Valley',
+    'west-doon': 'West Doon & Foothills',
+    'rajpur': 'Old Rajpur Foothills',
+    'mussoorie-approach': 'Mussoorie Ghats Road',
+    'mussoorie-town': 'Mussoorie Town & Mall',
+    'landour': 'Landour Cloud Ridge',
+    'park-estate': "Hathipaon & Cloud's End",
+    'dhanaulti': 'Dhanaulti High Alps',
+    'rishikesh': 'Rishikesh Valley'
+  };
+  return labels[cluster] || (cluster || '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+}
+
 function timeCategory(item: Place): 'quick' | 'half' | 'full' {
   if (item.cluster === 'clement-town') return 'quick';
   if (['landour', 'mussoorie-town', 'park-estate', 'mussoorie-outskirts', 'dhanaulti', 'rishikesh'].includes(item.cluster)) {
@@ -1036,9 +1053,11 @@ export class ExploreDoonApp {
     });
 
     this.rootEl.querySelectorAll('.apple-tab-link').forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
         const nav = link.getAttribute('data-nav') as AppPage;
-        if (nav && nav !== this.activePage) {
+        if (nav) {
+          window.location.hash = `#/${nav}`;
           this.switchPage(nav);
         }
       });
@@ -1050,7 +1069,7 @@ export class ExploreDoonApp {
     if (!hash) hash = 'home';
 
     const validPages: AppPage[] = ['home', 'mountains', 'heritage', 'food', 'planner', 'directory', 'design'];
-    if (validPages.includes(hash as AppPage)) {
+    if (validPages.includes(hash as AppPage) && hash !== this.activePage) {
       this.switchPage(hash as AppPage);
     }
   }
@@ -1898,7 +1917,7 @@ export class ExploreDoonApp {
           </div>
           <div class="stat-tile" style="border-color:rgba(255,153,0,0.35);background:rgba(255,153,0,0.06)">
             <div class="stat-label" style="color:#FF9900">Estimated Cab Fare</div>
-            <div class="stat-value mono" style="color:#FFA726">₹${plan.budget ? `${plan.budget.carEstimate.min}–₹${plan.budget.carEstimate.max}` : '800–1200'}</div>
+            <div class="stat-value mono" style="color:#FFA726">${plan.estimatedCost ? `₹${plan.estimatedCost.totalMin}–₹${plan.estimatedCost.totalMax}` : '₹800–₹1,200'}</div>
           </div>
         </div>
 

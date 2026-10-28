@@ -142,11 +142,11 @@ body:has(#page-home.active-page) .sticky-island { display: none !important; }
   .lg-logo-wrap { width: 36px; height: 36px; }
   .actions { gap: 6px; }
   .icon-btn { width: 36px; height: 36px; }
-  .apple-nav-bar { position: fixed; inset: auto 0 0; z-index: 180; width: 100%; margin: 0; padding: 7px 12px calc(7px + env(safe-area-inset-bottom)); border: 1px solid var(--line); border-bottom: 0; border-radius: 20px 20px 0 0; background: color-mix(in srgb, var(--panel) 95%, transparent); backdrop-filter: blur(26px) saturate(180%); box-shadow: 0 -8px 30px rgba(0,0,0,.22); }
-  .apple-nav-tabs { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; overflow: visible; }
-  .apple-tab-link { flex-direction: column; gap: 4px; min-width: 0; min-height: 60px; padding: 6px 4px; border-radius: 13px; }
-  .apple-tab-link svg { width: 19px; height: 19px; }
-  .apple-tab-link span { font-size: 10px; line-height: 1.15; }
+  .apple-nav-bar { position: fixed; inset: auto 0 0; z-index: 180; width: 100%; margin: 0; padding: 7px 8px calc(7px + env(safe-area-inset-bottom)); border: 1px solid var(--line); border-bottom: 0; border-radius: 20px 20px 0 0; background: color-mix(in srgb, var(--panel) 95%, transparent); backdrop-filter: blur(26px) saturate(180%); box-shadow: 0 -8px 30px rgba(0,0,0,.22); }
+  .apple-nav-tabs { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 4px; overflow: visible; }
+  .apple-tab-link { flex-direction: column; gap: 3px; min-width: 0; min-height: 54px; padding: 6px 2px; border-radius: 12px; }
+  .apple-tab-link svg { width: 18px; height: 18px; }
+  .apple-tab-link span { font-size: 9.5px; line-height: 1.1; font-weight: 700; white-space: nowrap; }
   .sticky-island { bottom: calc(82px + env(safe-area-inset-bottom)); max-width: calc(100vw - 24px); gap: 9px; padding: 9px 12px; }
   body:has(#page-planner.active-page) .sticky-island { display: none !important; }
   .visitor-hero { min-height: 590px; margin-bottom: 58px; border-radius: 24px; align-items: flex-end; }

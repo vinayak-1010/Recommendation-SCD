@@ -132,9 +132,13 @@ export function generateWhatsAppShareUrl(plan: Itinerary, dateStr: string, fullM
     return `${dh}:${pad(m)} ${ampm}`;
   };
 
+  const firstStop = plan.stops[0];
+  const startTime = firstStop ? firstStop.arrival : 480;
+  const returnTime = plan.expectedReturn || 1020;
+
   let text = `🏔️ *Explore Doon Day Out Plan* (${dateStr})\n`;
-  text += `⏱️ *Window:* ${fmt(plan.summary.start)} – ${fmt(plan.summary.end)}\n`;
-  text += `🚗 *Total Distance:* ~${plan.summary.totalDistanceKm} km · *Return Buffer:* ${plan.summary.returnBufferMin} mins\n\n`;
+  text += `⏱️ *Window:* ${fmt(startTime)} – ${fmt(returnTime)}\n`;
+  text += `🚗 *Return Buffer:* +${plan.contingencyBufferMin || 30} mins · *Transit Time:* ~${Math.round((plan.totalTravelMin || 0) / 60)}h ${(plan.totalTravelMin || 0) % 60}m\n\n`;
   text += `📍 *Stops Planned:*\n`;
 
   plan.stops.forEach((s, idx) => {
@@ -142,8 +146,8 @@ export function generateWhatsAppShareUrl(plan: Itinerary, dateStr: string, fullM
     if (s.whatToDo?.[0]) text += `   • ${s.whatToDo[0]}\n`;
   });
 
-  if (plan.budget) {
-    text += `\n💰 *Estimated Cab Cost:* ₹${plan.budget.carEstimate.min}–₹${plan.budget.carEstimate.max} (Split 4 ways: ~₹${Math.round(plan.budget.carEstimate.min / 4)}–₹${Math.round(plan.budget.carEstimate.max / 4)}/person)\n`;
+  if (plan.estimatedCost) {
+    text += `\n💰 *Estimated Cost:* ₹${plan.estimatedCost.totalMin}–₹${plan.estimatedCost.totalMax} (~₹${plan.estimatedCost.perPersonMin}–₹${plan.estimatedCost.perPersonMax}/person)\n`;
   }
 
   text += `\n🗺️ *Full Google Maps Route:*\n${fullMapUrl}\n\n_Planned with Explore Doon Travel Guide_`;
