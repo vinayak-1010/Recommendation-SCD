@@ -24,7 +24,8 @@ const VALID_EXPERIENCE_TYPES = new Set([
   'viewpoint', 'forest-walk', 'heritage-house', 'heritage-church', 'monastery',
   'temple', 'waterfall', 'cave-stream', 'museum-garden', 'ropeway-viewpoint',
   'promenade', 'market', 'bakery', 'cafe-scenic', 'cafe-city', 'breakfast-local',
-  'restaurant-sitdown', 'street-food', 'bar-lounge', 'club', 'trek', 'river-activity'
+  'restaurant-sitdown', 'street-food', 'bar-lounge', 'club', 'trek', 'river-activity',
+  'forest-park', 'forest-waterfall', 'wetland-birding', 'heritage-archaeology', 'wildlife-park', 'riverfront-spiritual'
 ]);
 
 // 1. Lint places

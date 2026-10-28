@@ -61,5 +61,47 @@
     "character": "Full-day standalone expeditions: Bhadraj Trek (11 km) and Rishikesh (42 km).",
     "center": { "lat": 30.125, "lng": 78.295 },
     "elevationM": 350
+  },
+  {
+    "id": "mussoorie-outskirts",
+    "name": "Kempty Falls & Mussoorie Outskirts",
+    "character": "Waterfall visits outside Mussoorie town; allow extra road time and check seasonal conditions.",
+    "center": { "lat": 30.4873, "lng": 78.0362 },
+    "elevationM": 1364
+  },
+  {
+    "id": "dhanaulti",
+    "name": "Dhanaulti",
+    "character": "Forest walks and eco parks on a full mountain day trip beyond Mussoorie.",
+    "center": { "lat": 30.414, "lng": 78.245 },
+    "elevationM": 2286
+  },
+  {
+    "id": "chakrata",
+    "name": "Chakrata & Tiger Falls",
+    "character": "A long mountain excursion with forest scenery and a waterfall walk; plan a full day.",
+    "center": { "lat": 30.704, "lng": 77.866 },
+    "elevationM": 1600
+  },
+  {
+    "id": "asan-barrage",
+    "name": "Asan Conservation Reserve",
+    "character": "Wetland bird habitat in the western Doon valley; best for a slow nature visit.",
+    "center": { "lat": 30.4358, "lng": 77.6656 },
+    "elevationM": 390
+  },
+  {
+    "id": "kalsi",
+    "name": "Kalsi & Ashokan Rock Edict",
+    "character": "A heritage stop in the Yamuna valley that works best as a planned day excursion.",
+    "center": { "lat": 30.520, "lng": 77.836 },
+    "elevationM": 780
+  },
+  {
+    "id": "rishikesh",
+    "name": "Rishikesh Riverfront",
+    "character": "A full day for riverfront walks and evening aarti, with substantial return travel.",
+    "center": { "lat": 30.085, "lng": 78.267 },
+    "elevationM": 372
   }
 ]

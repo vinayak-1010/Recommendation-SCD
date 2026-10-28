@@ -4,11 +4,35 @@ const CAMPUS_NAME = 'Graphic Era Deemed to be University, Clement Town, Dehradun
 const CAMPUS_COORDS = '30.2705,77.9965';
 
 export function placeUrl(place: Place): string {
+  const locationTag = ['landour', 'mussoorie-town', 'mussoorie-approach', 'mussoorie-outskirts', 'park-estate'].includes(place.cluster)
+    ? 'Mussoorie, Uttarakhand'
+    : place.cluster === 'rishikesh'
+      ? 'Rishikesh, Uttarakhand'
+      : place.cluster === 'dhanaulti'
+        ? 'Dhanaulti, Uttarakhand'
+        : 'Dehradun, Uttarakhand';
+
+  const queryStr = `${place.name}, ${locationTag}`;
   if (place.coords && place.coords.lat && place.coords.lng) {
-    return `https://www.google.com/maps/search/?api=1&query=${place.coords.lat},${place.coords.lng}`;
+    // Both query name AND coords for guaranteed official POI match and position
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(queryStr)}&ll=${place.coords.lat},${place.coords.lng}`;
   }
-  const queryStr = `${place.name}, ${place.cluster.replace('-', ' ')}, Dehradun, Uttarakhand`;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(queryStr)}`;
+}
+
+export function placeDirectionsUrl(place: Place, mode: TransportMode = 'car'): string {
+  let travelmode = 'driving';
+  if (mode === 'bike') travelmode = 'two-wheeler';
+  else if (mode === 'walk') travelmode = 'walking';
+  else if (mode === 'public') travelmode = 'transit';
+
+  if (place.coords && place.coords.lat && place.coords.lng) {
+    return `https://www.google.com/maps/dir/?api=1&destination=${place.coords.lat},${place.coords.lng}&travelmode=${travelmode}`;
+  }
+  const locationTag = ['landour', 'mussoorie-town', 'mussoorie-approach', 'mussoorie-outskirts', 'park-estate'].includes(place.cluster)
+    ? 'Mussoorie, Uttarakhand'
+    : 'Dehradun, Uttarakhand';
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place.name + ', ' + locationTag)}&travelmode=${travelmode}`;
 }
 
 export interface DirectionsParams {
@@ -19,26 +43,22 @@ export interface DirectionsParams {
 }
 
 export function dirUrl(params: DirectionsParams): string {
-  const origin = encodeURIComponent(params.origin || CAMPUS_COORDS);
-  const destination = encodeURIComponent(params.destination || CAMPUS_COORDS);
-
   let travelmode = 'driving';
   if (params.mode === 'bike') travelmode = 'two-wheeler';
   else if (params.mode === 'walk') travelmode = 'walking';
   else if (params.mode === 'public') travelmode = 'transit';
 
-  let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=${travelmode}`;
-
-  if (params.waypoints && params.waypoints.length > 0) {
-    // Google Maps dir URL supports pipe-delimited waypoints (up to ~9-10 waypoints)
-    const waypointsStr = params.waypoints
-      .slice(0, 9)
-      .map(wp => encodeURIComponent(wp))
-      .join('|');
-    url += `&waypoints=${waypointsStr}`;
+  const query = new URLSearchParams({
+    api: '1',
+    origin: params.origin || CAMPUS_COORDS,
+    destination: params.destination || CAMPUS_COORDS,
+    travelmode
+  });
+  if (params.waypoints?.length) {
+    // Encode each route component once; Maps expects pipe-delimited waypoint entries.
+    query.set('waypoints', params.waypoints.slice(0, 9).join('|'));
   }
-
-  return url;
+  return `https://www.google.com/maps/dir/?${query.toString()}`;
 }
 
 export function fullRouteUrl(stops: Place[], mode: TransportMode): string {

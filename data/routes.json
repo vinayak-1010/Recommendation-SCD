@@ -6,15 +6,27 @@
       "from": "campus",
       "to": "clement-town",
       "distanceKm": 1.2,
-      "freeFlowMin": { "car": 5, "bike": 4, "cab": 6, "public": 10, "walk": 12 },
+      "freeFlowMin": {
+        "car": 5,
+        "bike": 4,
+        "cab": 6,
+        "public": 10,
+        "walk": 12
+      },
       "directional": false,
       "directionType": "city"
     },
     {
       "from": "campus",
       "to": "city-center",
-      "distanceKm": 9.0,
-      "freeFlowMin": { "car": 25, "bike": 20, "cab": 25, "public": 35, "walk": 110 },
+      "distanceKm": 9,
+      "freeFlowMin": {
+        "car": 25,
+        "bike": 20,
+        "cab": 25,
+        "public": 35,
+        "walk": 110
+      },
       "directional": false,
       "directionType": "city"
     },
@@ -22,47 +34,83 @@
       "from": "campus",
       "to": "rajpur",
       "distanceKm": 15.5,
-      "freeFlowMin": { "car": 32, "bike": 26, "cab": 32, "public": 45, "walk": 180 },
+      "freeFlowMin": {
+        "car": 32,
+        "bike": 26,
+        "cab": 32,
+        "public": 45,
+        "walk": 180
+      },
       "directional": false,
       "directionType": "city"
     },
     {
       "from": "campus",
       "to": "east-doon",
-      "distanceKm": 16.0,
-      "freeFlowMin": { "car": 35, "bike": 28, "cab": 35, "public": 50, "walk": 190 },
+      "distanceKm": 16,
+      "freeFlowMin": {
+        "car": 35,
+        "bike": 28,
+        "cab": 35,
+        "public": 50,
+        "walk": 190
+      },
       "directional": false,
       "directionType": "city"
     },
     {
       "from": "campus",
       "to": "mussoorie-approach",
-      "distanceKm": 24.0,
-      "freeFlowMin": { "car": 45, "bike": 40, "cab": 45, "public": 65, "walk": 300 },
+      "distanceKm": 24,
+      "freeFlowMin": {
+        "car": 45,
+        "bike": 40,
+        "cab": 45,
+        "public": 65,
+        "walk": 300
+      },
       "directional": true,
       "directionType": "up"
     },
     {
       "from": "mussoorie-approach",
       "to": "campus",
-      "distanceKm": 24.0,
-      "freeFlowMin": { "car": 42, "bike": 38, "cab": 42, "public": 60, "walk": 280 },
+      "distanceKm": 24,
+      "freeFlowMin": {
+        "car": 42,
+        "bike": 38,
+        "cab": 42,
+        "public": 60,
+        "walk": 280
+      },
       "directional": true,
       "directionType": "down"
     },
     {
       "from": "campus",
       "to": "mussoorie-town",
-      "distanceKm": 34.0,
-      "freeFlowMin": { "car": 70, "bike": 65, "cab": 70, "public": 95, "walk": 450 },
+      "distanceKm": 34,
+      "freeFlowMin": {
+        "car": 70,
+        "bike": 65,
+        "cab": 70,
+        "public": 95,
+        "walk": 450
+      },
       "directional": true,
       "directionType": "up"
     },
     {
       "from": "mussoorie-town",
       "to": "campus",
-      "distanceKm": 34.0,
-      "freeFlowMin": { "car": 65, "bike": 60, "cab": 65, "public": 90, "walk": 420 },
+      "distanceKm": 34,
+      "freeFlowMin": {
+        "car": 65,
+        "bike": 60,
+        "cab": 65,
+        "public": 90,
+        "walk": 420
+      },
       "directional": true,
       "directionType": "down"
     },
@@ -70,7 +118,13 @@
       "from": "campus",
       "to": "landour",
       "distanceKm": 38.5,
-      "freeFlowMin": { "car": 85, "bike": 75, "cab": 85, "public": 120, "walk": 500 },
+      "freeFlowMin": {
+        "car": 85,
+        "bike": 75,
+        "cab": 85,
+        "public": 120,
+        "walk": 500
+      },
       "directional": true,
       "directionType": "up"
     },
@@ -78,39 +132,69 @@
       "from": "landour",
       "to": "campus",
       "distanceKm": 38.5,
-      "freeFlowMin": { "car": 78, "bike": 70, "cab": 78, "public": 110, "walk": 460 },
+      "freeFlowMin": {
+        "car": 78,
+        "bike": 70,
+        "cab": 78,
+        "public": 110,
+        "walk": 460
+      },
       "directional": true,
       "directionType": "down"
     },
     {
       "from": "campus",
       "to": "park-estate",
-      "distanceKm": 40.0,
-      "freeFlowMin": { "car": 90, "bike": 80, "cab": 90, "public": 135, "walk": 520 },
+      "distanceKm": 40,
+      "freeFlowMin": {
+        "car": 90,
+        "bike": 80,
+        "cab": 90,
+        "public": 135,
+        "walk": 520
+      },
       "directional": true,
       "directionType": "up"
     },
     {
       "from": "park-estate",
       "to": "campus",
-      "distanceKm": 40.0,
-      "freeFlowMin": { "car": 85, "bike": 75, "cab": 85, "public": 125, "walk": 480 },
+      "distanceKm": 40,
+      "freeFlowMin": {
+        "car": 85,
+        "bike": 75,
+        "cab": 85,
+        "public": 125,
+        "walk": 480
+      },
       "directional": true,
       "directionType": "down"
     },
     {
       "from": "campus",
       "to": "out-of-scope-default",
-      "distanceKm": 46.0,
-      "freeFlowMin": { "car": 95, "bike": 85, "cab": 95, "public": 130, "walk": 600 },
+      "distanceKm": 46,
+      "freeFlowMin": {
+        "car": 95,
+        "bike": 85,
+        "cab": 95,
+        "public": 130,
+        "walk": 600
+      },
       "directional": false,
       "directionType": "city"
     },
     {
       "from": "clement-town",
       "to": "city-center",
-      "distanceKm": 8.0,
-      "freeFlowMin": { "car": 22, "bike": 18, "cab": 22, "public": 30, "walk": 100 },
+      "distanceKm": 8,
+      "freeFlowMin": {
+        "car": 22,
+        "bike": 18,
+        "cab": 22,
+        "public": 30,
+        "walk": 100
+      },
       "directional": false,
       "directionType": "city"
     },
@@ -118,15 +202,27 @@
       "from": "city-center",
       "to": "rajpur",
       "distanceKm": 7.5,
-      "freeFlowMin": { "car": 20, "bike": 16, "cab": 20, "public": 28, "walk": 90 },
+      "freeFlowMin": {
+        "car": 20,
+        "bike": 16,
+        "cab": 20,
+        "public": 28,
+        "walk": 90
+      },
       "directional": false,
       "directionType": "city"
     },
     {
       "from": "city-center",
       "to": "east-doon",
-      "distanceKm": 10.0,
-      "freeFlowMin": { "car": 25, "bike": 20, "cab": 25, "public": 35, "walk": 120 },
+      "distanceKm": 10,
+      "freeFlowMin": {
+        "car": 25,
+        "bike": 20,
+        "cab": 25,
+        "public": 35,
+        "walk": 120
+      },
       "directional": false,
       "directionType": "city"
     },
@@ -134,39 +230,69 @@
       "from": "rajpur",
       "to": "east-doon",
       "distanceKm": 8.5,
-      "freeFlowMin": { "car": 20, "bike": 16, "cab": 20, "public": 30, "walk": 100 },
+      "freeFlowMin": {
+        "car": 20,
+        "bike": 16,
+        "cab": 20,
+        "public": 30,
+        "walk": 100
+      },
       "directional": false,
       "directionType": "city"
     },
     {
       "from": "rajpur",
       "to": "mussoorie-approach",
-      "distanceKm": 9.0,
-      "freeFlowMin": { "car": 18, "bike": 15, "cab": 18, "public": 25, "walk": 110 },
+      "distanceKm": 9,
+      "freeFlowMin": {
+        "car": 18,
+        "bike": 15,
+        "cab": 18,
+        "public": 25,
+        "walk": 110
+      },
       "directional": true,
       "directionType": "up"
     },
     {
       "from": "mussoorie-approach",
       "to": "rajpur",
-      "distanceKm": 9.0,
-      "freeFlowMin": { "car": 15, "bike": 14, "cab": 15, "public": 22, "walk": 100 },
+      "distanceKm": 9,
+      "freeFlowMin": {
+        "car": 15,
+        "bike": 14,
+        "cab": 15,
+        "public": 22,
+        "walk": 100
+      },
       "directional": true,
       "directionType": "down"
     },
     {
       "from": "mussoorie-approach",
       "to": "mussoorie-town",
-      "distanceKm": 10.0,
-      "freeFlowMin": { "car": 24, "bike": 22, "cab": 24, "public": 32, "walk": 120 },
+      "distanceKm": 10,
+      "freeFlowMin": {
+        "car": 24,
+        "bike": 22,
+        "cab": 24,
+        "public": 32,
+        "walk": 120
+      },
       "directional": true,
       "directionType": "up"
     },
     {
       "from": "mussoorie-town",
       "to": "mussoorie-approach",
-      "distanceKm": 10.0,
-      "freeFlowMin": { "car": 22, "bike": 20, "cab": 22, "public": 30, "walk": 110 },
+      "distanceKm": 10,
+      "freeFlowMin": {
+        "car": 22,
+        "bike": 20,
+        "cab": 22,
+        "public": 30,
+        "walk": 110
+      },
       "directional": true,
       "directionType": "down"
     },
@@ -174,7 +300,13 @@
       "from": "mussoorie-town",
       "to": "landour",
       "distanceKm": 4.5,
-      "freeFlowMin": { "car": 18, "bike": 14, "cab": 18, "public": 25, "walk": 55 },
+      "freeFlowMin": {
+        "car": 18,
+        "bike": 14,
+        "cab": 18,
+        "public": 25,
+        "walk": 55
+      },
       "directional": true,
       "directionType": "up"
     },
@@ -182,7 +314,13 @@
       "from": "landour",
       "to": "mussoorie-town",
       "distanceKm": 4.5,
-      "freeFlowMin": { "car": 15, "bike": 12, "cab": 15, "public": 22, "walk": 45 },
+      "freeFlowMin": {
+        "car": 15,
+        "bike": 12,
+        "cab": 15,
+        "public": 22,
+        "walk": 45
+      },
       "directional": true,
       "directionType": "down"
     },
@@ -190,15 +328,27 @@
       "from": "mussoorie-town",
       "to": "park-estate",
       "distanceKm": 6.5,
-      "freeFlowMin": { "car": 22, "bike": 18, "cab": 22, "public": 35, "walk": 80 },
+      "freeFlowMin": {
+        "car": 22,
+        "bike": 18,
+        "cab": 22,
+        "public": 35,
+        "walk": 80
+      },
       "directional": false,
       "directionType": "city"
     },
     {
       "from": "landour",
       "to": "park-estate",
-      "distanceKm": 11.0,
-      "freeFlowMin": { "car": 38, "bike": 32, "cab": 38, "public": 55, "walk": 135 },
+      "distanceKm": 11,
+      "freeFlowMin": {
+        "car": 38,
+        "bike": 32,
+        "cab": 38,
+        "public": 55,
+        "walk": 135
+      },
       "directional": false,
       "directionType": "city"
     },
@@ -206,7 +356,13 @@
       "from": "clement-town",
       "to": "clement-town",
       "distanceKm": 0.8,
-      "freeFlowMin": { "car": 4, "bike": 3, "cab": 4, "public": 5, "walk": 8 },
+      "freeFlowMin": {
+        "car": 4,
+        "bike": 3,
+        "cab": 4,
+        "public": 5,
+        "walk": 8
+      },
       "directional": false,
       "directionType": "city"
     },
@@ -214,15 +370,27 @@
       "from": "rajpur",
       "to": "rajpur",
       "distanceKm": 1.5,
-      "freeFlowMin": { "car": 6, "bike": 5, "cab": 6, "public": 10, "walk": 18 },
+      "freeFlowMin": {
+        "car": 6,
+        "bike": 5,
+        "cab": 6,
+        "public": 10,
+        "walk": 18
+      },
       "directional": false,
       "directionType": "city"
     },
     {
       "from": "landour",
       "to": "landour",
-      "distanceKm": 1.0,
-      "freeFlowMin": { "car": 8, "bike": 5, "cab": 8, "public": 12, "walk": 15 },
+      "distanceKm": 1,
+      "freeFlowMin": {
+        "car": 8,
+        "bike": 5,
+        "cab": 8,
+        "public": 12,
+        "walk": 15
+      },
       "directional": false,
       "directionType": "city"
     },
@@ -230,17 +398,309 @@
       "from": "mussoorie-town",
       "to": "mussoorie-town",
       "distanceKm": 1.2,
-      "freeFlowMin": { "car": 8, "bike": 6, "cab": 8, "public": 10, "walk": 15 },
+      "freeFlowMin": {
+        "car": 8,
+        "bike": 6,
+        "cab": 8,
+        "public": 10,
+        "walk": 15
+      },
       "directional": false,
       "directionType": "city"
     },
     {
       "from": "east-doon",
       "to": "east-doon",
-      "distanceKm": 5.0,
-      "freeFlowMin": { "car": 12, "bike": 10, "cab": 12, "public": 18, "walk": 60 },
+      "distanceKm": 5,
+      "freeFlowMin": {
+        "car": 12,
+        "bike": 10,
+        "cab": 12,
+        "public": 18,
+        "walk": 60
+      },
       "directional": false,
       "directionType": "city"
+    },
+    {
+      "from": "dhanaulti",
+      "to": "dhanaulti",
+      "distanceKm": 2,
+      "freeFlowMin": {
+        "car": 8,
+        "bike": 5,
+        "cab": 8,
+        "public": 12,
+        "walk": 27
+      },
+      "directional": false,
+      "directionType": "city"
+    },
+    {
+      "from": "chakrata",
+      "to": "chakrata",
+      "distanceKm": 2.5,
+      "freeFlowMin": {
+        "car": 8,
+        "bike": 5,
+        "cab": 8,
+        "public": 12,
+        "walk": 27
+      },
+      "directional": false,
+      "directionType": "city"
+    },
+    {
+      "from": "asan-barrage",
+      "to": "asan-barrage",
+      "distanceKm": 1.6,
+      "freeFlowMin": {
+        "car": 8,
+        "bike": 5,
+        "cab": 8,
+        "public": 12,
+        "walk": 27
+      },
+      "directional": false,
+      "directionType": "city"
+    },
+    {
+      "from": "kalsi",
+      "to": "kalsi",
+      "distanceKm": 2,
+      "freeFlowMin": {
+        "car": 8,
+        "bike": 5,
+        "cab": 8,
+        "public": 12,
+        "walk": 27
+      },
+      "directional": false,
+      "directionType": "city"
+    },
+    {
+      "from": "rishikesh",
+      "to": "rishikesh",
+      "distanceKm": 1.8,
+      "freeFlowMin": {
+        "car": 8,
+        "bike": 5,
+        "cab": 8,
+        "public": 12,
+        "walk": 27
+      },
+      "directional": false,
+      "directionType": "city"
+    },
+    {
+      "from": "mussoorie-outskirts",
+      "to": "mussoorie-outskirts",
+      "distanceKm": 1.6,
+      "freeFlowMin": {
+        "car": 8,
+        "bike": 5,
+        "cab": 8,
+        "public": 12,
+        "walk": 27
+      },
+      "directional": false,
+      "directionType": "city"
+    },
+    {
+      "from": "campus",
+      "to": "dhanaulti",
+      "distanceKm": 64,
+      "freeFlowMin": {
+        "car": 145,
+        "bike": 137,
+        "cab": 145,
+        "public": 218,
+        "walk": 479
+      },
+      "directional": true,
+      "directionType": "up"
+    },
+    {
+      "from": "dhanaulti",
+      "to": "campus",
+      "distanceKm": 64,
+      "freeFlowMin": {
+        "car": 135,
+        "bike": 127,
+        "cab": 135,
+        "public": 203,
+        "walk": 446
+      },
+      "directional": true,
+      "directionType": "down"
+    },
+    {
+      "from": "campus",
+      "to": "chakrata",
+      "distanceKm": 98,
+      "freeFlowMin": {
+        "car": 195,
+        "bike": 187,
+        "cab": 195,
+        "public": 293,
+        "walk": 644
+      },
+      "directional": true,
+      "directionType": "up"
+    },
+    {
+      "from": "chakrata",
+      "to": "campus",
+      "distanceKm": 98,
+      "freeFlowMin": {
+        "car": 180,
+        "bike": 172,
+        "cab": 180,
+        "public": 270,
+        "walk": 594
+      },
+      "directional": true,
+      "directionType": "down"
+    },
+    {
+      "from": "campus",
+      "to": "asan-barrage",
+      "distanceKm": 50,
+      "freeFlowMin": {
+        "car": 85,
+        "bike": 77,
+        "cab": 85,
+        "public": 128,
+        "walk": 281
+      },
+      "directional": true,
+      "directionType": "up"
+    },
+    {
+      "from": "asan-barrage",
+      "to": "campus",
+      "distanceKm": 50,
+      "freeFlowMin": {
+        "car": 78,
+        "bike": 70,
+        "cab": 78,
+        "public": 117,
+        "walk": 258
+      },
+      "directional": true,
+      "directionType": "down"
+    },
+    {
+      "from": "campus",
+      "to": "kalsi",
+      "distanceKm": 62,
+      "freeFlowMin": {
+        "car": 105,
+        "bike": 97,
+        "cab": 105,
+        "public": 158,
+        "walk": 347
+      },
+      "directional": true,
+      "directionType": "up"
+    },
+    {
+      "from": "kalsi",
+      "to": "campus",
+      "distanceKm": 62,
+      "freeFlowMin": {
+        "car": 95,
+        "bike": 87,
+        "cab": 95,
+        "public": 143,
+        "walk": 314
+      },
+      "directional": true,
+      "directionType": "down"
+    },
+    {
+      "from": "campus",
+      "to": "rishikesh",
+      "distanceKm": 44,
+      "freeFlowMin": {
+        "car": 85,
+        "bike": 77,
+        "cab": 85,
+        "public": 128,
+        "walk": 281
+      },
+      "directional": true,
+      "directionType": "up"
+    },
+    {
+      "from": "rishikesh",
+      "to": "campus",
+      "distanceKm": 44,
+      "freeFlowMin": {
+        "car": 80,
+        "bike": 72,
+        "cab": 80,
+        "public": 120,
+        "walk": 264
+      },
+      "directional": true,
+      "directionType": "down"
+    },
+    {
+      "from": "campus",
+      "to": "mussoorie-outskirts",
+      "distanceKm": 44,
+      "freeFlowMin": {
+        "car": 100,
+        "bike": 92,
+        "cab": 100,
+        "public": 150,
+        "walk": 330
+      },
+      "directional": true,
+      "directionType": "up"
+    },
+    {
+      "from": "mussoorie-outskirts",
+      "to": "campus",
+      "distanceKm": 44,
+      "freeFlowMin": {
+        "car": 92,
+        "bike": 84,
+        "cab": 92,
+        "public": 138,
+        "walk": 304
+      },
+      "directional": true,
+      "directionType": "down"
+    },
+    {
+      "from": "asan-barrage",
+      "to": "kalsi",
+      "distanceKm": 30,
+      "freeFlowMin": {
+        "car": 45,
+        "bike": 37,
+        "cab": 45,
+        "public": 68,
+        "walk": 149
+      },
+      "directional": true,
+      "directionType": "up"
+    },
+    {
+      "from": "kalsi",
+      "to": "asan-barrage",
+      "distanceKm": 30,
+      "freeFlowMin": {
+        "car": 45,
+        "bike": 37,
+        "cab": 45,
+        "public": 68,
+        "walk": 149
+      },
+      "directional": true,
+      "directionType": "down"
     }
   ]
 }

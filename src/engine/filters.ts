@@ -39,7 +39,9 @@ export function computeEffectiveReturnDeadline(request: TripRequest, config: any
 }
 
 export function isHillCluster(cluster: string): boolean {
-  return cluster === 'landour' || cluster === 'mussoorie-town' || cluster === 'park-estate' || cluster === 'mussoorie-approach';
+  return cluster === 'landour' || cluster === 'mussoorie-town' || cluster === 'park-estate' ||
+    cluster === 'mussoorie-approach' || cluster === 'mussoorie-outskirts' ||
+    cluster === 'dhanaulti' || cluster === 'chakrata';
 }
 
 export function filterCandidate(

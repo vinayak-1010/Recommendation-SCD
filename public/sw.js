@@ -1,13 +1,13 @@
-const CACHE_NAME = 'scd-explore-v2.0';
+const CACHE_NAME = 'explore-doon-v3.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
-  './public/images/mind.jpg',
-  './public/images/maggi.jpg',
-  './public/images/land.jpg',
-  './public/images/fri.jpg',
-  './public/images/rob.jpg'
+  './images/mind.jpg',
+  './images/maggi.jpg',
+  './images/land.jpg',
+  './images/fri.jpg',
+  './images/rob.jpg'
 ];
 
 self.addEventListener('install', (event) => {

@@ -2,316 +2,1808 @@
   {
     "id": "mind",
     "name": "Mindrolling Monastery & Great Stupa",
-    "aliases": ["Buddha Temple Clement Town", "Mindrolling"],
+    "aliases": [
+      "Buddha Temple Clement Town",
+      "Mindrolling"
+    ],
     "kind": "attraction",
-    "coords": { "lat": 30.2625, "lng": 78.0062, "source": "osm" },
+    "coords": {
+      "lat": 30.2625,
+      "lng": 78.0062,
+      "source": "osm"
+    },
     "cluster": "clement-town",
     "experienceType": "monastery",
-    "affinity": { "spiritual": 1.0, "heritage": 0.8, "views": 0.5, "chill": 0.6 },
+    "affinity": {
+      "spiritual": 1,
+      "heritage": 0.8,
+      "views": 0.5,
+      "chill": 0.6
+    },
     "role": "primary",
-    "visit": { "min": 45, "typical": 60, "max": 90 },
-    "parkingWalk": { "car": 5, "bike": 2 },
-    "hours": { "open": "07:00", "close": "18:00", "status": { "status": "reported", "source": "public listing" } },
-    "suitability": { "car": 1.0, "bike": 1.0, "public": 1.0, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "07:30", "to": "17:00", "why": "Peaceful morning prayer halls and golden afternoon light on the stupa" },
+    "visit": {
+      "min": 45,
+      "typical": 60,
+      "max": 90
+    },
+    "parkingWalk": {
+      "car": 5,
+      "bike": 2
+    },
+    "hours": {
+      "open": "07:00",
+      "close": "18:00",
+      "status": {
+        "status": "reported",
+        "source": "public listing"
+      }
+    },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 1,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "07:30",
+      "to": "17:00",
+      "why": "Peaceful morning prayer halls and golden afternoon light on the stupa"
+    },
     "notes": "Tibetan Buddhist centre with a 60-meter high Great Stupa, tranquil landscaped gardens, and vibrant murals. 5-minute walk from Graphic Era Bell Road gate.",
-    "tips": ["Remove footwear before entering shrines", "Visit the upper balcony for sweeping valley vistas"],
-    "images": ["mind.jpg"],
-    "verification": { "status": "verified", "source": "Graphic Era SBG on-ground team", "checkedOn": "2026-10-12" },
+    "tips": [
+      "Remove footwear before entering shrines",
+      "Visit the upper balcony for sweeping valley vistas"
+    ],
+    "images": [
+      "mind.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Graphic Era SBG on-ground team",
+      "checkedOn": "2026-10-12"
+    },
     "routeKey": "walk"
   },
   {
     "id": "buddha-garden",
-    "name": "Clement Town Tibetan Quarter & Garden",
-    "aliases": ["Tibetan Colony"],
+    "name": "Clement Town Tibetan Colony & Market",
+    "aliases": [
+      "Tibetan Colony"
+    ],
     "kind": "stroll",
-    "coords": { "lat": 30.2640, "lng": 78.0040, "source": "osm" },
+    "coords": {
+      "lat": 30.264,
+      "lng": 78.004,
+      "source": "osm"
+    },
     "cluster": "clement-town",
     "experienceType": "promenade",
-    "affinity": { "chill": 1.0, "food": 0.7, "heritage": 0.5 },
+    "affinity": {
+      "chill": 1,
+      "food": 0.7,
+      "heritage": 0.5
+    },
     "role": "secondary",
-    "visit": { "min": 30, "typical": 45, "max": 60 },
-    "parkingWalk": { "car": 5, "bike": 2 },
+    "visit": {
+      "min": 30,
+      "typical": 45,
+      "max": 60
+    },
+    "parkingWalk": {
+      "car": 5,
+      "bike": 2
+    },
     "hours": null,
-    "suitability": { "car": 1.0, "bike": 1.0, "public": 1.0, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "11:00", "to": "19:00", "why": "Ideal for a slow cultural walk and hot momos" },
-    "notes": "Lively neighborhood adjacent to Mindrolling filled with handicraft shops, Tibetan prayer flags, bakeries, and momo stalls.",
-    "tips": ["Try traditional tingmo and butter tea at local cafes"],
-    "images": ["mind.jpg"],
-    "verification": { "status": "verified", "source": "Local team", "checkedOn": "2026-10-12" },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 1,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "11:00",
+      "to": "19:00",
+      "why": "Ideal for a slow cultural walk and hot momos"
+    },
+    "notes": "Vibrant Tibetan settlement lanes around Mindrolling Monastery featuring traditional handicrafts, prayer flag stores, incense shops, and authentic momo and thukpa eateries.",
+    "tips": [
+      "Try traditional tingmo and butter tea at local cafes"
+    ],
+    "images": [
+      "tibetan-colony.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Local team",
+      "checkedOn": "2026-10-12"
+    },
     "routeKey": "walk"
   },
   {
     "id": "fri",
     "name": "Forest Research Institute (FRI)",
-    "aliases": ["FRI Dehradun"],
+    "aliases": [
+      "FRI Dehradun"
+    ],
     "kind": "attraction",
-    "coords": { "lat": 30.3429, "lng": 77.9991, "source": "osm" },
+    "coords": {
+      "lat": 30.3429,
+      "lng": 77.9991,
+      "source": "osm"
+    },
     "cluster": "city-center",
     "experienceType": "museum-garden",
-    "affinity": { "heritage": 1.0, "nature": 0.7, "chill": 0.5 },
+    "affinity": {
+      "heritage": 1,
+      "nature": 0.7,
+      "chill": 0.5
+    },
     "role": "primary",
-    "visit": { "min": 90, "typical": 120, "max": 180 },
-    "parkingWalk": { "car": 10, "bike": 5 },
-    "hours": { "open": "09:30", "close": "17:00", "status": { "status": "reported", "source": "public listing" } },
-    "suitability": { "car": 1.0, "bike": 1.0, "public": 0.8, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "10:00", "to": "15:30", "why": "Museum galleries open with ample daylight across the botanical lawns" },
+    "visit": {
+      "min": 90,
+      "typical": 120,
+      "max": 180
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 5
+    },
+    "hours": {
+      "open": "09:30",
+      "close": "17:00",
+      "status": {
+        "status": "reported",
+        "source": "public listing"
+      }
+    },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 0.8,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "10:00",
+      "to": "15:30",
+      "why": "Museum galleries open with ample daylight across the botanical lawns"
+    },
     "notes": "Colossal Greco-Roman colonial architectural landmark spread across 450 hectares with 6 forestry research museums.",
-    "tips": ["Sunday entry can vary; ticket counter closes around 4:30 PM", "Carry government ID for entry"],
-    "images": ["fri.jpg"],
-    "verification": { "status": "reported", "source": "Public museum registry; Sunday public opening unconfirmed" },
+    "tips": [
+      "Sunday entry can vary; ticket counter closes around 4:30 PM",
+      "Carry government ID for entry"
+    ],
+    "images": [
+      "fri.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Public museum registry; Sunday public opening unconfirmed"
+    },
     "routeKey": "fri"
   },
   {
     "id": "rob",
     "name": "Robber's Cave (Gucchupani)",
-    "aliases": ["Gucchupani"],
+    "aliases": [
+      "Gucchupani"
+    ],
     "kind": "attraction",
-    "coords": { "lat": 30.3756, "lng": 78.0583, "source": "osm" },
+    "coords": {
+      "lat": 30.3756,
+      "lng": 78.0583,
+      "source": "osm"
+    },
     "cluster": "east-doon",
     "experienceType": "cave-stream",
-    "affinity": { "adventure": 1.0, "nature": 0.8, "views": 0.4 },
+    "affinity": {
+      "adventure": 1,
+      "nature": 0.8,
+      "views": 0.4
+    },
     "role": "primary",
-    "visit": { "min": 60, "typical": 90, "max": 120 },
-    "parkingWalk": { "car": 10, "bike": 5 },
-    "hours": { "open": "07:00", "close": "18:00", "status": { "status": "reported" } },
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.7, "kids": true, "elders": false, "strenuous": false },
-    "bestTime": { "from": "08:30", "to": "14:00", "why": "Warmer daylight for wading through ankle-deep cool cave water" },
+    "visit": {
+      "min": 60,
+      "typical": 90,
+      "max": 120
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 5
+    },
+    "hours": {
+      "open": "07:00",
+      "close": "18:00",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.7,
+      "kids": true,
+      "elders": false,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "08:30",
+      "to": "14:00",
+      "why": "Warmer daylight for wading through ankle-deep cool cave water"
+    },
     "notes": "A 600-meter long natural cave river gorge where water flows underground and reappears. You walk directly inside the stream.",
-    "tips": ["Slippers available on rent or wear water-friendly shoes", "Carry a towel and spare socks"],
-    "images": ["rob.jpg"],
-    "verification": { "status": "reported", "source": "State tourism portal" },
+    "tips": [
+      "Slippers available on rent or wear water-friendly shoes",
+      "Carry a towel and spare socks"
+    ],
+    "images": [
+      "rob.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "State tourism portal"
+    },
     "routeKey": "rob"
   },
   {
     "id": "sahas",
     "name": "Sahastradhara Sulphur Springs",
-    "aliases": ["Thousandfold Spring"],
+    "aliases": [
+      "Thousandfold Spring"
+    ],
     "kind": "attraction",
-    "coords": { "lat": 30.3842, "lng": 78.1302, "source": "osm" },
+    "coords": {
+      "lat": 30.3842,
+      "lng": 78.1302,
+      "source": "osm"
+    },
     "cluster": "east-doon",
     "experienceType": "waterfall",
-    "affinity": { "nature": 0.9, "views": 0.5, "adventure": 0.5 },
+    "affinity": {
+      "nature": 0.9,
+      "views": 0.5,
+      "adventure": 0.5
+    },
     "role": "secondary",
-    "visit": { "min": 60, "typical": 90, "max": 120 },
-    "parkingWalk": { "car": 10, "bike": 5 },
-    "hours": { "open": "07:00", "close": "18:30", "status": { "status": "reported" } },
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.7, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "09:00", "to": "15:00", "why": "Scenic mountain cascade and terrace pools" },
-    "notes": "Limestone stalactites and natural sulphur water dripping into cascading river pools. Ropeway to hilltop park available.",
-    "tips": ["Combine with Robber's Cave on an East-Doon circuit", "Ropeway tickets available on-site"],
-    "images": ["rob.jpg"],
-    "verification": { "status": "reported", "source": "Uttarakhand Tourism board" },
+    "visit": {
+      "min": 60,
+      "typical": 90,
+      "max": 120
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 5
+    },
+    "hours": {
+      "open": "07:00",
+      "close": "18:30",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.7,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "09:00",
+      "to": "15:00",
+      "why": "Scenic mountain cascade and terrace pools"
+    },
+    "notes": "Famous natural sulphur water springs and limestone cave drip formations in east Dehradun, featuring cascading step pools, riverbed wading, and an aerial ropeway to a hilltop park.",
+    "tips": [
+      "Combine with Robber's Cave on an East-Doon circuit",
+      "Ropeway tickets available on-site"
+    ],
+    "images": [
+      "sahas-hd.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Uttarakhand Tourism board"
+    },
     "routeKey": "rob"
   },
   {
     "id": "maggi",
     "name": "Mussoorie Road Highway Viewpoint & Maggi",
-    "aliases": ["Maggi Point Mussoorie Diversion"],
+    "aliases": [
+      "Maggi Point Mussoorie Diversion"
+    ],
     "kind": "onroute",
-    "coords": { "lat": 30.4180, "lng": 78.0720, "source": "osm" },
+    "coords": {
+      "lat": 30.418,
+      "lng": 78.072,
+      "source": "osm"
+    },
     "cluster": "mussoorie-approach",
     "experienceType": "cafe-scenic",
-    "affinity": { "food": 0.8, "views": 0.8, "chill": 0.6 },
+    "affinity": {
+      "food": 0.8,
+      "views": 0.8,
+      "chill": 0.6
+    },
     "role": "optional",
-    "visit": { "min": 20, "typical": 25, "max": 40 },
-    "parkingWalk": { "car": 3, "bike": 1 },
-    "hours": { "open": "06:00", "close": "22:00", "status": { "status": "verified" } },
-    "suitability": { "car": 1.0, "bike": 1.0, "public": 0.5, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "07:00", "to": "18:00", "why": "Crisp mountain breeze with hot masala chai on the ascent" },
+    "visit": {
+      "min": 20,
+      "typical": 25,
+      "max": 40
+    },
+    "parkingWalk": {
+      "car": 3,
+      "bike": 1
+    },
+    "hours": {
+      "open": "06:00",
+      "close": "22:00",
+      "status": {
+        "status": "verified"
+      }
+    },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 0.5,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "07:00",
+      "to": "18:00",
+      "why": "Crisp mountain breeze with hot masala chai on the ascent"
+    },
     "notes": "Classic pitstop along the winding ghats overlooking the Doon valley. Steaming Maggi, ginger tea, and hill views.",
-    "tips": ["Quick 20-minute tea break on the uphill drive", "Park carefully within roadside bays"],
-    "images": ["maggi.jpg"],
-    "verification": { "status": "verified", "source": "Frequent local commuter route" },
+    "tips": [
+      "Quick 20-minute tea break on the uphill drive",
+      "Park carefully within roadside bays"
+    ],
+    "images": [
+      "maggi.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Frequent local commuter route"
+    },
     "routeKey": "musso"
   },
   {
     "id": "mussoorie-lake",
     "name": "Mussoorie Lake & Valley Stop",
-    "aliases": ["Mussoorie Lake"],
+    "aliases": [
+      "Mussoorie Lake"
+    ],
     "kind": "onroute",
-    "coords": { "lat": 30.4350, "lng": 78.0760, "source": "osm" },
+    "coords": {
+      "lat": 30.435,
+      "lng": 78.076,
+      "source": "osm"
+    },
     "cluster": "mussoorie-approach",
     "experienceType": "promenade",
-    "affinity": { "views": 0.7, "chill": 0.6 },
+    "affinity": {
+      "views": 0.7,
+      "chill": 0.6
+    },
     "role": "optional",
-    "visit": { "min": 30, "typical": 40, "max": 60 },
-    "parkingWalk": { "car": 8, "bike": 3 },
-    "hours": { "open": "08:00", "close": "18:00", "status": { "status": "reported" } },
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.6, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "09:00", "to": "16:00", "why": "Picturesque valley overlook just 6 km before town" },
+    "visit": {
+      "min": 30,
+      "typical": 40,
+      "max": 60
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
+    "hours": {
+      "open": "08:00",
+      "close": "18:00",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.6,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "09:00",
+      "to": "16:00",
+      "why": "Picturesque valley overlook just 6 km before town"
+    },
     "notes": "Scenic artificial lake setting developed by the city board with pedal boats and snack stalls along the highway.",
-    "tips": ["Great family stop if kids are travelling", "Avoid on high-traffic afternoon return"],
-    "images": ["maggi.jpg"],
-    "verification": { "status": "reported", "source": "Public directory" },
+    "tips": [
+      "Great family stop if kids are travelling",
+      "Avoid on high-traffic afternoon return"
+    ],
+    "images": [
+      "mussoorie-lake.webp"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Public directory"
+    },
     "routeKey": "musso"
   },
   {
     "id": "land",
     "name": "Landour: Lal Tibba & Char Dukan",
-    "aliases": ["Lal Tibba", "Char Dukan"],
+    "aliases": [
+      "Lal Tibba",
+      "Char Dukan"
+    ],
     "kind": "attraction",
-    "coords": { "lat": 30.4635, "lng": 78.0988, "source": "osm" },
+    "coords": {
+      "lat": 30.4635,
+      "lng": 78.0988,
+      "source": "osm"
+    },
     "cluster": "landour",
     "experienceType": "viewpoint",
-    "affinity": { "views": 1.0, "food": 0.8, "nature": 0.8, "heritage": 0.6, "chill": 0.7 },
+    "affinity": {
+      "views": 1,
+      "food": 0.8,
+      "nature": 0.8,
+      "heritage": 0.6,
+      "chill": 0.7
+    },
     "role": "primary",
-    "visit": { "min": 90, "typical": 130, "max": 180 },
-    "parkingWalk": { "car": 15, "bike": 5 },
-    "hours": { "open": "06:30", "close": "19:00", "status": { "status": "verified" } },
-    "suitability": { "car": 0.8, "bike": 0.9, "public": 0.5, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "07:00", "to": "10:30", "why": "Highest peak at 2,290m; crystal clear Himalayan sunrise vistas and quiet deodar trails" },
+    "visit": {
+      "min": 90,
+      "typical": 130,
+      "max": 180
+    },
+    "parkingWalk": {
+      "car": 15,
+      "bike": 5
+    },
+    "hours": {
+      "open": "06:30",
+      "close": "19:00",
+      "status": {
+        "status": "verified"
+      }
+    },
+    "suitability": {
+      "car": 0.8,
+      "bike": 0.9,
+      "public": 0.5,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "07:00",
+      "to": "10:30",
+      "why": "Highest peak at 2,290m; crystal clear Himalayan sunrise vistas and quiet deodar trails"
+    },
     "notes": "The crown jewel of the ridge. Lal Tibba binocular telescopes reveal Bandarpoonch peaks, followed by banana-nutella pancakes and cinnamon tea at Char Dukan.",
-    "tips": ["Leave campus early (before 07:30) to beat the Mussoorie toll bottleneck", "Carry cash as hilltop ATMs frequently run out"],
-    "images": ["land.jpg"],
-    "verification": { "status": "verified", "source": "Local verified field visit", "checkedOn": "2026-10-10" },
+    "tips": [
+      "Leave campus early (before 07:30) to beat the Mussoorie toll bottleneck",
+      "Carry cash as hilltop ATMs frequently run out"
+    ],
+    "images": [
+      "lal-tibba.webp"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Local verified field visit",
+      "checkedOn": "2026-10-10"
+    },
     "routeKey": "musso"
   },
   {
     "id": "landour-walk",
     "name": "Landour Heritage Walk & Sisters' Bazaar",
-    "aliases": ["Sisters Bazaar", "Prakash Store"],
+    "aliases": [
+      "Sisters Bazaar",
+      "Prakash Store"
+    ],
     "kind": "stroll",
-    "coords": { "lat": 30.4608, "lng": 78.0945, "source": "osm" },
+    "coords": {
+      "lat": 30.4608,
+      "lng": 78.0945,
+      "source": "osm"
+    },
     "cluster": "landour",
     "experienceType": "forest-walk",
-    "affinity": { "heritage": 0.9, "nature": 0.8, "food": 0.7, "chill": 0.8 },
+    "affinity": {
+      "heritage": 0.9,
+      "nature": 0.8,
+      "food": 0.7,
+      "chill": 0.8
+    },
     "role": "secondary",
-    "visit": { "min": 45, "typical": 60, "max": 90 },
-    "parkingWalk": { "car": 15, "bike": 5 },
-    "hours": { "open": "09:00", "close": "18:00", "status": { "status": "verified" } },
-    "suitability": { "car": 0.6, "bike": 0.8, "public": 0.4, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "09:30", "to": "14:00", "why": "Walk under ancient deodars past St Paul's Church to Prakash Store for cheese and preserves" },
+    "visit": {
+      "min": 45,
+      "typical": 60,
+      "max": 90
+    },
+    "parkingWalk": {
+      "car": 15,
+      "bike": 5
+    },
+    "hours": {
+      "open": "09:00",
+      "close": "18:00",
+      "status": {
+        "status": "verified"
+      }
+    },
+    "suitability": {
+      "car": 0.6,
+      "bike": 0.8,
+      "public": 0.4,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "09:30",
+      "to": "14:00",
+      "why": "Walk under ancient deodars past St Paul's Church to Prakash Store for cheese and preserves"
+    },
     "notes": "Historic cantonment loop through pine and deodar forests. St Paul's Church (built 1839) and the famous 1928 Prakash peanut butter store.",
-    "tips": ["Single-lane road; strictly park at designated bays or walk from Char Dukan", "Landour Bakehouse is steps away"],
-    "images": ["land.jpg"],
-    "verification": { "status": "verified", "source": "Local verified field visit" },
+    "tips": [
+      "Single-lane road; strictly park at designated bays or walk from Char Dukan",
+      "Landour Bakehouse is steps away"
+    ],
+    "images": [
+      "land.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Local verified field visit"
+    },
     "routeKey": "musso"
   },
   {
     "id": "camels-back",
     "name": "Camel's Back Road Promenade",
-    "aliases": ["Camels Back"],
+    "aliases": [
+      "Camels Back"
+    ],
     "kind": "stroll",
-    "coords": { "lat": 30.4590, "lng": 78.0790, "source": "osm" },
+    "coords": {
+      "lat": 30.459,
+      "lng": 78.079,
+      "source": "osm"
+    },
     "cluster": "mussoorie-town",
     "experienceType": "promenade",
-    "affinity": { "views": 0.9, "nature": 0.7, "chill": 0.8 },
+    "affinity": {
+      "views": 0.9,
+      "nature": 0.7,
+      "chill": 0.8
+    },
     "role": "secondary",
-    "visit": { "min": 45, "typical": 60, "max": 90 },
-    "parkingWalk": { "car": 10, "bike": 5 },
+    "visit": {
+      "min": 45,
+      "typical": 60,
+      "max": 90
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 5
+    },
     "hours": null,
-    "suitability": { "car": 0.5, "bike": 0.9, "public": 0.8, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "15:30", "to": "17:15", "why": "A flat 3 km ridge walk with spectacular golden hour sunset views over the Doon valley" },
+    "suitability": {
+      "car": 0.5,
+      "bike": 0.9,
+      "public": 0.8,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "15:30",
+      "to": "17:15",
+      "why": "A flat 3 km ridge walk with spectacular golden hour sunset views over the Doon valley"
+    },
     "notes": "A tranquil 3 km paved road named after a natural rock formation resembling a resting camel. Overlooks peaceful valleys away from Mall Road crowds.",
-    "tips": ["Strictly pedestrian/horse path in the evening", "Great sunset point before starting downhill journey"],
-    "images": ["land.jpg"],
-    "verification": { "status": "reported", "source": "Mussoorie City Guide" },
+    "tips": [
+      "Strictly pedestrian/horse path in the evening",
+      "Great sunset point before starting downhill journey"
+    ],
+    "images": [
+      "camels-back.webp"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Mussoorie City Guide"
+    },
     "routeKey": "musso"
   },
   {
     "id": "gunhill",
     "name": "Gun Hill Ropeway & Viewpoint",
-    "aliases": ["Gun Hill Mussoorie"],
+    "aliases": [
+      "Gun Hill Mussoorie"
+    ],
     "kind": "attraction",
-    "coords": { "lat": 30.4600, "lng": 78.0735, "source": "osm" },
+    "coords": {
+      "lat": 30.46,
+      "lng": 78.0735,
+      "source": "osm"
+    },
     "cluster": "mussoorie-town",
     "experienceType": "ropeway-viewpoint",
-    "affinity": { "views": 1.0, "adventure": 0.6, "chill": 0.5 },
+    "affinity": {
+      "views": 1,
+      "adventure": 0.6,
+      "chill": 0.5
+    },
     "role": "primary",
-    "visit": { "min": 60, "typical": 75, "max": 100 },
-    "parkingWalk": { "car": 15, "bike": 8 },
-    "hours": { "open": "10:00", "close": "18:00", "status": { "status": "reported" } },
-    "suitability": { "car": 0.6, "bike": 0.8, "public": 0.8, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "11:00", "to": "16:00", "why": "Second highest peak in Mussoorie accessed via a thrilling cable car ropeway" },
+    "visit": {
+      "min": 60,
+      "typical": 75,
+      "max": 100
+    },
+    "parkingWalk": {
+      "car": 15,
+      "bike": 8
+    },
+    "hours": {
+      "open": "10:00",
+      "close": "18:00",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "suitability": {
+      "car": 0.6,
+      "bike": 0.8,
+      "public": 0.8,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "11:00",
+      "to": "16:00",
+      "why": "Second highest peak in Mussoorie accessed via a thrilling cable car ropeway"
+    },
     "notes": "Historic hilltop where a British mid-day cannon once fired. 400-meter aerial ropeway from Jhula Ghar provides 360-degree snow peak vistas.",
-    "tips": ["Queue for ropeway can reach 30 minutes on peak weekends", "Telescopes available on top"],
-    "images": ["land.jpg"],
-    "verification": { "status": "reported", "source": "Mussoorie cableway listings" },
+    "tips": [
+      "Queue for ropeway can reach 30 minutes on peak weekends",
+      "Telescopes available on top"
+    ],
+    "images": [
+      "gun-hill.webp"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Mussoorie cableway listings"
+    },
     "routeKey": "musso"
   },
   {
     "id": "mall-road",
     "name": "Mussoorie Mall Road & Library Chowk",
-    "aliases": ["The Mall Mussoorie"],
+    "aliases": [
+      "The Mall Mussoorie"
+    ],
     "kind": "stroll",
-    "coords": { "lat": 30.4550, "lng": 78.0720, "source": "osm" },
+    "coords": {
+      "lat": 30.455,
+      "lng": 78.072,
+      "source": "osm"
+    },
     "cluster": "mussoorie-town",
     "experienceType": "market",
-    "affinity": { "food": 0.8, "heritage": 0.6, "chill": 0.6 },
+    "affinity": {
+      "food": 0.8,
+      "heritage": 0.6,
+      "chill": 0.6
+    },
     "role": "secondary",
-    "visit": { "min": 60, "typical": 90, "max": 120 },
-    "parkingWalk": { "car": 20, "bike": 10 },
+    "visit": {
+      "min": 60,
+      "typical": 90,
+      "max": 120
+    },
+    "parkingWalk": {
+      "car": 20,
+      "bike": 10
+    },
     "hours": null,
-    "suitability": { "car": 0.4, "bike": 0.6, "public": 0.9, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "12:00", "to": "16:00", "why": "Colonial lampposts, wooden benches, street eats and woolen bazaars" },
-    "notes": "The bustling colonial spine of Mussoorie stretching from Library Chowk to Picture Palace.",
-    "tips": ["CLOSED TO VEHICLES after 4:30 PM", "Park at Kingcraig or multi-level parking and take an electric shuttle"],
-    "images": ["land.jpg"],
-    "verification": { "status": "verified", "source": "District Administration traffic orders" },
+    "suitability": {
+      "car": 0.4,
+      "bike": 0.6,
+      "public": 0.9,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "12:00",
+      "to": "16:00",
+      "why": "Colonial lampposts, wooden benches, street eats and woolen bazaars"
+    },
+    "notes": "The iconic pedestrian ridge promenade of Mussoorie, stretching from Library Chowk to Picture Palace with colonial heritage lampposts, misty valley views, and lively evening stalls.",
+    "tips": [
+      "CLOSED TO VEHICLES after 4:30 PM",
+      "Park at Kingcraig or multi-level parking and take an electric shuttle"
+    ],
+    "images": [
+      "mussoorie-mall.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "District Administration traffic orders"
+    },
     "routeKey": "musso"
   },
   {
     "id": "geo",
     "name": "Sir George Everest's House & Observatory",
-    "aliases": ["George Everest", "Cloud End Viewpoint"],
+    "aliases": [
+      "George Everest",
+      "Cloud End Viewpoint"
+    ],
     "kind": "attraction",
-    "coords": { "lat": 30.4614, "lng": 78.0261, "source": "osm" },
+    "coords": {
+      "lat": 30.4614,
+      "lng": 78.0261,
+      "source": "osm"
+    },
     "cluster": "park-estate",
     "experienceType": "heritage-house",
-    "affinity": { "nature": 0.9, "adventure": 0.9, "heritage": 0.7, "views": 1.0 },
+    "affinity": {
+      "nature": 0.9,
+      "adventure": 0.9,
+      "heritage": 0.7,
+      "views": 1
+    },
     "role": "primary",
-    "visit": { "min": 120, "typical": 160, "max": 210 },
-    "parkingWalk": { "car": 20, "bike": 10 },
-    "hours": { "open": "09:30", "close": "17:30", "status": { "status": "reported" } },
-    "suitability": { "car": 0.8, "bike": 0.9, "public": 0.3, "kids": true, "elders": false, "strenuous": true },
-    "bestTime": { "from": "10:00", "to": "15:00", "why": "Restored 1832 estate and 1.5 km cliff ridge trail offering breathtaking valley views" },
+    "visit": {
+      "min": 120,
+      "typical": 160,
+      "max": 210
+    },
+    "parkingWalk": {
+      "car": 20,
+      "bike": 10
+    },
+    "hours": {
+      "open": "09:30",
+      "close": "17:30",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "suitability": {
+      "car": 0.8,
+      "bike": 0.9,
+      "public": 0.3,
+      "kids": true,
+      "elders": false,
+      "strenuous": true
+    },
+    "bestTime": {
+      "from": "10:00",
+      "to": "15:00",
+      "why": "Restored 1832 estate and 1.5 km cliff ridge trail offering breathtaking valley views"
+    },
     "notes": "Historical home and laboratory of the Surveyor General of India who mapped Mount Everest. Located 6 km west of Gandhi Chowk.",
-    "tips": ["1.5 km uphill walk from base parking; wear sturdy footwear", "Steep gravel trail, not recommended for elderly with mobility issues"],
-    "images": ["geo.webp"],
-    "verification": { "status": "reported", "source": "Uttarakhand tourism renovated heritage site" },
+    "tips": [
+      "1.5 km uphill walk from base parking; wear sturdy footwear",
+      "Steep gravel trail, not recommended for elderly with mobility issues"
+    ],
+    "images": [
+      "george-everest.webp"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Uttarakhand tourism renovated heritage site"
+    },
     "routeKey": "geo"
   },
   {
     "id": "bha",
     "name": "Bhadraj Temple Hilltop Trek",
-    "aliases": ["Bhadraj Trek"],
+    "aliases": [
+      "Bhadraj Trek"
+    ],
     "kind": "attraction",
-    "coords": { "lat": 30.4780, "lng": 77.9650, "source": "osm" },
+    "coords": {
+      "lat": 30.478,
+      "lng": 77.965,
+      "source": "osm"
+    },
     "cluster": "out-of-scope-default",
     "experienceType": "trek",
-    "affinity": { "adventure": 1.0, "nature": 1.0, "spiritual": 0.7, "views": 0.9 },
+    "affinity": {
+      "adventure": 1,
+      "nature": 1,
+      "spiritual": 0.7,
+      "views": 0.9
+    },
     "role": "primary",
-    "visit": { "min": 300, "typical": 360, "max": 420 },
-    "parkingWalk": { "car": 15, "bike": 10 },
-    "hours": { "open": "06:00", "close": "17:00", "status": { "status": "reported" } },
-    "suitability": { "car": 0.6, "bike": 0.7, "public": 0.2, "kids": false, "elders": false, "strenuous": true },
-    "bestTime": { "from": "06:30", "to": "14:00", "why": "Full 11 km mountain trail through oak forests to 2,200m peak overlooking Jaunsar" },
+    "visit": {
+      "min": 300,
+      "typical": 360,
+      "max": 420
+    },
+    "parkingWalk": {
+      "car": 15,
+      "bike": 10
+    },
+    "hours": {
+      "open": "06:00",
+      "close": "17:00",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "suitability": {
+      "car": 0.6,
+      "bike": 0.7,
+      "public": 0.2,
+      "kids": false,
+      "elders": false,
+      "strenuous": true
+    },
+    "bestTime": {
+      "from": "06:30",
+      "to": "14:00",
+      "why": "Full 11 km mountain trail through oak forests to 2,200m peak overlooking Jaunsar"
+    },
     "notes": "Challenging full-day trek starting from Cloud's End. Temple dedicated to Lord Balbhadra (brother of Krishna). Only for visitors with >= 10 h.",
-    "tips": ["Carry at least 2 liters of drinking water and trail snacks", "Standalone expedition: never combine with other stops"],
-    "images": ["bha.jpg"],
-    "verification": { "status": "reported", "source": "Uttarakhand trekking records" },
+    "tips": [
+      "Carry at least 2 liters of drinking water and trail snacks",
+      "Standalone expedition: never combine with other stops"
+    ],
+    "images": [
+      "bha.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Uttarakhand trekking records"
+    },
     "routeKey": "bha"
   },
   {
     "id": "rish",
-    "name": "Rishikesh: Ganga Aarti & River Expedition",
-    "aliases": ["Rishikesh Triveni Ghat"],
+    "name": "Rishikesh: Riverfront & Ganga Aarti",
+    "aliases": [
+      "Rishikesh Triveni Ghat"
+    ],
     "kind": "attraction",
-    "coords": { "lat": 30.1060, "lng": 78.2930, "source": "osm" },
-    "cluster": "out-of-scope-default",
-    "experienceType": "river-activity",
-    "affinity": { "spiritual": 1.0, "adventure": 0.9, "views": 0.8 },
+    "coords": {
+      "lat": 30.085,
+      "lng": 78.267,
+      "source": "osm"
+    },
+    "cluster": "rishikesh",
+    "experienceType": "riverfront-spiritual",
+    "affinity": {
+      "spiritual": 1,
+      "adventure": 0.9,
+      "views": 0.8
+    },
     "role": "primary",
-    "visit": { "min": 240, "typical": 300, "max": 360 },
-    "parkingWalk": { "car": 15, "bike": 5 },
-    "hours": { "open": "05:00", "close": "21:00", "status": { "status": "reported" } },
-    "suitability": { "car": 0.9, "bike": 0.8, "public": 0.8, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "08:00", "to": "19:00", "why": "White water rafting in morning and sacred Ganga Aarti at Triveni Ghat at twilight" },
-    "notes": "42 km southeast of Dehradun. World yoga capital with suspension bridges (Ram Jhula, Lakshman Jhula) and holy riverbanks.",
-    "tips": ["Evening Aarti is around 6:00 PM; clashes with early return deadlines", "Only feasible for full 10+ hour windows with dedicated cab"],
-    "images": ["rish.jpg"],
-    "verification": { "status": "reported", "source": "Ganga Aarti Trust" },
+    "visit": {
+      "min": 90,
+      "typical": 150,
+      "max": 240
+    },
+    "parkingWalk": {
+      "car": 15,
+      "bike": 5
+    },
+    "hours": {
+      "open": "05:00",
+      "close": "21:00",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "suitability": {
+      "car": 0.9,
+      "bike": 0.8,
+      "public": 0.8,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "15:00",
+      "to": "18:30",
+      "why": "The riverfront is most atmospheric near sunset."
+    },
+    "notes": "A dedicated day trip for riverfront walks and the evening aarti. Traffic and parking around the ghats vary considerably.",
+    "tips": [
+      "Choose either a daytime river visit or the evening aarti; avoid trying to rush both into a short window."
+    ],
+    "images": [
+      "rish.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Ganga Aarti Trust"
+    },
     "routeKey": "rish"
+  },
+  {
+    "id": "kempty-falls",
+    "name": "Kempty Falls",
+    "aliases": [],
+    "kind": "attraction",
+    "coords": {
+      "lat": 30.48732,
+      "lng": 78.03621,
+      "source": "osm"
+    },
+    "cluster": "mussoorie-outskirts",
+    "experienceType": "waterfall",
+    "affinity": {
+      "nature": 1,
+      "adventure": 0.7,
+      "views": 0.7
+    },
+    "role": "primary",
+    "visit": {
+      "min": 75,
+      "typical": 120,
+      "max": 180
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 5
+    },
+    "hours": {
+      "open": "08:00",
+      "close": "17:00",
+      "status": {
+        "status": "reported",
+        "source": "Wikimedia Commons / public destination information"
+      }
+    },
+    "suitability": {
+      "car": 0.9,
+      "bike": 0.8,
+      "public": 0.5,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "09:00",
+      "to": "15:00",
+      "why": "Daylight for the falls and the return drive."
+    },
+    "notes": "A multi-tier waterfall on the Mussoorie–Yamunotri road, about 13 km beyond Mussoorie. Paths can be slippery and the pools are busiest in warm months.",
+    "tips": [
+      "Wear shoes with grip; check access and water conditions locally."
+    ],
+    "images": [
+      "kempty.webp"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Wikimedia Commons / public destination information"
+    },
+    "routeKey": "mussoorie-outskirts"
+  },
+  {
+    "id": "dhanaulti-eco-park",
+    "name": "Dhanaulti Eco Park",
+    "aliases": [],
+    "kind": "attraction",
+    "coords": {
+      "lat": 30.417,
+      "lng": 78.255,
+      "source": "osm"
+    },
+    "cluster": "dhanaulti",
+    "experienceType": "forest-park",
+    "affinity": {
+      "nature": 1,
+      "views": 0.8,
+      "chill": 0.7
+    },
+    "role": "primary",
+    "visit": {
+      "min": 60,
+      "typical": 100,
+      "max": 150
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 5
+    },
+    "hours": null,
+    "suitability": {
+      "car": 0.9,
+      "bike": 0.8,
+      "public": 0.5,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "10:00",
+      "to": "15:00",
+      "why": "Visit in daylight and leave a generous return buffer."
+    },
+    "notes": "A forested hill stop with short woodland paths and views, reached by a longer mountain drive beyond Mussoorie.",
+    "tips": [
+      "Plan this as a full-day outing from Dehradun and check road conditions before departure."
+    ],
+    "images": [
+      "dhanaulti.webp"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Wikimedia Commons / public destination information"
+    },
+    "routeKey": "dhanaulti"
+  },
+  {
+    "id": "chakrata-tiger-falls",
+    "name": "Chakrata & Tiger Falls",
+    "aliases": [],
+    "kind": "attraction",
+    "coords": {
+      "lat": 30.703,
+      "lng": 77.866,
+      "source": "osm"
+    },
+    "cluster": "chakrata",
+    "experienceType": "forest-waterfall",
+    "affinity": {
+      "nature": 1,
+      "adventure": 0.9,
+      "views": 0.8
+    },
+    "role": "primary",
+    "visit": {
+      "min": 90,
+      "typical": 150,
+      "max": 210
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 5
+    },
+    "hours": null,
+    "suitability": {
+      "car": 0.9,
+      "bike": 0.8,
+      "public": 0.5,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "10:00",
+      "to": "14:00",
+      "why": "Allow daylight for the forest approach and return."
+    },
+    "notes": "A forest waterfall outing near Chakrata, reached by a long mountain drive from Dehradun. Treat it as a dedicated early-start day trip.",
+    "tips": [
+      "The final approach includes walking; check trail and local access conditions before setting out."
+    ],
+    "images": [
+      "tiger-falls.webp"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Wikimedia Commons / public destination information"
+    },
+    "routeKey": "chakrata"
+  },
+  {
+    "id": "asan-barrage",
+    "name": "Asan Conservation Reserve & Barrage",
+    "aliases": [],
+    "kind": "attraction",
+    "coords": {
+      "lat": 30.43583,
+      "lng": 77.66556,
+      "source": "osm"
+    },
+    "cluster": "asan-barrage",
+    "experienceType": "wetland-birding",
+    "affinity": {
+      "nature": 1,
+      "views": 0.6,
+      "chill": 0.7
+    },
+    "role": "primary",
+    "visit": {
+      "min": 60,
+      "typical": 100,
+      "max": 150
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 5
+    },
+    "hours": null,
+    "suitability": {
+      "car": 0.9,
+      "bike": 0.8,
+      "public": 0.5,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "07:00",
+      "to": "11:00",
+      "why": "Cooler morning light and a quieter wetland."
+    },
+    "notes": "A wetland and birding stop at the Doon Valley’s western edge. Migratory bird activity is seasonal, so sightings vary.",
+    "tips": [
+      "Bring binoculars if you have them and keep to marked public areas."
+    ],
+    "images": [
+      "asan.webp"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Wikimedia Commons / public destination information"
+    },
+    "routeKey": "asan-barrage"
+  },
+  {
+    "id": "kalsi-edict",
+    "name": "Kalsi Ashokan Rock Edict",
+    "aliases": [],
+    "kind": "attraction",
+    "coords": {
+      "lat": 30.518,
+      "lng": 77.8483,
+      "source": "osm"
+    },
+    "cluster": "kalsi",
+    "experienceType": "heritage-archaeology",
+    "affinity": {
+      "heritage": 1,
+      "spiritual": 0.4,
+      "chill": 0.4
+    },
+    "role": "primary",
+    "visit": {
+      "min": 30,
+      "typical": 60,
+      "max": 90
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 5
+    },
+    "hours": null,
+    "suitability": {
+      "car": 0.9,
+      "bike": 0.8,
+      "public": 0.5,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "09:00",
+      "to": "15:00",
+      "why": "Daylight for the drive and monument visit."
+    },
+    "notes": "A protected Mauryan-era rock inscription west of Dehradun, set near the Yamuna–Tons confluence.",
+    "tips": [
+      "Respect the protected monument and confirm access hours locally."
+    ],
+    "images": [
+      "kalsi.webp"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Wikimedia Commons / public destination information"
+    },
+    "routeKey": "kalsi"
+  },
+  {
+    "id": "dehradun-zoo",
+    "name": "Dehradun Zoo (Malsi Deer Park)",
+    "aliases": [],
+    "kind": "attraction",
+    "coords": {
+      "lat": 30.39019,
+      "lng": 78.07486,
+      "source": "osm"
+    },
+    "cluster": "rajpur",
+    "experienceType": "wildlife-park",
+    "affinity": {
+      "nature": 0.9,
+      "chill": 0.7,
+      "views": 0.5
+    },
+    "role": "primary",
+    "visit": {
+      "min": 60,
+      "typical": 100,
+      "max": 150
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 5
+    },
+    "hours": {
+      "open": "10:00",
+      "close": "17:00",
+      "status": {
+        "status": "reported",
+        "source": "Wikimedia Commons / public destination information"
+      }
+    },
+    "suitability": {
+      "car": 0.9,
+      "bike": 0.8,
+      "public": 0.5,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "10:00",
+      "to": "15:00",
+      "why": "Plan around the zoo’s current public hours."
+    },
+    "notes": "A compact conservation and nature-education stop on Mussoorie Road, on the way toward the foothills.",
+    "tips": [
+      "Check current opening days and animal-care schedules before visiting."
+    ],
+    "images": [
+      "malsi.webp"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Wikimedia Commons / public destination information"
+    },
+    "routeKey": "rajpur"
+  },
+  {
+    "id": "tapkeshwar",
+    "name": "Tapkeshwar Mahadev Temple",
+    "aliases": [
+      "Tapkeshwar Temple",
+      "Tapkeshwar Cave"
+    ],
+    "kind": "attraction",
+    "coords": {
+      "lat": 30.3547,
+      "lng": 78.0182,
+      "source": "osm"
+    },
+    "cluster": "city-center",
+    "experienceType": "temple",
+    "affinity": {
+      "spiritual": 1,
+      "heritage": 0.85,
+      "nature": 0.9,
+      "views": 0.7,
+      "chill": 0.75
+    },
+    "role": "primary",
+    "visit": {
+      "min": 45,
+      "typical": 60,
+      "max": 90
+    },
+    "parkingWalk": {
+      "car": 5,
+      "bike": 2
+    },
+    "hours": {
+      "open": "06:00",
+      "close": "19:00",
+      "status": {
+        "status": "verified",
+        "source": "on-ground"
+      }
+    },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 1,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "07:00",
+      "to": "11:30",
+      "why": "Crisp morning river breeze and peaceful Vedic chants in the cave"
+    },
+    "notes": "Ancient cave sanctuary dedicated to Lord Shiva in Garhi Cantt, where natural stream water droplets continuously trickle down onto the Shivalinga surrounded by lush forested cliffs and the Asan riverbed.",
+    "tips": [
+      "Walk down to the riverbed for scenic photos of the hanging cave rock formations",
+      "Slip-on footwear recommended as the cave approach near the flowing stream is damp"
+    ],
+    "images": [
+      "tapkeshwar.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Dehradun local team",
+      "checkedOn": "2026-10-28"
+    },
+    "routeKey": "cantt-drive"
+  },
+  {
+    "id": "maldevta",
+    "name": "Maldevta & Song River Valley",
+    "aliases": [
+      "Maldevta Picnic Spot",
+      "Song River Maldevta"
+    ],
+    "kind": "nature",
+    "coords": {
+      "lat": 30.3275,
+      "lng": 78.1345,
+      "source": "osm"
+    },
+    "cluster": "east-doon",
+    "experienceType": "river-activity",
+    "affinity": {
+      "nature": 1,
+      "chill": 1,
+      "adventure": 0.85,
+      "views": 0.9,
+      "food": 0.7
+    },
+    "role": "primary",
+    "visit": {
+      "min": 60,
+      "typical": 90,
+      "max": 150
+    },
+    "parkingWalk": {
+      "car": 3,
+      "bike": 2
+    },
+    "hours": null,
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 0.7,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "13:30",
+      "to": "17:30",
+      "why": "Warm afternoon sunlight over the river valley and cool mountain breezes"
+    },
+    "notes": "The ultimate weekend roaming and picnic valley in Dehradun outskirts. The crystal clear Song River flows across pebble banks bordered by emerald Shivalik hills, with suspension bridges, rustic riverside cafes, and open camping meadows.",
+    "tips": [
+      "Bring a light towel if you want to wade in the shallow crystal river pools",
+      "Enjoy roadside Maggi and adrak chai at the riverside wooden shacks with scenic hill views"
+    ],
+    "images": [
+      "maldevta.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Dehradun local team",
+      "checkedOn": "2026-10-28"
+    },
+    "routeKey": "raipur-drive"
+  },
+  {
+    "id": "shikhar-falls",
+    "name": "Shikhar Falls",
+    "aliases": [
+      "Shikhar Waterfall",
+      "Kairwaan Falls"
+    ],
+    "kind": "adventure",
+    "coords": {
+      "lat": 30.4011,
+      "lng": 78.0964,
+      "source": "osm"
+    },
+    "cluster": "rajpur",
+    "experienceType": "forest-waterfall",
+    "affinity": {
+      "adventure": 1,
+      "nature": 1,
+      "views": 0.85,
+      "chill": 0.6
+    },
+    "role": "secondary",
+    "visit": {
+      "min": 60,
+      "typical": 90,
+      "max": 120
+    },
+    "parkingWalk": {
+      "car": 15,
+      "bike": 8
+    },
+    "hours": {
+      "open": "07:00",
+      "close": "17:00",
+      "status": {
+        "status": "verified",
+        "source": "forest-checkpoint"
+      }
+    },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 0.5,
+      "kids": false,
+      "elders": false,
+      "strenuous": true
+    },
+    "bestTime": {
+      "from": "08:30",
+      "to": "15:00",
+      "why": "Bright daytime sunlight illuminating the narrow forested gorge"
+    },
+    "notes": "Adventurous secluded waterfall near Kairwaan village at the Rajpur foothills. A 1 km boulder-scramble trail alongside rushing mountain streams leads to a secluded cascade surrounded by mossy rocks and ferns.",
+    "tips": [
+      "Wear sturdy sneakers with good grip for wet rocky sections along the trail",
+      "Start heading back before 4:30 PM as the deep valley loses sunlight early"
+    ],
+    "images": [
+      "shikhar-falls.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Dehradun local team",
+      "checkedOn": "2026-10-28"
+    },
+    "routeKey": "rajpur-trek"
+  },
+  {
+    "id": "clouds-end",
+    "name": "Cloud's End & Hathipaon Sanctuary",
+    "aliases": [
+      "Clouds End Mussoorie",
+      "Hathipaon Forest"
+    ],
+    "kind": "nature",
+    "coords": {
+      "lat": 30.4578,
+      "lng": 78.0215,
+      "source": "osm"
+    },
+    "cluster": "park-estate",
+    "experienceType": "forest-walk",
+    "affinity": {
+      "nature": 1,
+      "chill": 1,
+      "views": 0.9,
+      "heritage": 0.85
+    },
+    "role": "secondary",
+    "visit": {
+      "min": 60,
+      "typical": 90,
+      "max": 150
+    },
+    "parkingWalk": {
+      "car": 5,
+      "bike": 2
+    },
+    "hours": {
+      "open": "08:00",
+      "close": "18:00",
+      "status": {
+        "status": "verified",
+        "source": "on-ground"
+      }
+    },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 0.3,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "10:00",
+      "to": "16:30",
+      "why": "Misty sunlight filtering through towering 100-year-old oak and deodar canopies"
+    },
+    "notes": "Marking the literal geographical end of Mussoorie hill ridge, this 2,000-acre private heritage forest estate offers peaceful wilderness walks, sweeping views of the Aglar river valley, and tranquil escape from town traffic.",
+    "tips": [
+      "Combine with Sir George Everest House nearby (10 mins drive)",
+      "Carry light woolens even in afternoon as the dense forest canopy stays cool"
+    ],
+    "images": [
+      "clouds-end.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Mussoorie local team",
+      "checkedOn": "2026-10-28"
+    },
+    "routeKey": "hathipaon-drive"
+  },
+  {
+    "id": "paltan-bazaar",
+    "name": "Paltan Bazaar & Clock Tower (Ghanta Ghar)",
+    "aliases": [
+      "Ghanta Ghar",
+      "Paltan Bazar Dehradun"
+    ],
+    "kind": "stroll",
+    "coords": {
+      "lat": 30.3244,
+      "lng": 78.0416,
+      "source": "osm"
+    },
+    "cluster": "city-center",
+    "experienceType": "market",
+    "affinity": {
+      "food": 0.95,
+      "heritage": 0.85,
+      "chill": 0.8
+    },
+    "role": "primary",
+    "visit": {
+      "min": 45,
+      "typical": 75,
+      "max": 120
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 5
+    },
+    "hours": {
+      "open": "10:00",
+      "close": "21:30",
+      "status": {
+        "status": "verified",
+        "source": "market-association"
+      }
+    },
+    "suitability": {
+      "car": 0.6,
+      "bike": 0.8,
+      "public": 1,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "16:30",
+      "to": "20:30",
+      "why": "Bustling evening atmosphere, illuminated Clock Tower, and sizzling street delicacies"
+    },
+    "notes": "The bustling historic heart of Dehradun stretching south from the iconic 6-faced Clock Tower (Ghanta Ghar). Packed with local spice stalls, woolen handlooms, famous brassware, and legendary street eateries.",
+    "tips": [
+      "Park vehicle at Parade Ground or MDDA complex and explore the bazaar on foot",
+      "Try the traditional Doon bakery rusks, basmati rice varieties, and fresh hot jalebis"
+    ],
+    "images": [
+      "paltan-bazaar.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Dehradun local team",
+      "checkedOn": "2026-10-28"
+    },
+    "routeKey": "city-center-walk"
+  },
+  {
+    "id": "lacchiwala",
+    "name": "Lacchiwala Nature Park & Anand Van",
+    "aliases": [
+      "Lacchiwala Picnic Spot",
+      "Anand Van Dehradun"
+    ],
+    "kind": "nature",
+    "coords": {
+      "lat": 30.2292,
+      "lng": 78.1408,
+      "source": "osm"
+    },
+    "cluster": "east-doon",
+    "experienceType": "forest-park",
+    "affinity": {
+      "nature": 1,
+      "chill": 1,
+      "views": 0.75,
+      "adventure": 0.6
+    },
+    "role": "primary",
+    "visit": {
+      "min": 60,
+      "typical": 90,
+      "max": 150
+    },
+    "parkingWalk": {
+      "car": 5,
+      "bike": 3
+    },
+    "hours": {
+      "open": "08:00",
+      "close": "17:30",
+      "status": {
+        "status": "verified",
+        "source": "forest-department"
+      }
+    },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 0.8,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "09:00",
+      "to": "15:30",
+      "why": "Sunlight warming the sal forest canopy and sparkling freshwater bathing streams"
+    },
+    "notes": "Sprawling sal forest nature park on the Haridwar-Rishikesh highway outskirts, blessed with cool natural water streams, stepped swimming pools, suspension canopy walkway, and lush open picnic glades.",
+    "tips": [
+      "Great stopover when traveling towards Rishikesh or Jolly Grant Airport",
+      "Single-use plastics are barred; carry reusable water bottles"
+    ],
+    "images": [
+      "lacchiwala.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Forest Department listing",
+      "checkedOn": "2026-10-28"
+    },
+    "routeKey": "haridwar-road"
+  },
+  {
+    "id": "bhatta-falls",
+    "name": "Bhatta Falls & Ropeway",
+    "aliases": [
+      "Bhatta Waterfall",
+      "Bhatta Mussoorie"
+    ],
+    "kind": "nature",
+    "coords": {
+      "lat": 30.4312,
+      "lng": 78.0841,
+      "source": "osm"
+    },
+    "cluster": "mussoorie-approach",
+    "experienceType": "waterfall",
+    "affinity": {
+      "nature": 1,
+      "adventure": 0.8,
+      "views": 0.8,
+      "chill": 0.75
+    },
+    "role": "primary",
+    "visit": {
+      "min": 60,
+      "typical": 90,
+      "max": 120
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 4
+    },
+    "hours": {
+      "open": "08:00",
+      "close": "18:00",
+      "status": {
+        "status": "verified",
+        "source": "on-ground"
+      }
+    },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 0.6,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "10:00",
+      "to": "16:00",
+      "why": "Crisp mountain waterfall plunge pools and scenic cable car descent"
+    },
+    "notes": "A picturesque natural waterfall cascading into freshwater swimming pools, located 3 km before Mussoorie near Bhatta village. Features an aerial ropeway chairlift and family picnic facilities.",
+    "tips": [
+      "Take the cable car down from parking if traveling with family or elders",
+      "A cleaner, calmer alternative to Kempty Falls with natural mountain spring pools"
+    ],
+    "images": [
+      "bhatta-falls.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Mussoorie local team",
+      "checkedOn": "2026-10-28"
+    },
+    "routeKey": "bhatta-drive"
+  },
+  {
+    "id": "company-garden",
+    "name": "Company Garden (Municipal Garden)",
+    "aliases": [
+      "Mussoorie Botanical Garden",
+      "Company Bagh"
+    ],
+    "kind": "attraction",
+    "coords": {
+      "lat": 30.4632,
+      "lng": 78.0514,
+      "source": "osm"
+    },
+    "cluster": "mussoorie-town",
+    "experienceType": "museum-garden",
+    "affinity": {
+      "nature": 0.9,
+      "chill": 1,
+      "views": 0.8,
+      "heritage": 0.7
+    },
+    "role": "secondary",
+    "visit": {
+      "min": 45,
+      "typical": 60,
+      "max": 90
+    },
+    "parkingWalk": {
+      "car": 5,
+      "bike": 3
+    },
+    "hours": {
+      "open": "09:00",
+      "close": "18:00",
+      "status": {
+        "status": "verified",
+        "source": "municipal-board"
+      }
+    },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 0.7,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "10:30",
+      "to": "16:30",
+      "why": "Vibrant floral blooms under sunny mountain skies"
+    },
+    "notes": "Victorian-style public botanical garden surrounded by high Himalayan hills, maintained with manicured lawns, colorful flowerbeds, an artificial cascading waterfall, and a small boating lake.",
+    "tips": [
+      "Easy paved paths suitable for all age groups and family strolls",
+      "Taste fresh Himalayan fruit jams and local pickles at stalls near the gate"
+    ],
+    "images": [
+      "company-garden.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Mussoorie Municipal Board",
+      "checkedOn": "2026-10-28"
+    },
+    "routeKey": "happy-valley-drive"
   }
 ]

@@ -11,7 +11,7 @@ import {
   ReplanEngine
 } from '../engine/index.ts';
 import { DayDial } from './day-dial.ts';
-import { placeUrl, fullRouteUrl } from '../maps/links.ts';
+import { placeUrl, placeDirectionsUrl, fullRouteUrl } from '../maps/links.ts';
 import { renderRouteMap } from '../maps/route-map.ts';
 import {
   encodeTripState,
@@ -19,7 +19,8 @@ import {
   downloadICS,
   generateGoogleCalendarUrl,
   getQRCodeUrl,
-  triggerPrintItinerary
+  triggerPrintItinerary,
+  generateWhatsAppShareUrl
 } from './export-share.ts';
 import { renderCinematicLanding, initCinematicInteractions } from './cinematic.ts';
 import { renderPracticalDrawer, initPracticalDrawer } from './companion-drawer.ts';
@@ -33,6 +34,72 @@ export function resolveImg(imgPath?: string): string {
 }
 
 export type AppPage = 'home' | 'mountains' | 'heritage' | 'food' | 'planner' | 'directory' | 'design';
+
+function clusterDriveTime(cluster: string): string {
+  const times: Record<string, string> = {
+    'clement-town': '5m walk',
+    'city-center': '20m drive',
+    'east-doon': '30m drive',
+    'rajpur': '35m drive',
+    'mussoorie-approach': '50m scenic climb',
+    'mussoorie-town': '1h 15m hill drive',
+    'landour': '1h 25m ridge drive',
+    'park-estate': '1h 20m drive',
+    'mussoorie-outskirts': '1h 35m drive',
+    'dhanaulti': '2h alpine drive',
+    'rishikesh': '1h 15m highway'
+  };
+  return times[cluster] || '35m drive';
+}
+
+function timeCategory(item: Place): 'quick' | 'half' | 'full' {
+  if (item.cluster === 'clement-town') return 'quick';
+  if (['landour', 'mussoorie-town', 'park-estate', 'mussoorie-outskirts', 'dhanaulti', 'rishikesh'].includes(item.cluster)) {
+    return 'full';
+  }
+  return 'half';
+}
+
+function companionFood(placeId: string): string {
+  const foods: Record<string, string> = {
+    'rob': 'Orchard Restaurant or riverside cheese Maggi',
+    'sahas': 'Sulphur pool chai & hot pakoras',
+    'tapkeshwar': 'Garhi Cantt bakery rusks & Paltan sweets',
+    'maldevta': 'Riverside sweet ginger tea & Maggi',
+    'shikhar-falls': 'Rajpur Road wood-fired café & momos',
+    'fri': 'Clock Tower jalebis & Ellora’s stick jaws (1953)',
+    'mind': 'Authentic Tibetan momos & tingmo in Clement Town',
+    'buddha-garden': 'Butter tea & crispy chicken kothay',
+    'paltan-bazaar': 'Famous Doon bakery rusks & hot gulab jamun',
+    'land': 'Char Dukan cinnamon pancakes & Landour Bakehouse',
+    'geo': 'Park House alpine hot chocolate & tea',
+    'clouds-end': 'Forest estate tea & snacks',
+    'mall-road': 'Kalsang Tibetan momos & vintage softy cones',
+    'gunhill': 'Ropeway viewpoint chai & sweet corn',
+    'camels-back': 'Scenic ridge stroll chai & snacks',
+    'bhatta-falls': 'Cable car canteen Maggi & masala chai',
+    'kempty-falls': 'Waterfall side piping hot noodles & tea',
+    'dehradun-zoo': 'Rajpur Road orchard cafés & shakes',
+    'lacchiwala': 'Sal forest picnic snacks & fresh juice',
+    'company-garden': 'Fresh Himalayan berry jams & pickles',
+    'dhanaulti-eco-park': 'Garhwali thali & hot adrak chai',
+    'rish': 'Triveni Ghat pure ghee samosas & herbal chai'
+  };
+  return foods[placeId] || 'Local café or highway roadside tea';
+}
+
+function whatToPack(item: Place): string {
+  if (['rob', 'tapkeshwar', 'maldevta', 'shikhar-falls', 'bhatta-falls', 'kempty-falls'].includes(item.id)) {
+    return '👟 Water sandals / slip-ons & towel';
+  }
+  if (['land', 'geo', 'clouds-end', 'dhanaulti-eco-park'].includes(item.id)) {
+    return '🧥 Light fleece / windcheater & cash';
+  }
+  if (item.id === 'fri') {
+    return '📷 Camera & walking sneakers';
+  }
+  return '💳 UPI/cash & comfortable shoes';
+}
 
 interface StoryChapter {
   id: string;
@@ -60,6 +127,7 @@ export class ExploreDoonApp {
 
   private activePage: AppPage = 'home';
   private galleryFilter: string = 'all';
+  private galleryTimeFilter: string = 'all';
   private gallerySearch: string = '';
   private foodFilter: string = 'all';
 
@@ -270,35 +338,20 @@ export class ExploreDoonApp {
         <nav class="apple-nav-bar" aria-label="Primary Expedition Navigation">
           <div class="apple-nav-tabs">
             <a href="#/home" class="apple-tab-link ${this.activePage === 'home' ? 'active' : ''}" data-nav="home">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span>The Story</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10M9.5 20v-6h5v6"/></svg>
+              <span>Discover</span>
             </a>
-            <a href="#/mountains" class="apple-tab-link ${this.activePage === 'mountains' ? 'active' : ''}" data-nav="mountains">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
-              <span>Mountains</span>
-              <span class="apple-tab-badge">8</span>
+            <a href="#/directory" class="apple-tab-link ${['directory','mountains','heritage'].includes(this.activePage) ? 'active' : ''}" data-nav="directory">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/></svg>
+              <span>Roaming Places</span>
             </a>
-            <a href="#/heritage" class="apple-tab-link ${this.activePage === 'heritage' ? 'active' : ''}" data-nav="heritage">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-              <span>Heritage</span>
-              <span class="apple-tab-badge">6</span>
+            <a href="#/planner" class="apple-tab-link ${this.activePage === 'planner' ? 'active' : ''}" data-nav="planner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M8 14h3M8 17h7"/></svg>
+              <span>Trip Planner</span>
             </a>
             <a href="#/food" class="apple-tab-link ${this.activePage === 'food' ? 'active' : ''}" data-nav="food">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-              <span>Food & Cafés</span>
-              <span class="apple-tab-badge">12</span>
-            </a>
-            <a href="#/planner" class="apple-tab-link ${this.activePage === 'planner' ? 'active' : ''}" data-nav="planner">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-              <span>Route Planner</span>
-            </a>
-            <a href="#/directory" class="apple-tab-link ${this.activePage === 'directory' ? 'active' : ''}" data-nav="directory">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
-              <span>All 23 Spots</span>
-            </a>
-            <a href="#/design" class="apple-tab-link ${this.activePage === 'design' ? 'active' : ''}" data-nav="design">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              <span>Design</span>
+              <span>Cafés & Food</span>
             </a>
           </div>
         </nav>
@@ -756,37 +809,51 @@ export class ExploreDoonApp {
         </main>
 
         <!-- ============================================================== -->
-        <!-- PAGE 6: MASTER DIRECTORY OF ALL 23 SPOTS                       -->
+        <!-- ROAMING PLACES GUIDE                                           -->
         <!-- ============================================================== -->
         <main id="page-directory" class="page-view ${this.activePage === 'directory' ? 'active-page' : ''}">
           <div class="page-breadcrumb-bar">
             <a href="#/home" class="btn-back-crumb">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
-              <span>Back to The Story</span>
+              <span>Back to Discover</span>
             </a>
-            <span class="mono" style="font-size:12px;color:var(--mu)">MASTER ATLAS & DOSSIERS</span>
+            <span class="mono" style="font-size:12px;color:var(--mu)">CURATED ROAMING DIRECTORY</span>
           </div>
 
           <div class="gallery-section">
-            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px">
               <div>
-                <h1 style="font-size:32px;font-weight:900;letter-spacing:-0.03em;color:var(--tx)">All 23 Roaming Spots & Dossiers</h1>
-                <p style="font-size:14.5px;color:var(--t2)">Explore full details, insider tips, altitudes, and Google Maps links for every landmark.</p>
+                <span class="visitor-eyebrow">DEHRADUN & OUTSKIRTS GUIDE</span>
+                <h1 style="font-size:32px;font-weight:900;letter-spacing:-0.03em;color:var(--tx);margin:4px 0 6px">Best Roaming Places</h1>
+                <p style="font-size:14.5px;color:var(--t2)">Waterfalls, river caves, scenic mountain peaks, ancient forest temples, and lush picnic glades.</p>
               </div>
               <div class="search-input-wrap">
                 <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                <input type="text" id="gallery-search" class="search-input" placeholder="Search roaming spots, viewpoints, cafes, waterfalls...">
+                <input type="text" id="gallery-search" class="search-input" placeholder="Search waterfalls, peaks, temples, areas…" aria-label="Search places">
               </div>
             </div>
 
-            <div class="gallery-filters" id="gallery-cluster-filters" style="margin-bottom:24px">
-              <button class="filter-chip active" data-filter="all">All (23)</button>
-              <button class="filter-chip" data-filter="clement-town">Clement Town (Campus)</button>
-              <button class="filter-chip" data-filter="landour">Landour Hilltop</button>
-              <button class="filter-chip" data-filter="mussoorie-approach">Mussoorie & Ghats</button>
-              <button class="filter-chip" data-filter="rajpur">Rajpur Road Cafés</button>
-              <button class="filter-chip" data-filter="east-doon">East Doon & Falls</button>
-              <button class="filter-chip" data-filter="night">Nightlife & Lounges</button>
+            <!-- Category Filter Bar -->
+            <div class="gallery-filters-scroll-wrap">
+              <div class="gallery-filters" id="gallery-cluster-filters">
+                <button class="filter-chip active" data-filter="all">🌟 All Places</button>
+                <button class="filter-chip" data-filter="waterfalls">🏞️ Waterfalls & Streams</button>
+                <button class="filter-chip" data-filter="mountains">⛰️ Mountain Peaks & Ridges</button>
+                <button class="filter-chip" data-filter="heritage">🏛️ Heritage & Temples</button>
+                <button class="filter-chip" data-filter="nature">🌲 Nature Parks & Wildlife</button>
+                <button class="filter-chip" data-filter="daytrips">🌅 Outskirts Day Escapes</button>
+              </div>
+            </div>
+
+            <!-- Time Budget Strip -->
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0 24px;padding:12px 16px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg)">
+              <span style="font-size:11px;font-weight:800;color:var(--mu);text-transform:uppercase;letter-spacing:0.06em">⏱️ Filter by Time Available:</span>
+              <div class="gallery-filters" id="gallery-time-filters" style="display:flex;gap:6px;flex-wrap:wrap">
+                <button class="filter-chip active" data-time-filter="all" style="padding:4px 12px;font-size:12px;min-height:32px">All Times</button>
+                <button class="filter-chip" data-time-filter="quick" style="padding:4px 12px;font-size:12px;min-height:32px">⚡ Quick (&lt; 2h)</button>
+                <button class="filter-chip" data-time-filter="half" style="padding:4px 12px;font-size:12px;min-height:32px">🌤️ Half Day (3–5h)</button>
+                <button class="filter-chip" data-time-filter="full" style="padding:4px 12px;font-size:12px;min-height:32px">⛰️ Full Day (6h+)</button>
+              </div>
             </div>
 
             <div id="gallery-grid" class="places-grid"></div>
@@ -967,6 +1034,15 @@ export class ExploreDoonApp {
     window.addEventListener('hashchange', () => {
       this.handleHashChange();
     });
+
+    this.rootEl.querySelectorAll('.apple-tab-link').forEach(link => {
+      link.addEventListener('click', () => {
+        const nav = link.getAttribute('data-nav') as AppPage;
+        if (nav && nav !== this.activePage) {
+          this.switchPage(nav);
+        }
+      });
+    });
   }
 
   private handleHashChange() {
@@ -981,11 +1057,12 @@ export class ExploreDoonApp {
 
   public switchPage(page: AppPage) {
     this.activePage = page;
+    const primaryNav = ['mountains', 'heritage'].includes(page) ? 'directory' : page;
 
     // Update navigation tab states
     const navLinks = this.rootEl.querySelectorAll('.apple-tab-link');
     navLinks.forEach(link => {
-      const isCur = link.getAttribute('data-nav') === page;
+      const isCur = link.getAttribute('data-nav') === primaryNav;
       link.classList.toggle('active', isCur);
       link.setAttribute('aria-selected', isCur ? 'true' : 'false');
     });
@@ -1235,6 +1312,16 @@ export class ExploreDoonApp {
       });
     });
 
+    const timeChips = this.rootEl.querySelectorAll('#gallery-time-filters .filter-chip');
+    timeChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        timeChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        this.galleryTimeFilter = chip.getAttribute('data-time-filter') || 'all';
+        this.renderGalleryGrid();
+      });
+    });
+
     // 9. Food Category Filters
     const foodChips = this.rootEl.querySelectorAll('#food-category-filters .filter-chip');
     foodChips.forEach(chip => {
@@ -1300,10 +1387,47 @@ export class ExploreDoonApp {
 
     // Initial renders
     this.renderCuratedTrips();
+    this.renderHomeDestinationCards();
     this.renderMountainsPage();
     this.renderHeritagePage();
     this.renderFoodTrail();
     this.renderGalleryGrid();
+  }
+
+  private renderHomeDestinationCards() {
+    const mount = this.rootEl.querySelector('#home-destination-grid') as HTMLElement;
+    if (!mount) return;
+    const featuredIds = ['tapkeshwar', 'rob', 'fri', 'maldevta', 'land', 'geo', 'clouds-end', 'shikhar-falls', 'sahas', 'dehradun-zoo', 'paltan-bazaar', 'bhatta-falls'];
+    const places = featuredIds
+      .map(id => this.datasets.places.find(place => place.id === id))
+      .filter((place): place is Place => Boolean(place));
+
+    mount.innerHTML = places.map(place => {
+      const image = place.images?.[0] || 'mind.jpg';
+      return `
+        <article class="visitor-destination-card">
+          <button class="visitor-destination-media" type="button" data-home-place="${place.id}" aria-label="See details for ${place.name}">
+            <img src="${resolveImg(image)}" alt="${place.name}" loading="lazy" onerror="this.onerror=null;this.src='images/mind.jpg';">
+            <span class="visitor-destination-area">${areaLabel(place.cluster)}</span>
+          </button>
+          <div class="visitor-destination-content">
+            <h3>${place.name}</h3>
+            <p>${place.notes}</p>
+            <div class="visitor-destination-meta">
+              <span>⏱️ ~${place.visit.typical} min</span>
+              <div style="display:flex;gap:10px;align-items:center">
+                <button type="button" data-home-place="${place.id}">Details ↗</button>
+                <a href="${placeUrl(place)}" target="_blank" rel="noopener" class="home-maps-link" style="color:var(--orange);font-weight:700;text-decoration:none;font-size:11px" title="Open in Google Maps">Maps ↗</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+
+    mount.querySelectorAll<HTMLButtonElement>('[data-home-place]').forEach(button => {
+      button.addEventListener('click', () => this.openPlaceModal(button.dataset.homePlace || ''));
+    });
   }
 
   private loadCuratedRouteById(routeId: string) {
@@ -1772,12 +1896,20 @@ export class ExploreDoonApp {
             <div class="stat-label" style="color:#00D492">Feasibility Score</div>
             <div class="stat-value mono" style="color:#00D492">98/100</div>
           </div>
+          <div class="stat-tile" style="border-color:rgba(255,153,0,0.35);background:rgba(255,153,0,0.06)">
+            <div class="stat-label" style="color:#FF9900">Estimated Cab Fare</div>
+            <div class="stat-value mono" style="color:#FFA726">₹${plan.budget ? `${plan.budget.carEstimate.min}–₹${plan.budget.carEstimate.max}` : '800–1200'}</div>
+          </div>
         </div>
 
         <div class="banner-actions">
           <a class="scd-btn-3d-orange" href="${fullMapsUrl}" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             Open Full Route in Google Maps
+          </a>
+          <a class="scd-btn-3d-secondary" id="btn-whatsapp-share" href="${generateWhatsAppShareUrl(plan, this.state.date, fullMapsUrl)}" target="_blank" rel="noopener" style="background:#25D366;color:#fff;border-color:#1EBE5D" title="Share plan on WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
+            Share on WhatsApp
           </a>
           <button class="scd-btn-3d-secondary" id="btn-ics-export">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -1798,6 +1930,16 @@ export class ExploreDoonApp {
           </button>
         </div>
       </div>
+
+      ${plan.stops.some(s => ['landour', 'mussoorie-town', 'mussoorie-approach', 'park-estate', 'dhanaulti'].includes(s.place.cluster)) ? `
+        <div style="background:rgba(255,153,0,0.12);border:1px solid #FF9900;border-radius:14px;padding:14px 18px;margin:16px 0;display:flex;align-items:center;gap:14px">
+          <span style="font-size:28px">⚠️</span>
+          <div>
+            <b style="color:#FFA726;display:block;font-size:13.5px">Himalayan Daylight Warning: Descend Ridge Before 5:30 PM</b>
+            <span style="font-size:12px;color:var(--t2);line-height:1.5">Mussoorie ghats have rapid twilight, fog, and steep turns. Our engine has scheduled your downhill journey with a safe daylight return buffer.</span>
+          </div>
+        </div>
+      ` : ''}
 
       <!-- Route Visualizer -->
       ${renderRouteMap(plan)}
@@ -2085,24 +2227,44 @@ export class ExploreDoonApp {
     }
   }
 
-  /* --- PAGE 6: ALL 23 ROAMING PLACES DIRECTORY --- */
+  /* --- ROAMING PLACES DIRECTORY --- */
   private renderGalleryGrid() {
     const grid = this.rootEl.querySelector('#gallery-grid') as HTMLElement;
     if (!grid) return;
 
-    const allItems: Place[] = [...this.datasets.places, ...this.datasets.eateries];
+    // Filter out obscure or remote spots not suitable for standard roaming
+    const OFF_PLACE_IDS = new Set(['kalsi-edict', 'asan-barrage', 'chakrata-tiger-falls', 'bha', 'maggi']);
+    const places = this.datasets.places.filter(p => !OFF_PLACE_IDS.has(p.id));
 
-    const filtered = allItems.filter(item => {
-      if (this.galleryFilter === 'night') {
-        const isNight = item.kind === 'bar' || item.kind === 'club' || item.affinity.night;
-        if (!isNight) return false;
+    const WATERFALL_IDS = new Set(['rob', 'sahas', 'maldevta', 'shikhar-falls', 'bhatta-falls', 'kempty-falls']);
+    const MOUNTAIN_IDS = new Set(['land', 'geo', 'clouds-end', 'mall-road', 'gunhill', 'camels-back', 'mussoorie-lake']);
+    const HERITAGE_IDS = new Set(['tapkeshwar', 'fri', 'mind', 'buddha-garden', 'paltan-bazaar']);
+    const NATURE_IDS = new Set(['dehradun-zoo', 'lacchiwala', 'company-garden']);
+    const DAYTRIP_IDS = new Set(['rish', 'dhanaulti-eco-park']);
+
+    const filtered = places.filter(item => {
+      if (this.galleryFilter === 'waterfalls') {
+        if (!WATERFALL_IDS.has(item.id)) return false;
+      } else if (this.galleryFilter === 'mountains') {
+        if (!MOUNTAIN_IDS.has(item.id)) return false;
+      } else if (this.galleryFilter === 'heritage') {
+        if (!HERITAGE_IDS.has(item.id)) return false;
+      } else if (this.galleryFilter === 'nature') {
+        if (!NATURE_IDS.has(item.id)) return false;
+      } else if (this.galleryFilter === 'daytrips') {
+        if (!DAYTRIP_IDS.has(item.id)) return false;
       } else if (this.galleryFilter !== 'all') {
         if (item.cluster !== this.galleryFilter) return false;
       }
 
+      if (this.galleryTimeFilter !== 'all') {
+        if (timeCategory(item) !== this.galleryTimeFilter) return false;
+      }
+
       if (this.gallerySearch) {
-        const text = `${item.name} ${item.cluster} ${item.experienceType} ${item.notes || ''}`.toLowerCase();
-        if (!text.includes(this.gallerySearch)) return false;
+        const query = this.gallerySearch.toLowerCase().trim();
+        const text = `${item.name} ${item.aliases?.join(' ') || ''} ${item.cluster} ${item.experienceType} ${item.notes || ''}`.toLowerCase();
+        if (!text.includes(query)) return false;
       }
       return true;
     });
@@ -2111,7 +2273,7 @@ export class ExploreDoonApp {
       grid.innerHTML = `
         <div style="grid-column: 1/-1;text-align:center;padding:48px;color:var(--mu)">
           <div style="font-size:36px;margin-bottom:8px">🔍</div>
-          <p>No roaming places found matching your filter.</p>
+          <p>No roaming places match your search. Try another keyword or filter pill.</p>
         </div>
       `;
       return;
@@ -2120,36 +2282,73 @@ export class ExploreDoonApp {
     grid.innerHTML = filtered.map(item => {
       const img = item.images?.[0] || 'mind.jpg';
       const imgSrc = resolveImg(img);
-      const isVerified = item.verification.status === 'verified';
+
+      // Altitude tag
+      let altitudeTag = 'Valley Floor · 650m';
+      if (['landour', 'land'].includes(item.cluster) || item.id === 'land') altitudeTag = 'Summit · 2,290m';
+      else if (['park-estate', 'geo', 'clouds-end'].includes(item.cluster)) altitudeTag = 'Cloud Ridge · 2,050m';
+      else if (['mussoorie-town', 'mall-road', 'gunhill', 'camels-back', 'company-garden'].includes(item.cluster)) altitudeTag = 'Hill Town · 1,950m';
+      else if (item.cluster === 'dhanaulti') altitudeTag = 'Alpine Forest · 2,286m';
+      else if (['mussoorie-approach', 'mussoorie-lake', 'bhatta-falls'].includes(item.cluster)) altitudeTag = 'Ghats · 1,450m';
+      else if (item.cluster === 'rajpur' || item.id === 'shikhar-falls') altitudeTag = 'Foothills · 850m';
+      else if (item.cluster === 'rishikesh') altitudeTag = 'Ganga Riverfront · 350m';
 
       return `
         <article class="place-card">
-          <div class="place-media" data-modal-trigger="${item.id}">
-            <img src="${imgSrc}" alt="${item.name}" onerror="this.onerror=null;this.src='scd images/${img}';">
-            <span class="place-badge-cluster">${item.cluster.replace('-', ' ')}</span>
-            <span class="chip ${isVerified ? 'verified' : 'unverified'}" style="position:absolute;bottom:10px;left:10px">
-              ${isVerified ? '✓ Verified' : 'Check Hours'}
-            </span>
+          <div class="place-media" data-modal-trigger="${item.id}" tabindex="0" role="button" aria-label="View details for ${item.name}">
+            <img src="${imgSrc}" alt="${item.name}" loading="lazy" onerror="this.onerror=null;this.src='images/mind.jpg';">
+            <span class="place-badge-cluster">${areaLabel(item.cluster)}</span>
+            <span class="place-badge-alt">${altitudeTag}</span>
           </div>
 
           <div class="place-content">
             <div class="place-header">
               <h3 class="place-title">${item.name}</h3>
-              <div class="place-meta-row">
-                <span>⏱️ ~${item.visit.typical} mins</span>
+              <div class="place-meta-row" style="flex-wrap:wrap;gap:6px">
+                <span style="color:#AD5CFF;font-weight:700">🚗 ${clusterDriveTime(item.cluster)}</span>
                 <span>•</span>
-                <span>${item.experienceType.replace('-', ' ')}</span>
+                <span>⏱️ ~${item.visit.typical}m dwell</span>
+                <span>•</span>
+                <span class="place-exp-type">${item.experienceType.replace(/-/g, ' ')}</span>
               </div>
+              ${item.bestTime ? `
+                <div style="font-size:11px;color:#FFA726;font-weight:700;margin-top:4px">
+                  ☀️ Best window: ${item.bestTime.from}–${item.bestTime.to}
+                </div>
+              ` : ''}
             </div>
 
             <p class="place-desc">${item.notes || 'Iconic spot to experience on your Dehradun trip.'}</p>
 
+            <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px;font-size:12px">
+              <div style="display:flex;align-items:center;gap:6px;color:var(--tx)">
+                <span>🍜</span>
+                <span style="color:var(--t2)"><b>Must Try:</b> ${companionFood(item.id)}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;color:var(--mu);font-size:11px">
+                <span>🎒</span>
+                <span>${whatToPack(item)}</span>
+              </div>
+            </div>
+
+            ${item.tips?.[0] ? `
+              <div class="place-tip-snippet">
+                <span class="tip-bulb">💡</span>
+                <span>${item.tips[0]}</span>
+              </div>
+            ` : ''}
+
             <div class="place-footer">
-              <button class="scd-btn-3d-secondary" style="padding:6px 12px;font-size:12px" data-modal-trigger="${item.id}">
+              <button class="scd-btn-3d-secondary" style="padding:6px 11px;font-size:12px" data-modal-trigger="${item.id}">
                 Details
               </button>
-              <a class="scd-btn-3d-primary" style="padding:6px 12px;font-size:12px" href="${placeUrl(item)}" target="_blank" rel="noopener">
+              <a class="scd-btn-3d-primary" style="padding:6px 11px;font-size:12px" href="${placeUrl(item)}" target="_blank" rel="noopener">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 Google Maps
+              </a>
+              <a class="scd-btn-3d-orange" style="padding:6px 11px;font-size:12px" href="${placeDirectionsUrl(item)}" target="_blank" rel="noopener" title="Navigate in Google Maps">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                Directions
               </a>
             </div>
           </div>
@@ -2177,7 +2376,7 @@ export class ExploreDoonApp {
 
     const img = item.images?.[0] || 'mind.jpg';
     const imgSrc = resolveImg(img);
-    const isVerified = item.verification.status === 'verified';
+    const isVerified = item.verification?.status === 'verified';
 
     // Elevation estimates
     let altitude = '650m (Valley Floor)';
@@ -2189,7 +2388,7 @@ export class ExploreDoonApp {
     body.innerHTML = `
       <div class="sheet-grab-bar"></div>
       <div style="position:relative;aspect-ratio:16/9;overflow:hidden;border-top-left-radius:24px;border-top-right-radius:24px;margin-top:6px">
-        <img src="${imgSrc}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src='scd images/${img}';">
+        <img src="${imgSrc}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src='images/mind.jpg';">
         <button id="modal-close-btn" style="position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(5,7,14,0.8);border:1px solid rgba(255,255,255,0.25);color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center">&times;</button>
         <span class="chip ${isVerified ? 'verified' : 'unverified'}" style="position:absolute;bottom:14px;left:14px">
           ${isVerified ? '✓ Verified by Local Team' : 'Check Hours Locally'}
@@ -2199,7 +2398,7 @@ export class ExploreDoonApp {
       <div style="padding:24px">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px">
           <h2 style="font-size:22px;font-weight:900;color:var(--tx)">${item.name}</h2>
-          <span style="font-size:12px;font-weight:800;color:var(--ac);text-transform:uppercase;letter-spacing:0.06em">${item.cluster.replace('-', ' ')}</span>
+          <span style="font-size:12px;font-weight:800;color:var(--ac);text-transform:uppercase;letter-spacing:0.06em">${areaLabel(item.cluster)}</span>
         </div>
 
         <p style="font-size:14.5px;color:var(--t2);line-height:1.6;margin-bottom:18px">${item.notes || 'One of Dehradun & Mussoorie’s most famous landmarks.'}</p>
@@ -2221,6 +2420,11 @@ export class ExploreDoonApp {
           ` : ''}
         </div>
 
+        <div style="background:var(--panel);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;margin-bottom:18px;font-size:12.5px;display:flex;flex-direction:column;gap:6px">
+          <div><b style="color:var(--orange)">🍜 Must-Try Food Companion:</b> <span style="color:var(--tx)">${companionFood(item.id)}</span></div>
+          <div><b style="color:#00D492">🎒 What to Pack / Wear:</b> <span style="color:var(--t2)">${whatToPack(item)}</span></div>
+        </div>
+
         ${item.tips && item.tips.length ? `
           <div style="margin-bottom:22px">
             <h4 style="font-size:12px;font-weight:800;text-transform:uppercase;color:var(--mu);letter-spacing:0.06em;margin-bottom:8px">Local Insider Tips</h4>
@@ -2230,12 +2434,19 @@ export class ExploreDoonApp {
           </div>
         ` : ''}
 
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="scd-btn-3d-orange" href="${placeUrl(item)}" target="_blank" rel="noopener" style="flex:1;justify-content:center">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            Open in Google Maps
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="scd-btn-3d-primary" id="modal-plan-place" style="flex:1;justify-content:center">
+            Plan this stop
+          </button>
+          <a class="scd-btn-3d-orange" href="${placeDirectionsUrl(item)}" target="_blank" rel="noopener" style="flex:1;justify-content:center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            Directions
           </a>
-          <button class="scd-btn-3d-secondary" id="modal-close-bottom">
+          <a class="scd-btn-3d-secondary" href="${placeUrl(item)}" target="_blank" rel="noopener" style="flex:1;justify-content:center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Google Maps
+          </a>
+          <button class="scd-btn-3d-secondary" id="modal-close-bottom" style="padding:10px 16px">
             Dismiss
           </button>
         </div>
@@ -2246,6 +2457,12 @@ export class ExploreDoonApp {
 
     body.querySelector('#modal-close-btn')?.addEventListener('click', () => modal.classList.remove('open'));
     body.querySelector('#modal-close-bottom')?.addEventListener('click', () => modal.classList.remove('open'));
+    body.querySelector('#modal-plan-place')?.addEventListener('click', () => {
+      modal.classList.remove('open');
+      this.state.locks = { include: [item.id] };
+      window.location.hash = '#/planner';
+      this.recomputePlan();
+    });
   }
 
   private updateStickyPill(plan: Itinerary | null) {

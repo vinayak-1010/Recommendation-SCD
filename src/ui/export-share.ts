@@ -122,3 +122,32 @@ export function triggerPrintItinerary(): void {
   }
 }
 
+export function generateWhatsAppShareUrl(plan: Itinerary, dateStr: string, fullMapUrl: string): string {
+  const pad = (n: number) => String(n).padStart(2, '0');
+  const fmt = (min: number) => {
+    const h = Math.floor(min / 60) % 24;
+    const m = min % 60;
+    const ampm = h < 12 ? 'AM' : 'PM';
+    const dh = h % 12 || 12;
+    return `${dh}:${pad(m)} ${ampm}`;
+  };
+
+  let text = `🏔️ *Explore Doon Day Out Plan* (${dateStr})\n`;
+  text += `⏱️ *Window:* ${fmt(plan.summary.start)} – ${fmt(plan.summary.end)}\n`;
+  text += `🚗 *Total Distance:* ~${plan.summary.totalDistanceKm} km · *Return Buffer:* ${plan.summary.returnBufferMin} mins\n\n`;
+  text += `📍 *Stops Planned:*\n`;
+
+  plan.stops.forEach((s, idx) => {
+    text += `${idx + 1}. *${s.place.name}* (${fmt(s.arrival)} – ${fmt(s.departure)})\n`;
+    if (s.whatToDo?.[0]) text += `   • ${s.whatToDo[0]}\n`;
+  });
+
+  if (plan.budget) {
+    text += `\n💰 *Estimated Cab Cost:* ₹${plan.budget.carEstimate.min}–₹${plan.budget.carEstimate.max} (Split 4 ways: ~₹${Math.round(plan.budget.carEstimate.min / 4)}–₹${Math.round(plan.budget.carEstimate.max / 4)}/person)\n`;
+  }
+
+  text += `\n🗺️ *Full Google Maps Route:*\n${fullMapUrl}\n\n_Planned with Explore Doon Travel Guide_`;
+  return `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+}
+
+

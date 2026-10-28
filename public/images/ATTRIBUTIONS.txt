@@ -1,142 +1,62 @@
-IMAGE ATTRIBUTIONS FOR DEHRADUN/MUSSOORIE TOURIST PLACES
-=========================================================
+Destination photographs added for the Dehradun and Mussoorie visitor guide
+==========================================================================
 
-This file contains attribution information for images used in the travel recommendation application.
-All images are used under free/open licenses that permit commercial use.
+These locally optimized WebP copies retain the licensing terms of their
+Wikimedia Commons originals. Please retain this credit file when redistributing.
 
----
+asan.webp — Asan Barrage, Dehradun district
+Author: Nandanautiyal · CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:Asan_Barrage_Dehradun,_Uttarakhand.jpg
 
-fri.jpg - Forest Research Institute (FRI) Dehradun
-Source: Wikimedia Commons
-URL: https://commons.wikimedia.org/wiki/File:FRI_Dehradun,_Uttarakhand.jpg
-Author: Nitin Kamboj
-License: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
-Description: Architectural view of the Forest Research Institute main building
+camels-back.webp — Camel's Back Road, Mussoorie
+Author: Kinsley Bros. · CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:Camels_Back_Road,_Mussoorie.jpg
 
----
+dhanaulti.webp — Dhanaulti Eco Park
+Author: Shariq.Bilal1 · CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:Dhanaulti_eco_park_pic_01.jpg
 
-rob.jpg - Robber's Cave (Gucchupani)
-Source: Wikimedia Commons
-URL: https://commons.wikimedia.org/wiki/File:Robber's_Cave_Dehradun.jpg
-Author: Nandanautiyal
-License: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
-Description: Water flowing through the natural cave gorge
+george-everest.webp — Park Estate / George Everest, Mussoorie
+Author: Ps14061990 · CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:Park_Estate,_George_Everest,_Mussoorie.jpg
 
----
+gun-hill.webp — Gun Hill cableway, Mussoorie
+Author: Anil1956 · CC0 1.0
+https://commons.wikimedia.org/wiki/File:Cableway_descending_from_Gun_Hill_to_Mussoorie.jpg
 
-mind.jpg - Mindrolling Monastery & Great Stupa
-Source: Unsplash
-URL: https://unsplash.com/photos/i3xO9BAfCnM
-License: Unsplash License (Free to use)
-Description: The Great Stupa at Mindrolling Monastery, one of the tallest stupas in the world
+kalsi.webp — Kalsi Rock Edict of Ashoka
+Public domain
+https://commons.wikimedia.org/wiki/File:Khalsi_rock_edict_of_Ashoka.jpg
 
----
+kempty.webp — Kempty Waterfalls, Mussoorie
+Author: Siva301in · CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:Kempty_Waterfalls.jpg
 
-rish.jpg - Rishikesh Ganga Aarti
-Source: Pixabay
-Search: https://pixabay.com/images/search/ganga%20aarti/
-License: Pixabay License (Free for commercial use)
-Description: Evening Ganga Aarti ceremony at Triveni Ghat or similar location
-Note: Select any high-quality Ganga Aarti image from Pixabay search results
+lal-tibba.webp — Himalayan range from Lal Tibba, Landour
+Author: SHUVADIP · CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:View_of_the_Himalayan_range_from_The_Lal_Tibba,_Landour,_Mussourie.jpg
 
----
+malsi.webp — Malsi Deer Park, Dehradun
+Author: Dbudakoti · CC0 1.0
+https://commons.wikimedia.org/wiki/File:Malsi_deer_park_dehradun_zoo.png
 
-land.jpg - Landour / Lal Tibba / Char Dukan
-Source: To be downloaded from Unsplash or Pexels
-Search terms: "Lal Tibba Mussoorie" OR "Landour viewpoint" OR "Mussoorie mountains"
-License: Unsplash/Pexels License
-Description: Mountain viewpoint or heritage cantonment area
+mussoorie-lake.webp — Mussoorie Lake
+Author: Swati Vyas · CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:Mussoorie_Lake.jpg
 
----
+sahas.webp — Sahastradhara cableway and valley
+Author: shivanjan · CC BY-SA 3.0
+https://commons.wikimedia.org/wiki/File:Sahastradhara_fun_spot_connected_with_cable_car.jpg
 
-camels.jpg - Camel's Back Road
-Source: To be downloaded from Unsplash or Pexels
-Search terms: "Camel's Back Road Mussoorie" OR "Mussoorie promenade"
-License: Unsplash/Pexels License
-Description: Walking promenade with valley views
+tiger-falls.webp — Tiger Falls, Chakrata
+Author: Aditya Dixit · CC BY-SA 4.0
+https://commons.wikimedia.org/wiki/File:Tiger_Falls.jpg
 
----
+Licenses
+--------
+CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0/
+CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/
 
-gunhill.jpg - Gun Hill Ropeway
-Source: To be downloaded from Unsplash or Pexels
-Search terms: "Gun Hill Mussoorie" OR "Mussoorie cable car"
-License: Unsplash/Pexels License
-Description: Ropeway or hilltop viewpoint
-
----
-
-mall.jpg - Mall Road Mussoorie
-Source: To be downloaded from Unsplash or Pexels
-Search terms: "Mall Road Mussoorie" OR "Mussoorie street"
-License: Unsplash/Pexels License
-Description: Colonial-era shopping street with lampposts
-
----
-
-geo.jpg / geo.webp - Sir George Everest's House
-Source: To be downloaded from Wikimedia Commons or Unsplash
-Search: George Everest House / Park Estate Mussoorie
-License: CC BY-SA or Unsplash License
-Description: Historic surveyor's home and observatory ruins
-
----
-
-bha.jpg - Bhadraj Temple
-Source: To be downloaded from Unsplash or Pexels
-Search terms: "Bhadraj temple" OR "Mussoorie hilltop temple" OR "Himalayan temple trek"
-License: Unsplash/Pexels License
-Description: Mountain temple with trekking views
-
----
-
-sahas.jpg - Sahastradhara Sulphur Springs
-Source: To be downloaded from Wikimedia Commons, Unsplash, or Pexels
-Search terms: "Sahastradhara waterfall Dehradun" OR "Sahastradhara springs"
-License: CC licenses or Unsplash/Pexels License
-Description: Limestone cascade with sulphur water pools
-
----
-
-mussoorie-lake.jpg - Mussoorie Lake
-Source: To be downloaded from Unsplash or Pexels
-Search terms: "Mussoorie Lake" OR "artificial lake Uttarakhand mountains"
-License: Unsplash/Pexels License
-Description: Artificial lake with pedal boats and mountain backdrop
-
----
-
-maggi.jpg - Mussoorie Road Viewpoint (Maggi Point)
-Source: To be downloaded from Unsplash or Pexels
-Search terms: "Mussoorie highway view" OR "Doon valley viewpoint" OR "mountain highway India"
-License: Unsplash/Pexels License
-Description: Roadside viewpoint overlooking Doon valley
-
----
-
-LICENSE SUMMARY:
-
-Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0):
-- You are free to share and adapt the material
-- You must give appropriate credit
-- You must distribute under the same license
-- Full license: https://creativecommons.org/licenses/by-sa/4.0/
-
-Unsplash License:
-- Free to use for commercial and non-commercial purposes
-- No attribution required (but appreciated)
-- Full license: https://unsplash.com/license
-
-Pixabay License:
-- Free for commercial use
-- No attribution required
-- Full license: https://pixabay.com/service/license/
-
-Pexels License:
-- Free for personal and commercial use
-- No attribution required
-- Full license: https://www.pexels.com/license/
-
----
-
-Generated: 2026-10-20
-Updated: [To be updated when all images are downloaded]
+Other image files already present in this directory were not re-attributed here;
+their provenance should be checked against the original image files before reuse.

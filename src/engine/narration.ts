@@ -10,6 +10,16 @@ export class GuideNarrator {
   public getTitle(cluster: string, mode: string, locale = 'en'): string {
     const loc = this.copy[locale] || this.copy.en;
     if (mode === 'eve') return loc.titles.night_out || loc.titles.evening_unwind;
+    const regionalTitles: Record<string, string> = {
+      'mussoorie-outskirts': 'Kempty Falls Day Out',
+      dhanaulti: 'Dhanaulti Forest Day Trip',
+      chakrata: 'Chakrata & Tiger Falls Expedition',
+      'asan-barrage': 'Asan Wetlands Nature Day',
+      kalsi: 'Kalsi Heritage Day Trip',
+      rishikesh: 'Rishikesh Riverfront Day Out',
+      'out-of-scope-default': 'Doon Valley Day Out'
+    };
+    if (regionalTitles[cluster]) return regionalTitles[cluster];
     if (cluster === 'landour') return loc.titles.landour_morning;
     if (cluster === 'mussoorie-town') return loc.titles.mussoorie_classic;
     if (cluster === 'east-doon') return loc.titles.doon_nature;
@@ -20,7 +30,10 @@ export class GuideNarrator {
 
   public getLeadSummary(stops: Place[], interests: string[], locale = 'en'): string {
     const primary = stops.find(s => s.role === 'primary') || stops[0];
-    const isHill = stops.some(s => s.cluster === 'landour' || s.cluster === 'mussoorie-town' || s.cluster === 'park-estate');
+    const isHill = stops.some(s => ['landour', 'mussoorie-town', 'park-estate', 'mussoorie-approach', 'mussoorie-outskirts', 'dhanaulti', 'chakrata'].includes(s.cluster));
+    if (stops.length === 1 && ['dhanaulti', 'chakrata', 'asan-barrage', 'kalsi', 'rishikesh', 'mussoorie-outskirts'].includes(primary.cluster)) {
+      return `A focused day out to ${primary.name}, planned around your time and the drive back to campus.`;
+    }
 
     if (locale === 'hi') {
       if (isHill) {

@@ -40,8 +40,8 @@ export class ItineraryAssembler {
 
   public assemble(request: TripRequest): Itinerary | null {
     const config = this.data.config;
-    const deadline = computeEffectiveReturnDeadline(request, config);
-    const usableWindowMin = deadline - request.start;
+    const requestedDeadline = computeEffectiveReturnDeadline(request, config);
+    const usableWindowMin = requestedDeadline - request.start;
 
     if (usableWindowMin <= 0) {
       return null;
@@ -52,7 +52,14 @@ export class ItineraryAssembler {
 
     // 1. Filter candidates
     const allCandidates = [...this.data.places, ...this.data.eateries];
-    const allowed = allCandidates.filter(p => filterCandidate(p, request, deadline, daylight).allowed);
+    const allowed = allCandidates.filter(p => filterCandidate(p, request, requestedDeadline, daylight).allowed);
+
+    const requestedIds = [...new Set(request.locks?.include || [])];
+    const requestedPlaces = requestedIds.map(id => allowed.find(place => place.id === id));
+    // An explicit destination must remain part of the route. Never silently swap
+    // a requested place for an unrelated anchor when it is closed or unreachable.
+    if (requestedPlaces.some(place => !place)) return null;
+    const lockedStops = requestedPlaces as Place[];
 
     if (!allowed.length) {
       return null;
@@ -96,6 +103,11 @@ export class ItineraryAssembler {
       const minStay = Math.min(...items.map(p => p.visit.min));
 
       const feasible = usableWindowMin >= (totalRoundTripTravel + minStay);
+      // These distant outings need a full-day window from campus. Without this
+      // guard, a mountain affinity bonus can win a six-hour plan even though
+      // traffic and the return buffer leave no useful time at the destination.
+      const fullDayOuting = ['dhanaulti', 'chakrata', 'kalsi', 'rishikesh'].includes(cluster);
+      const outingWindowFits = !fullDayOuting || usableWindowMin >= 420;
 
       // Night mode restriction for hill clusters
       const isNightMode = request.start >= 1080; // 6:00 PM
@@ -110,8 +122,8 @@ export class ItineraryAssembler {
 
       return {
         cluster,
-        score: feasible ? affSum : -100,
-        feasible
+        score: feasible && outingWindowFits ? affSum : -100,
+        feasible: feasible && outingWindowFits
       };
     }).sort((a, b) => b.score - a.score);
 
@@ -120,34 +132,10 @@ export class ItineraryAssembler {
       return null;
     }
 
-    const primaryCluster = bestClusterEntry.cluster;
+    const primaryCluster = lockedStops[0]?.cluster || bestClusterEntry.cluster;
     const isHillDay = isHillCluster(primaryCluster);
-
-    // 4. Beam Search Candidate Skeletons
-    // Max cluster transitions: 1 for trips <= 6 hours (360 min)
-    const allowedSecondaryClusters = usableWindowMin <= 360
-      ? [primaryCluster]
-      : [primaryCluster, 'rajpur', 'city-center', 'mussoorie-town'];
-
-    interface BeamState {
-      stops: Place[];
-      currentCluster: string;
-      currentTimeP50: Minutes;
-      currentTimeP80: Minutes;
-      travelMinTotal: number;
-      legs: TimelineLeg[];
-      durations: number[];
-    }
-
-    let beam: BeamState[] = [{
-      stops: [],
-      currentCluster: 'campus',
-      currentTimeP50: request.start,
-      currentTimeP80: request.start,
-      travelMinTotal: 0,
-      legs: [],
-      durations: []
-    }];
+    const hillReturnCutoff = request.transport === 'bike' ? daylight.bikeHillCutoff : daylight.carHillCutoff;
+    const deadline = isHillDay ? Math.min(requestedDeadline, hillReturnCutoff) : requestedDeadline;
 
     // Identify primary anchor candidates in primaryCluster
     const primaryCandidates = (clusterMap.get(primaryCluster) || [])
@@ -160,36 +148,26 @@ export class ItineraryAssembler {
 
     const anchor = primaryCandidates[0] || allowed[0];
 
-    // Build plan sequence starting from anchor
-    const chosenStops: Place[] = [anchor];
+    // Build a plan from the user’s chosen stops or the strongest matching anchor.
+    // A multi-stop include list is a curated route sequence. Preserve its order so
+    // the planner trims from the end when time is tight instead of losing its first stop.
+    const chosenStops: Place[] = lockedStops.length ? [...lockedStops] : [anchor];
 
-    // Respect locked include stops from replanning/swaps
-    if (request.locks?.include?.length) {
-      for (const incId of request.locks.include) {
-        const lockedPlace = allowed.find(p => p.id === incId);
-        if (lockedPlace && !chosenStops.some(s => s.id === lockedPlace.id)) {
-          if (lockedPlace.kind === 'onroute') {
-            chosenStops.unshift(lockedPlace);
-          } else {
-            chosenStops.push(lockedPlace);
-          }
-        }
-      }
-    }
-
-    const anchorDuration = Math.round((anchor.visit.typical * paceFactor) / 5) * 5;
+    const anchorDuration = Math.round((chosenStops[0].visit.typical * paceFactor) / 5) * 5;
 
     // Check if onroute stop (e.g. Maggi) makes sense on hill climb
-    if (isHillDay && usableWindowMin >= 300) {
+    const mussoorieCorridor = ['mussoorie-approach', 'mussoorie-town', 'landour', 'park-estate'].includes(primaryCluster);
+    if (!lockedStops.length && isHillDay && mussoorieCorridor && usableWindowMin >= 300) {
       const maggi = allowed.find(p => p.id === 'maggi');
-      if (maggi && (request.interests.includes('food') || request.interests.includes('views') || !request.interests.length)) {
+      if (maggi && !chosenStops.some(stop => stop.id === maggi.id) &&
+          (request.interests.includes('food') || request.interests.includes('views') || !request.interests.length)) {
         chosenStops.unshift(maggi); // Insert on ascent before the mountain summit
       }
     }
 
     // Check if a secondary stop in the same cluster or adjacent fits
     const remainingBudgetEstimate = usableWindowMin - (anchorDuration + 140);
-    if (remainingBudgetEstimate >= 60) {
+    if (!lockedStops.length && remainingBudgetEstimate >= 60) {
       // Look for a stroll or secondary cultural experience in same cluster
       const secondary = (clusterMap.get(primaryCluster) || []).find(
         p => p.id !== anchor.id &&
@@ -203,7 +181,7 @@ export class ItineraryAssembler {
 
     // Check if meal window crossed and insert meal stop
     const windowHours = usableWindowMin / 60;
-    if (windowHours >= 4.5) {
+    if (!lockedStops.length && windowHours >= 4.5) {
       // Find meal in primaryCluster or adjacent rajpur on descent
       const mealStop = allowed.find(
         p => (p.kind === 'meal' || p.kind === 'cafe' || p.experienceType === 'breakfast-local' || p.experienceType === 'bakery' || p.experienceType === 'restaurant-sitdown') &&
@@ -391,6 +369,10 @@ export class ItineraryAssembler {
         sim.totalSightseeingMin -= overrun;
       }
     }
+
+    // If even a minimum-length single stop misses the deadline or daylight
+    // return cutoff, do not publish an unsafe or impossible itinerary.
+    if (sim.finishP80 > deadline) return null;
 
     const {
       stopsResult,
