@@ -251,14 +251,16 @@ export class ExploreDoonApp {
   private leafletMap: any = null;
   private leafletRouteLayer: any = null;
   private leafletMarkersLayer: any = null;
+  private mapTileTheme: 'voyager' | 'dark' = 'voyager';
+  private mapTileLayer: any = null;
 
   private state: TripRequest = {
     date: '2026-11-01',
     dayType: 'sunday',
-    start: 480, // 08:00 AM
-    returnBy: 1020, // 5:00 PM
+    start: 510, // 08:30 AM
+    returnBy: 960, // 04:00 PM (7.5 hours)
     transport: 'car',
-    interests: [],
+    interests: ['views', 'nature', 'food'],
     group: 'friends',
     pace: 'relaxed',
     budget: 2,
@@ -374,225 +376,11 @@ export class ExploreDoonApp {
         </nav>
 
         <!-- ============================================================== -->
-        <!-- PAGE 1: THE APPLE LANDING SHOWCASE & STORY                     -->
+        <!-- PAGE 1: THE DISCOVERY SHOWCASE & VISITOR PORTAL                -->
         <!-- ============================================================== -->
         <main id="page-home" class="page-view ${this.activePage === 'home' ? 'active-page' : ''}">
-          <!-- 7-SECTION APPLE CINEMATIC LANDING (Hero, The Why, The Promise, Three Worlds, Curated Routes, Practical Strip, Closing) -->
+          <!-- VISITOR PORTAL: Editorial Hero, Quick Window Presets, Top Destinations Grid, Curated Blueprints, Practical Strip -->
           ${renderCinematicLanding()}
-
-          <!-- APPLE KEYNOTE STORY SECTION ("THE STORY OF US") -->
-          <section class="apple-story-section" id="apple-story-section">
-            <div class="story-header-wrap">
-              <div class="story-pre-badge">
-                <span>A Story in Six Chapters</span>
-              </div>
-              <h2 class="story-section-title">
-                The Journey of Us: From Campus to the Clouds
-              </h2>
-              <p class="story-section-sub">
-                Click through the chapters to see how your conference weekend unfolds from morning code to the high Himalayan ridge.
-              </p>
-            </div>
-
-            <!-- Scrubber Dock -->
-            <div class="story-scrubber-dock" id="story-scrubber-dock"></div>
-
-            <!-- Stage Card -->
-            <div id="story-stage-mount"></div>
-
-            <!-- Stepper Controls Bar -->
-            <div class="story-controls-bar">
-              <div style="font-size:12.5px;color:var(--mu)">
-                <span>Chapter <b id="story-cur-idx" style="color:var(--tx)">1</b> of 6</span>
-              </div>
-              <div class="story-stepper-arrows">
-                <button class="story-stepper-btn" id="story-prev-btn" aria-label="Previous Chapter">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
-                </button>
-                <button class="story-stepper-btn" id="story-next-btn" aria-label="Next Chapter">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
-                </button>
-              </div>
-            </div>
-          </section>
-
-          <!-- VIBE SHOWCASE MATRIX (Divided According to Vibe & Number of Places) -->
-          <section class="vibe-matrix-section" id="vibe-matrix">
-            <div class="section-hero-heading">
-              <h2>Select Your Expedition by Vibe</h2>
-              <p>Explore distinct micro-climates and atmospheres across Dehradun and the Himalayan foothills.</p>
-            </div>
-
-            <div class="vibe-cards-grid">
-              <!-- Vibe 1: The Mountain Peaks & Cloud Ridges -->
-              <a href="#/mountains" class="vibe-deck-card">
-                <div class="vibe-card-cover">
-                  <img src="${resolveImg('land.jpg')}" alt="Landour Himalayan Ridge" onerror="this.onerror=null;this.src='scd images/land.jpg';">
-                  <div class="vibe-cover-overlay">
-                    <span class="vibe-badge-places">🏔️ 8 Mountain Places</span>
-                    <span class="vibe-badge-altitude">2,290m Summit</span>
-                  </div>
-                </div>
-                <div class="vibe-deck-body">
-                  <div class="vibe-title-row">
-                    <h3 class="vibe-deck-title">Mountain Peaks & Cloud Ridges</h3>
-                  </div>
-                  <p class="vibe-deck-desc">
-                    Ascend through Shivalik pine forests past George Everest cliff peak to Lal Tibba's snow panoramas. Experience crisp alpine breeze, winding hairpin turns, and vintage cantonments.
-                  </p>
-                  <div class="vibe-spots-preview">
-                    <span class="vibe-spot-pill">Lal Tibba</span>
-                    <span class="vibe-spot-pill">George Everest</span>
-                    <span class="vibe-spot-pill">Char Dukan</span>
-                    <span class="vibe-spot-pill">Cloud's End</span>
-                    <span class="vibe-spot-pill">Maggi Viewpoint</span>
-                  </div>
-                  <div class="vibe-deck-footer">
-                    <span style="font-size:12px;color:var(--mu);font-weight:700">35 km scenic ridge drive</span>
-                    <span class="vibe-explore-link">
-                      Explore 8 Places
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
-                    </span>
-                  </div>
-                </div>
-              </a>
-
-              <!-- Vibe 2: The Valley Heritage & Forest Sanctuaries -->
-              <a href="#/heritage" class="vibe-deck-card">
-                <div class="vibe-card-cover">
-                  <img src="${resolveImg('fri.jpg')}" alt="Forest Research Institute" onerror="this.onerror=null;this.src='scd images/fri.jpg';">
-                  <div class="vibe-cover-overlay">
-                    <span class="vibe-badge-places">🏛️ 6 Valley Places</span>
-                    <span class="vibe-badge-altitude" style="background:rgba(30,81,236,0.2);border-color:#1E51EC;color:#60A5FA">640m Valley Calm</span>
-                  </div>
-                </div>
-                <div class="vibe-deck-body">
-                  <div class="vibe-title-row">
-                    <h3 class="vibe-deck-title">Valley Heritage & Sanctuaries</h3>
-                  </div>
-                  <p class="vibe-deck-desc">
-                    Colonial Greco-Roman architecture, 60-meter Tibetan Stupa murals, natural limestone river caves, and ancient subterranean temples tucked into the Doon river valleys.
-                  </p>
-                  <div class="vibe-spots-preview">
-                    <span class="vibe-spot-pill">FRI Campus</span>
-                    <span class="vibe-spot-pill">Mindrolling Stupa</span>
-                    <span class="vibe-spot-pill">Robber's Cave</span>
-                    <span class="vibe-spot-pill">Sahastradhara</span>
-                  </div>
-                  <div class="vibe-deck-footer">
-                    <span style="font-size:12px;color:var(--mu);font-weight:700">Close to Graphic Era</span>
-                    <span class="vibe-explore-link">
-                      Explore 6 Places
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
-                    </span>
-                  </div>
-                </div>
-              </a>
-
-              <!-- Vibe 3: The Epicurean & Café Trail -->
-              <a href="#/food" class="vibe-deck-card">
-                <div class="vibe-card-cover">
-                  <img src="${resolveImg('kfc.jpg')}" alt="Kalsang Friends Corner" onerror="this.onerror=null;this.src='scd images/kfc.jpg';">
-                  <div class="vibe-cover-overlay">
-                    <span class="vibe-badge-places">🥟 12 Curated Spots</span>
-                    <span class="vibe-badge-altitude" style="background:rgba(255,153,0,0.2);border-color:#FF9900;color:#FFA726">₹200–₹1,800/pp</span>
-                  </div>
-                </div>
-                <div class="vibe-deck-body">
-                  <div class="vibe-title-row">
-                    <h3 class="vibe-deck-title">Epicurean & Café Trail</h3>
-                  </div>
-                  <p class="vibe-deck-desc">
-                    From 1953 British bakeries and roadside cheese Maggi along the misty ghats to authentic chicken kothay momos on Rajpur Road and scenic craft microbreweries.
-                  </p>
-                  <div class="vibe-spots-preview">
-                    <span class="vibe-spot-pill">Char Dukan Waffles</span>
-                    <span class="vibe-spot-pill">Kalsang Momos</span>
-                    <span class="vibe-spot-pill">Landour Bakehouse</span>
-                    <span class="vibe-spot-pill">Farzi Café</span>
-                  </div>
-                  <div class="vibe-deck-footer">
-                    <span style="font-size:12px;color:var(--mu);font-weight:700">Authentic local tastes</span>
-                    <span class="vibe-explore-link">
-                      Explore 12 Spots
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </section>
-
-          <!-- FAST-TRACK BY TIME WINDOW -->
-          <section style="margin-bottom:56px">
-            <div class="section-hero-heading">
-              <h2>Fast-Track Itineraries by Available Time</h2>
-              <p>Short on time between conference tracks? Tap an expedition to load a precision route instantly.</p>
-            </div>
-
-            <div class="time-matrix-row">
-              <div class="time-chip-card" data-fast-track="2">
-                <span class="time-chip-badge">⚡ 2 Hours</span>
-                <div class="time-chip-title">Campus Tibetan Stroll</div>
-                <div class="time-chip-stops">Mindrolling Stupa • Tibetan Colony • Butter Tea (5 min walk)</div>
-              </div>
-              <div class="time-chip-card" data-fast-track="4">
-                <span class="time-chip-badge" style="color:#00D492">🌿 4 Hours</span>
-                <div class="time-chip-title">River Canyon & Momos</div>
-                <div class="time-chip-stops">Robber's Cave Stream • Sahastradhara • Kalsang Friends Corner</div>
-              </div>
-              <div class="time-chip-card" data-fast-track="6">
-                <span class="time-chip-badge" style="color:#AD5CFF">☕ 6 Hours</span>
-                <div class="time-chip-title">Landour Sunrise Ascent</div>
-                <div class="time-chip-stops">Mussoorie Ghat Maggi • Char Dukan • Lal Tibba • Sisters' Bazaar</div>
-              </div>
-              <div class="time-chip-card" data-fast-track="8">
-                <span class="time-chip-badge" style="color:#FF9900">🏔️ 8+ Hours</span>
-                <div class="time-chip-title">Mussoorie Peak Odyssey</div>
-                <div class="time-chip-stops">George Everest Peak • Mall Road • Camel's Back Sunset • Farzi Café</div>
-              </div>
-            </div>
-          </section>
-
-          <!-- CURATED EXPEDITIONS RAIL -->
-          <section style="margin-bottom:56px">
-            <div class="section-hero-heading">
-              <h2>Signature Curated Blueprints</h2>
-              <p>Handcrafted journeys tested for traffic feasibility and golden hour lighting.</p>
-            </div>
-            <div class="trips-container" id="home-curated-trips-mount"></div>
-          </section>
-
-          <!-- APPLE-GRADE BENTO INNOVATION GRID -->
-          <section style="margin-bottom:48px">
-            <div class="section-hero-heading">
-              <h2>Engineered Differently</h2>
-              <p>How this travel planner ensures you never get stranded in Himalayan traffic.</p>
-            </div>
-
-            <div class="bento-features-grid">
-              <div class="bento-card">
-                <div class="bento-card-icon">🔄</div>
-                <h4>Topological Zero-Backtracking</h4>
-                <p>Calculates geographical flow so you never cross the same road junction twice between Graphic Era and the hill peaks.</p>
-              </div>
-              <div class="bento-card">
-                <div class="bento-card-icon">🛡️</div>
-                <h4>Daylight Return Sentinel</h4>
-                <p>Calculates dynamic hill descent deadlines to ensure you return safely to Dehradun before mountain fog and darkness envelop the ghats.</p>
-              </div>
-              <div class="bento-card">
-                <div class="bento-card-icon">🗺️</div>
-                <h4>1-Tap Google Maps Integration</h4>
-                <p>Deep-links complete multi-stop routes with coordinate-level waypoints straight into your native Google Maps app.</p>
-              </div>
-              <div class="bento-card">
-                <div class="bento-card-icon">✈️</div>
-                <h4>Airport & Train Guard</h4>
-                <p>Synchronizes flight buffers at Jolly Grant (DED) and train departures at Dehradun Railway Station (DDN) with peak-hour buffers.</p>
-              </div>
-            </div>
-          </section>
         </main>
 
         <!-- ============================================================== -->
@@ -798,7 +586,10 @@ export class ExploreDoonApp {
                 <p style="font-size:14px;color:var(--t2)">Real-time telemetry and elevation ascent from Graphic Era campus (650m) across the Shivalik foothills to Landour ridge (2,290m).</p>
               </div>
               <div style="display:flex;gap:10px;flex-wrap:wrap">
-                <button class="scd-btn-3d-secondary" id="map-recenter-btn">
+                <button class="scd-btn-3d-secondary" id="map-theme-toggle-btn" type="button" title="Switch between Topo and Dark maps">
+                  🌙 Switch to Dark Map
+                </button>
+                <button class="scd-btn-3d-secondary" id="map-recenter-btn" type="button">
                   Recenter on Route
                 </button>
                 <a class="scd-btn-3d-orange" id="map-google-full-btn" href="https://maps.google.com" target="_blank" rel="noopener">
@@ -1109,7 +900,14 @@ export class ExploreDoonApp {
     } else if (page === 'directory') {
       this.renderGalleryGrid();
     } else if (page === 'planner') {
-      setTimeout(() => this.initOrUpdateLeafletMap(), 60);
+      setTimeout(() => {
+        this.initOrUpdateLeafletMap();
+        this.leafletMap?.invalidateSize();
+        this.fitLeafletBounds();
+      }, 100);
+      setTimeout(() => {
+        this.leafletMap?.invalidateSize();
+      }, 350);
     } else if (page === 'design') {
       const toastBtn = this.rootEl.querySelector('#btn-demo-toast');
       if (toastBtn) {
@@ -1362,11 +1160,20 @@ export class ExploreDoonApp {
       });
     }
 
-    // 11. Recenter Map button
+    // 11. Recenter & Style Map buttons
     const recenterBtn = this.rootEl.querySelector('#map-recenter-btn');
     if (recenterBtn) {
       recenterBtn.addEventListener('click', () => {
         this.fitLeafletBounds();
+      });
+    }
+
+    const toggleMapBtn = this.rootEl.querySelector('#map-theme-toggle-btn');
+    if (toggleMapBtn) {
+      toggleMapBtn.addEventListener('click', () => {
+        this.mapTileTheme = this.mapTileTheme === 'voyager' ? 'dark' : 'voyager';
+        this.updateMapTiles();
+        toggleMapBtn.textContent = this.mapTileTheme === 'voyager' ? '🌙 Switch to Dark Map' : '🗺️ Switch to Topo Map';
       });
     }
 
@@ -2100,6 +1907,26 @@ export class ExploreDoonApp {
   }
 
   /* --- LIVE ROUTED INTERACTIVE MAP (LEAFLET) --- */
+  private updateMapTiles() {
+    if (!this.leafletMap) return;
+    const L = (window as any).L;
+    if (!L) return;
+
+    if (this.mapTileLayer) {
+      this.leafletMap.removeLayer(this.mapTileLayer);
+    }
+
+    const url = this.mapTileTheme === 'voyager'
+      ? 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
+      : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+
+    this.mapTileLayer = L.tileLayer(url, {
+      maxZoom: 19,
+      subdomains: 'abcd',
+      attribution: '&copy; OpenStreetMap, &copy; CARTO'
+    }).addTo(this.leafletMap);
+  }
+
   private initOrUpdateLeafletMap() {
     if (typeof window === 'undefined') return;
     const L = (window as any).L;
@@ -2117,16 +1944,13 @@ export class ExploreDoonApp {
         attributionControl: false
       }).setView(campusCoords, 11);
 
-      // CartoDB Dark Matter tiles
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 18,
-        subdomains: 'abcd'
-      }).addTo(this.leafletMap);
+      this.updateMapTiles();
 
       this.leafletRouteLayer = L.layerGroup().addTo(this.leafletMap);
       this.leafletMarkersLayer = L.layerGroup().addTo(this.leafletMap);
     }
 
+    this.leafletMap.invalidateSize();
     this.leafletRouteLayer.clearLayers();
     this.leafletMarkersLayer.clearLayers();
 
@@ -2137,16 +1961,16 @@ export class ExploreDoonApp {
     // 1. Campus Marker (Origin)
     const originIcon = L.divIcon({
       className: 'custom-neon-marker',
-      html: `<div class="neon-pin-wrap neon-pin-origin" title="Graphic Era University">🏛️</div>`,
-      iconSize: [36, 36],
-      iconAnchor: [18, 18]
+      html: `<div style="background:#FF9900;color:#000;font-weight:900;border:2.5px solid #fff;box-shadow:0 0 16px rgba(255,153,0,0.9);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px" title="Graphic Era University">🎓</div>`,
+      iconSize: [38, 38],
+      iconAnchor: [19, 19]
     });
 
     L.marker(campusCoords, { icon: originIcon })
       .bindPopup(`
-        <div style="padding:14px">
-          <b style="color:#FF9900;font-size:14px;display:block">Graphic Era (Deemed to be University)</b>
-          <span style="font-size:12px;color:#CBD5E1">AWS Student Community Day 2026 Venue</span>
+        <div style="padding:14px;color:#0A0A0C">
+          <b style="color:#E65100;font-size:14px;display:block">Graphic Era (Deemed to be University)</b>
+          <span style="font-size:12px;color:#475569">AWS Student Community Day 2026 · Expedition Start & Finish</span>
         </div>
       `, { className: 'custom-leaflet-popup' })
       .addTo(this.leafletMarkersLayer);
@@ -2159,20 +1983,20 @@ export class ExploreDoonApp {
 
         const pinIcon = L.divIcon({
           className: 'custom-neon-marker',
-          html: `<div class="neon-pin-wrap" title="${p.name}">${idx + 1}</div>`,
-          iconSize: [32, 32],
-          iconAnchor: [16, 16]
+          html: `<div style="background:linear-gradient(135deg,#AD5CFF 0%,#7E22CE 100%);color:#fff;font-weight:900;border:2.5px solid #fff;box-shadow:0 0 16px rgba(173,92,255,0.9);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px" title="${p.name}">${idx + 1}</div>`,
+          iconSize: [34, 34],
+          iconAnchor: [17, 17]
         });
 
         const img = p.images?.[0] || 'mind.jpg';
         const popupContent = `
-          <div style="width:230px">
-            <img src="${resolveImg(img)}" style="width:100%;height:100px;object-fit:cover" onerror="this.src='scd images/${img}'">
+          <div style="width:230px;color:#0A0A0C">
+            <img src="${resolveImg(img)}" style="width:100%;height:105px;object-fit:cover;border-radius:10px 10px 0 0" onerror="this.src='images/mind.jpg'">
             <div style="padding:10px 12px">
-              <span style="font-size:10px;text-transform:uppercase;color:#AD5CFF;font-weight:800">Stop ${idx + 1}</span>
-              <b style="font-size:13px;color:#fff;display:block;margin:2px 0 6px">${p.name}</b>
-              <a class="scd-btn-3d-orange" href="${placeUrl(p)}" target="_blank" rel="noopener" style="padding:4px 10px !important;font-size:11px !important;width:100%">
-                Navigate in Maps
+              <span style="font-size:10px;text-transform:uppercase;color:#7E22CE;font-weight:800">Stop ${idx + 1}</span>
+              <b style="font-size:13px;display:block;margin:2px 0 6px;line-height:1.3">${p.name}</b>
+              <a class="scd-btn-3d-orange" href="${placeUrl(p)}" target="_blank" rel="noopener" style="padding:5px 10px !important;font-size:11px !important;width:100%;text-align:center;display:block;text-decoration:none">
+                Open in Google Maps ↗
               </a>
             </div>
           </div>
@@ -2193,19 +2017,19 @@ export class ExploreDoonApp {
       L.polyline(points, {
         color: '#AD5CFF',
         weight: 6,
-        opacity: 0.35,
+        opacity: 0.5,
         smoothFactor: 1
       }).addTo(this.leafletRouteLayer);
 
-      // Core dashed line
+      // Core line
       L.polyline(points, {
         color: '#FF9900',
-        weight: 3,
-        opacity: 0.9,
+        weight: 3.5,
+        opacity: 0.95,
         dashArray: '8, 6'
       }).addTo(this.leafletRouteLayer);
 
-      this.leafletMap.fitBounds(L.latLngBounds(points), { padding: [50, 50] });
+      this.leafletMap.fitBounds(L.latLngBounds(points), { padding: [40, 40], maxZoom: 14 });
     }
 
     // 4. Sunset Sentinel Boundary Line (~ Rajpur / Shivalik foothills latitude: 30.38)
@@ -2214,9 +2038,9 @@ export class ExploreDoonApp {
       [30.38, 78.18]
     ];
     L.polyline(sunsetPoints, {
-      color: '#FFA726',
-      weight: 2,
-      opacity: 0.7,
+      color: '#EA580C',
+      weight: 2.5,
+      opacity: 0.8,
       dashArray: '6, 8'
     }).bindTooltip('⚠️ Daylight Sentinel Line: Descend Mussoorie ridge before sunset (5:34 PM)', {
       permanent: false,

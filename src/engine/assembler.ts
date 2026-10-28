@@ -70,6 +70,10 @@ export class ItineraryAssembler {
       ? 0.5
       : request.pace === 'relaxed' ? 1.2 : request.pace === 'packed' ? 0.85 : 1.0;
 
+    const effectiveInterests = request.interests.length > 0
+      ? request.interests
+      : (usableWindowMin >= 360 ? ['views', 'nature', 'food'] : ['heritage', 'culture', 'food']);
+
     // 3. Cluster prioritization
     const clusterMap = new Map<string, Place[]>();
     for (const p of allowed) {
@@ -83,7 +87,7 @@ export class ItineraryAssembler {
       // Score cluster based on top 2 matches (max-credit) rather than counting every cafe
       const itemScores = items.map(item => {
         let s = 0;
-        for (const interest of request.interests) {
+        for (const interest of effectiveInterests) {
           s += (item.affinity?.[interest] || 0);
         }
         return s;
@@ -92,7 +96,7 @@ export class ItineraryAssembler {
       let affSum = (itemScores[0] || 0) + 0.5 * (itemScores[1] || 0);
 
       // Boost mountain clusters for long morning outings with views/nature
-      if (isHillCluster(cluster) && (request.interests.includes('views') || request.interests.includes('nature')) && usableWindowMin >= 420 && request.start <= 540) {
+      if (isHillCluster(cluster) && (effectiveInterests.includes('views') || effectiveInterests.includes('nature')) && usableWindowMin >= 360 && request.start <= 570) {
         affSum += 1.8;
       }
 
@@ -354,6 +358,43 @@ export class ItineraryAssembler {
       // Drop last stop
       chosenStops.pop();
       sim = simulateStops(chosenStops);
+    }
+
+    // Greedy expansion loop: if ample comfortable daylight and window remains, add compatible subsequent stops
+    if (!lockedStops.length && deadline - sim.finishP80 >= 80 && chosenStops.length < 4) {
+      const allowedAdditions = allowed.filter(cand => {
+        if (chosenStops.some(s => s.id === cand.id)) return false;
+        if (cand.id === 'bha') return false; // Bhadraj is too strenuous for multi-stop
+        // Check cluster proximity: same cluster or hill corridor or adjacent Doon
+        const matchesCluster = isHillDay
+          ? (cand.cluster === primaryCluster || cand.cluster === 'landour' || cand.cluster === 'mussoorie-town')
+          : (cand.cluster === primaryCluster || cand.cluster === 'city-center' || cand.cluster === 'east-doon' || cand.cluster === 'rajpur');
+        if (!matchesCluster) return false;
+        // At most 1 primary viewpoint
+        const hasViewpoint = chosenStops.some(s => s.experienceType === 'viewpoint');
+        if (hasViewpoint && cand.experienceType === 'viewpoint') return false;
+        // Avoid duplicate experience types
+        if (chosenStops.some(s => s.experienceType === cand.experienceType)) return false;
+        // Max 1 meal / heavy food stop
+        const isMeal = cand.kind === 'meal' || cand.kind === 'cafe' || cand.experienceType === 'bakery' || cand.experienceType === 'breakfast-local' || cand.experienceType === 'restaurant-sitdown';
+        const hasMeal = chosenStops.some(s => s.kind === 'meal' || s.kind === 'cafe' || s.experienceType === 'bakery' || s.experienceType === 'breakfast-local' || s.experienceType === 'restaurant-sitdown');
+        if (isMeal && hasMeal && chosenStops.length >= 2) return false;
+        return true;
+      }).sort((a, b) => {
+        const affA = effectiveInterests.reduce((s, inKey) => s + (a.affinity?.[inKey] || 0), 0);
+        const affB = effectiveInterests.reduce((s, inKey) => s + (b.affinity?.[inKey] || 0), 0);
+        return affB - affA;
+      });
+
+      for (const cand of allowedAdditions) {
+        if (chosenStops.length >= 4) break;
+        const testChosen = [...chosenStops, cand];
+        const testSim = simulateStops(testChosen);
+        if (testSim.finishP80 <= deadline) {
+          chosenStops.push(cand);
+          sim = testSim;
+        }
+      }
     }
 
     // If single stop still slightly overruns due to typical duration, adjust duration to fit

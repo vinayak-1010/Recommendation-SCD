@@ -108,7 +108,7 @@ body:has(#page-home.active-page) .sticky-island { display: none !important; }
 .stop-body { padding: 19px 22px 23px; }
 .map-view-shell { overflow: hidden; border-radius: 22px; }
 .map-control-bar { align-items: center; gap: 18px; padding: 22px; }
-#leaflet-live-canvas { min-height: 360px; }
+#leaflet-live-canvas { min-height: 480px; width: 100%; border-radius: 18px; z-index: 1; }
 .subpage-hero { margin-bottom: 24px; padding: clamp(26px, 4vw, 44px); border-radius: 24px; }
 .subpage-hero-title { max-width: 840px; font-size: clamp(31px, 4.5vw, 49px); }
 .subpage-hero-desc { max-width: 760px; line-height: 1.65; }
@@ -194,7 +194,7 @@ body:has(#page-home.active-page) .sticky-island { display: none !important; }
   .banner-actions > :first-child { grid-column: 1 / -1; }
   .banner-actions > * { min-width: 0; justify-content: center; padding: 9px !important; font-size: 11px !important; text-align: center; }
   .map-control-bar { padding: 16px; }
-  #leaflet-live-canvas { min-height: 280px; }
+  #leaflet-live-canvas { min-height: 360px; }
   .places-grid, .trips-container { grid-template-columns: 1fr; }
   .subpage-hero { padding: 22px; }
   .subpage-hero-title { font-size: 30px; }
