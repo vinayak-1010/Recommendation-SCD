@@ -1360,9 +1360,9 @@
     "cluster": "east-doon",
     "experienceType": "river-activity",
     "affinity": {
-      "nature": 1,
+      "nature": 0.9,
       "chill": 1,
-      "adventure": 0.85,
+      "adventure": 0.5,
       "views": 0.9,
       "food": 0.7
     },
