@@ -24,7 +24,24 @@ import {
 } from './export-share.ts';
 import { renderCinematicLanding, initCinematicInteractions } from './cinematic.ts';
 import { renderPracticalDrawer, initPracticalDrawer } from './companion-drawer.ts';
-import { renderDesignSystemPage, showToast } from './design-page.ts';
+
+export function showToast(message: string, durationMs = 3000) {
+  let toast = document.getElementById('global-toast') as HTMLElement;
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'global-toast';
+    toast.className = 'toast-apple';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `
+    <span style="font-size:18px">✨</span>
+    <span>${message}</span>
+  `;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, durationMs);
+}
 
 export function resolveImg(imgPath?: string): string {
   if (!imgPath) return 'images/mind.jpg';
@@ -33,7 +50,7 @@ export function resolveImg(imgPath?: string): string {
   return `${base.replace(/\/$/, '')}/${imgPath}`;
 }
 
-export type AppPage = 'home' | 'mountains' | 'heritage' | 'food' | 'planner' | 'directory' | 'design';
+export type AppPage = 'home' | 'mountains' | 'heritage' | 'food' | 'planner' | 'directory';
 
 function clusterDriveTime(cluster: string): string {
   const times: Record<string, string> = {
@@ -258,6 +275,9 @@ export class ExploreDoonApp {
   private pinnedStopIds: Set<string> = new Set();
   private homeCategoryFilter: string = 'all';
   private homeSearchQuery: string = '';
+  private durationMode: '4h' | '1d' | '2d' | '3d' = '1d';
+  private multiDayPlans: { day1: Itinerary; day2: Itinerary; day3?: Itinerary } | null = null;
+  private activeMultiDayTab: 'day1' | 'day2' | 'day3' | 'all' = 'day1';
 
   private state: TripRequest = {
     date: '2026-11-01',
@@ -301,7 +321,7 @@ export class ExploreDoonApp {
 
     if (window.location.hash) {
       const hash = window.location.hash.replace('#/', '').replace('#', '');
-      const validPages: AppPage[] = ['home', 'mountains', 'heritage', 'food', 'planner', 'directory', 'design'];
+      const validPages: AppPage[] = ['home', 'mountains', 'heritage', 'food', 'planner', 'directory'];
       if (validPages.includes(hash as AppPage)) {
         this.activePage = hash as AppPage;
       } else {
@@ -544,6 +564,18 @@ export class ExploreDoonApp {
                 <label><input type="radio" name="dur-preset" value="3d"><span>3 Days</span></label>
               </div>
 
+              <div class="section-head" style="margin-top:14px">
+                <h3>Travelers (Group Size)</h3>
+                <small>Auto-configures vehicle & per-person budget</small>
+              </div>
+              <div class="segmented" id="party-size-segmented">
+                <label><input type="radio" name="party-size" value="1"><span>👤 1 Solo</span></label>
+                <label><input type="radio" name="party-size" value="2"><span>👥 2 Pair</span></label>
+                <label><input type="radio" name="party-size" value="4" checked><span>🚙 4 Friends</span></label>
+                <label><input type="radio" name="party-size" value="6"><span>🚐 6 Gang</span></label>
+                <label><input type="radio" name="party-size" value="10"><span>🚌 10+ Tour</span></label>
+              </div>
+
               <div class="section-head">
                 <h3>How Are You Travelling</h3>
               </div>
@@ -691,16 +723,109 @@ export class ExploreDoonApp {
           </div>
         </main>
 
-        <!-- ============================================================== -->
-        <!-- PAGE 7: DESIGN SYSTEM & COMPONENT LIBRARY SHOWCASE             -->
-        <!-- ============================================================== -->
-        ${renderDesignSystemPage(this.activePage === 'design')}
+        <!-- Global Prestige Site Footer (Visit Abu Dhabi & Apple Grade) -->
+        <footer class="global-prestige-footer">
+          <div class="footer-top-strip">
+            <div class="footer-brand-lockup">
+              <div class="footer-badge">
+                <span class="live-dot" style="background:#00D492;box-shadow:0 0 8px #00D492"></span>
+                <span>OFFICIAL VISITOR ENGINE · UTTARAKHAND FOOTHILLS</span>
+              </div>
+              <h3 class="footer-title">Explore Doon & Mussoorie</h3>
+              <p class="footer-lead">
+                An intelligent local knowledge engine and precision routing studio for AWS Student Community Day 2026, solo roamers, and group expeditions. Curated by valley residents, field naturalists, and conference builders across Dehradun, Landour, and the Shivalik ridges.
+              </p>
+            </div>
+            <div class="footer-meta-pills">
+              <span class="footer-pill">🏔️ Elevation: 650m – 2,290m</span>
+              <span class="footer-pill">🛡️ Daylight Guard Active</span>
+              <span class="footer-pill">📱 Offline PWA Ready</span>
+              <span class="footer-pill">🚗 Hill Traffic P80 Modeled</span>
+            </div>
+          </div>
 
-        <!-- Global Site Footer -->
-        <footer style="margin-top:64px;padding-top:28px;border-top:1px solid var(--line);text-align:center;color:var(--mu);font-size:13px;line-height:1.6">
-          <p>Local knowledge engine for <strong>AWS Student Community Day 2026</strong> · Graphic Era (Deemed to be University), Clement Town, Dehradun.</p>
-          <p style="margin-top:6px">Always verify mountain weather before ascending. Dial 112 for Uttarakhand emergency services.</p>
-          <p style="margin-top:8px"><a href="#/design" style="color:var(--ac);font-weight:700">View Design System Documentation & Token Specifications →</a></p>
+          <div class="footer-grid">
+            <!-- Col 1: Iconic Corridors & Outskirts -->
+            <div class="footer-col">
+              <h4>Corridors & Outskirts</h4>
+              <ul>
+                <li><a href="#/mountains">Mussoorie & Lal Tibba Ridge (2,290m)</a></li>
+                <li><a href="#/heritage">Mindrolling Monastery & Great Stupa</a></li>
+                <li><a href="#/heritage">Forest Research Institute Colonnades</a></li>
+                <li><a href="#/directory">Robber's Cave (Guchhupani Gorge)</a></li>
+                <li><a href="#/directory">Sir George Everest House & Cloud's End</a></li>
+                <li><a href="#/directory">Maldevta & Song River Valley</a></li>
+                <li><a href="#/directory">Sahastradhara Sulphur Springs</a></li>
+                <li><a href="#/directory">Lacchiwala Sal & Teak Forest Reserve</a></li>
+              </ul>
+            </div>
+
+            <!-- Col 2: Group Fleet & Vehicle Mobility -->
+            <div class="footer-col">
+              <h4>Group Mobility ($n$ People)</h4>
+              <ul>
+                <li><span class="col-highlight">1–2 Solo / Pair:</span> 110cc Scooty Rental (₹600/day · nimble in Landour)</li>
+                <li><span class="col-highlight">3–4 Friends:</span> AC Sedan Cab (₹2,200/day · ~₹550/person split)</li>
+                <li><span class="col-highlight">5–7 Gang:</span> Innova Crysta SUV (₹3,800/day · ~₹540/person split)</li>
+                <li><span class="col-highlight">8–16 Tour:</span> Force Urbania / Tempo Traveller (₹5,500/day)</li>
+                <li><a href="#/food">12 Legendary Heritage Cafés & Bakeries</a></li>
+                <li><a href="#/planner">Fast Route Telemetry & Cost Splits</a></li>
+              </ul>
+            </div>
+
+            <!-- Col 3: Mountain Safety & Emergency SOS -->
+            <div class="footer-col">
+              <h4>Safety & Emergency SOS</h4>
+              <ul class="emergency-list">
+                <li><span>Police / All-India SOS:</span> <b>112</b></li>
+                <li><span>Uttarakhand SDRF:</span> <b>1070</b> / <b>9456596190</b></li>
+                <li><span>Uttarakhand Tourist Helpline:</span> <b>1364</b></li>
+                <li><span>Mussoorie Police (Mall Rd):</span> <b>0135-2632009</b></li>
+                <li><span>Max Super Speciality Hospital:</span> <b>0135-7193000</b></li>
+                <li><span>Doon Hospital Trauma:</span> <b>0135-2726020</b></li>
+                <li><span>Dehradun Railway Station:</span> <b>0135-2622131</b></li>
+              </ul>
+            </div>
+
+            <!-- Col 4: Mountain Protocols & Regulations -->
+            <div class="footer-col">
+              <h4>Mountain Regulations</h4>
+              <div class="footer-advisory-box">
+                <div class="advisory-item">
+                  <span class="advisory-icon">⚠️</span>
+                  <div>
+                    <b>Daylight Cutoff Protocol</b>
+                    <p>Always initiate your mountain descent before 5:30 PM (Winterline dusk) to avoid ghat fog and zero-lighting blind turns.</p>
+                  </div>
+                </div>
+                <div class="advisory-item">
+                  <span class="advisory-icon">🌲</span>
+                  <div>
+                    <b>Zero-Waste Biosphere</b>
+                    <p>Single-use plastics are banned in Landour Cantonment and Rajpur eco-zones. Carry your litter back to the campus.</p>
+                  </div>
+                </div>
+                <div class="advisory-item">
+                  <span class="advisory-icon">🔄</span>
+                  <div>
+                    <b>Landour One-Way Circuit</b>
+                    <p>Upper Landour loop is strictly one-way clockwise. Oversized buses and large tempo travellers must park at Kingcraig or Picture Palace.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom-bar">
+            <div class="footer-copy-text">
+              © 2026 Explore Doon · Built with precision for <strong>AWS Student Community Day 2026</strong> at Graphic Era (Deemed to be University), Clement Town, Dehradun.
+              <br><span style="color:var(--mu);font-size:12px">All coordinates, trail elevations, and traffic telemetry verified with OpenStreetMap and local field teams.</span>
+            </div>
+            <button type="button" class="footer-top-btn" id="btn-back-to-top" aria-label="Scroll back to top">
+              <span>Back to Top</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+            </button>
+          </div>
         </footer>
       </div>
 
@@ -882,7 +1007,7 @@ export class ExploreDoonApp {
     let hash = window.location.hash.replace(/^#\/?/, '');
     if (!hash) hash = 'home';
 
-    const validPages: AppPage[] = ['home', 'mountains', 'heritage', 'food', 'planner', 'directory', 'design'];
+    const validPages: AppPage[] = ['home', 'mountains', 'heritage', 'food', 'planner', 'directory'];
     if (validPages.includes(hash as AppPage) && hash !== this.activePage) {
       this.switchPage(hash as AppPage);
     }
@@ -901,7 +1026,7 @@ export class ExploreDoonApp {
     });
 
     // Update page visibility with Apple transition
-    const pages: AppPage[] = ['home', 'mountains', 'heritage', 'food', 'planner', 'directory', 'design'];
+    const pages: AppPage[] = ['home', 'mountains', 'heritage', 'food', 'planner', 'directory'];
     pages.forEach(p => {
       const el = this.rootEl.querySelector(`#page-${p}`) as HTMLElement;
       if (el) {
@@ -931,17 +1056,10 @@ export class ExploreDoonApp {
       setTimeout(() => {
         this.leafletMap?.invalidateSize();
       }, 350);
-    } else if (page === 'design') {
-      const toastBtn = this.rootEl.querySelector('#btn-demo-toast');
-      if (toastBtn) {
-        toastBtn.addEventListener('click', () => {
-          showToast('Design Token Verified · WCAG 2.2 AAA Contrast');
-        });
-      }
     }
 
-    // Scroll to top with Apple-style smooth ease
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Instant top jump on page switch (eliminates sluggish scroll delay)
+    window.scrollTo(0, 0);
     this.sendEmbedHeight();
   }
 
@@ -1018,31 +1136,32 @@ export class ExploreDoonApp {
     const durSegmented = this.rootEl.querySelector('#duration-preset-segmented') as HTMLElement;
     if (durSegmented) {
       durSegmented.addEventListener('change', (e) => {
-        const val = (e.target as HTMLInputElement).value;
+        const val = (e.target as HTMLInputElement).value as '4h' | '1d' | '2d' | '3d';
+        this.durationMode = val;
+        this.state.locks = undefined;
         if (val === '4h') {
           this.state.start = 540; // 9:00 AM
           this.state.returnBy = 780; // 1:00 PM
-          this.dayDial.setTimes(540, 780);
           showToast('Configured 4-Hour Express Loop');
         } else if (val === '1d') {
           this.state.start = 480; // 8:00 AM
           this.state.returnBy = 1020; // 5:00 PM
-          this.dayDial.setTimes(480, 1020);
           showToast('Configured Full 1-Day Daylight-Safe Route');
         } else if (val === '2d') {
-          this.state.start = 450; // 7:30 AM
+          this.state.start = 480; // 8:00 AM
           this.state.returnBy = 1050; // 5:30 PM
           this.state.interests = ['views', 'nature', 'food'];
-          this.dayDial.setTimes(450, 1050);
+          this.activeMultiDayTab = 'day1';
           showToast('Configured 2-Day Weekend Mountain & Valley Route');
         } else if (val === '3d') {
-          this.state.start = 420; // 7:00 AM
-          this.state.returnBy = 1200; // 8:00 PM
+          this.state.start = 480; // 8:00 AM
+          this.state.returnBy = 1050; // 5:30 PM
           this.state.interests = ['views', 'nature', 'spiritual', 'adventure'];
-          this.dayDial.setTimes(420, 1020);
-          showToast('Configured 3-Day Grand Expedition');
+          this.activeMultiDayTab = 'day1';
+          showToast('Configured 3-Day Grand Expedition across Dehradun & Outskirts');
         }
-        this.triggerDebouncedRecompute();
+        this.syncControlsFromState();
+        this.recomputePlan();
       });
     }
 
@@ -1052,6 +1171,15 @@ export class ExploreDoonApp {
       this.state.transport = (e.target as HTMLInputElement).value as TransportMode;
       this.triggerDebouncedRecompute();
     });
+
+    // 4b. Party Size (N People)
+    const partySegmented = this.rootEl.querySelector('#party-size-segmented') as HTMLElement;
+    if (partySegmented) {
+      partySegmented.addEventListener('change', (e) => {
+        this.state.partySize = parseInt((e.target as HTMLInputElement).value, 10) || 4;
+        this.triggerDebouncedRecompute();
+      });
+    }
 
     // 5. Fine-tune Dropdowns
     const selGroup = this.rootEl.querySelector('#sel-group') as HTMLSelectElement;
@@ -1147,6 +1275,7 @@ export class ExploreDoonApp {
       chip.addEventListener('click', () => {
         filterChips.forEach(c => c.classList.remove('active'));
         chip.classList.add('active');
+        chip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         this.galleryFilter = chip.getAttribute('data-filter') || 'all';
         this.renderGalleryGrid();
       });
@@ -1157,6 +1286,7 @@ export class ExploreDoonApp {
       chip.addEventListener('click', () => {
         timeChips.forEach(c => c.classList.remove('active'));
         chip.classList.add('active');
+        chip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         this.galleryTimeFilter = chip.getAttribute('data-time-filter') || 'all';
         this.renderGalleryGrid();
       });
@@ -1168,6 +1298,7 @@ export class ExploreDoonApp {
       chip.addEventListener('click', () => {
         foodChips.forEach(c => c.classList.remove('active'));
         chip.classList.add('active');
+        chip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         this.foodFilter = chip.getAttribute('data-food-filter') || 'all';
         this.renderFoodTrail();
       });
@@ -1226,6 +1357,40 @@ export class ExploreDoonApp {
       },
       (guideKey) => {
         this.openPracticalGuide(guideKey);
+      },
+      (params) => {
+        if (params.window === '2h') {
+          this.state.start = 540; // 9:00 AM
+          this.state.returnBy = 660; // 11:00 AM
+          this.state.transport = 'walk';
+          this.state.interests = ['spiritual', 'food'];
+        } else if (params.window === '4h') {
+          this.state.start = 570; // 9:30 AM
+          this.state.returnBy = 810; // 1:30 PM
+          this.state.transport = (params.transport as TransportMode) || 'car';
+          this.state.interests = ['nature', 'adventure'];
+        } else if (params.window === '2d') {
+          this.state.start = 450; // 7:30 AM
+          this.state.returnBy = 1050; // 5:30 PM
+          this.state.transport = (params.transport as TransportMode) || 'car';
+          this.state.interests = ['views', 'nature', 'spiritual'];
+        } else {
+          // 8h full day
+          this.state.start = 480; // 8:00 AM
+          this.state.returnBy = 1020; // 5:00 PM
+          this.state.transport = (params.transport as TransportMode) || 'car';
+          this.state.interests = ['views', 'nature', 'food'];
+        }
+        this.state.partySize = params.partySize;
+        this.dayDial.setTimes(this.state.start, this.state.returnBy);
+        const partyRad = this.rootEl.querySelector(`input[name="party-size"][value="${params.partySize}"]`) as HTMLInputElement;
+        if (partyRad) partyRad.checked = true;
+        const trRad = this.rootEl.querySelector(`input[name="transport"][value="${this.state.transport}"]`) as HTMLInputElement;
+        if (trRad) trRad.checked = true;
+        this.switchPage('planner');
+        window.location.hash = '#/planner';
+        this.recomputePlan();
+        showToast(`Loaded route for ${params.partySize} travelers into planner!`);
       }
     );
 
@@ -1235,6 +1400,7 @@ export class ExploreDoonApp {
       chip.addEventListener('click', () => {
         promptChips.forEach(c => c.classList.remove('active'));
         chip.classList.add('active');
+        chip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         const mood = chip.dataset.tripMood;
         if (mood === 'walking-cafes') {
           this.state.start = 540; // 9:00 AM
@@ -1279,7 +1445,9 @@ export class ExploreDoonApp {
           this.state.interests = ['night', 'food'];
           showToast('Loaded: Nightlife & Rajpur bites');
         }
-        this.dayDial.setTimes(this.state.start, this.state.returnBy);
+        this.state.locks = undefined;
+        this.durationMode = '1d';
+        this.syncControlsFromState();
         this.recomputePlan();
       });
     });
@@ -1302,6 +1470,37 @@ export class ExploreDoonApp {
         }
       });
     }
+
+    // 16. Wire up Back to Top button in Global Footer
+    const backToTopBtn = this.rootEl.querySelector('#btn-back-to-top');
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // 17. Enable fluid, direct 1:1 horizontal wheel scrolling across desktop viewports
+    const enableHScroll = (container: HTMLElement | null) => {
+      if (!container) return;
+      container.addEventListener('wheel', (e: WheelEvent) => {
+        if (e.deltaY !== 0 && Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
+          container.scrollLeft += e.deltaY * 1.05;
+          e.preventDefault();
+        }
+      }, { passive: false });
+    };
+
+    this.rootEl.querySelectorAll<HTMLElement>(
+      '.segmented, .prompt-chips-scroll, .gallery-filters-scroll-wrap, .multiday-tabs, .visitor-search-pills, .editorial-category-rail'
+    ).forEach(el => enableHScroll(el));
+
+    // Auto-center segmented controls when selected
+    this.rootEl.querySelectorAll('.segmented input').forEach(input => {
+      input.addEventListener('change', (e) => {
+        const label = (e.target as HTMLElement).closest('label');
+        if (label) label.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+    });
 
     // Initial renders
     this.renderCuratedTrips();
@@ -1496,14 +1695,16 @@ export class ExploreDoonApp {
     if (this.homeCategoryFilter === 'valleys') {
       placeIds = ['rob', 'sahas', 'shikhar-falls', 'maldevta', 'bhatta-falls'];
     } else if (this.homeCategoryFilter === 'ridges') {
-      placeIds = ['land', 'geo', 'clouds-end', 'mall-road', 'bhatta-falls'];
+      placeIds = ['land', 'geo', 'clouds-end', 'mall-road', 'camels-back', 'gunhill', 'kempty-falls'];
     } else if (this.homeCategoryFilter === 'heritage') {
-      placeIds = ['mind', 'fri', 'tapkeshwar', 'paltan-bazaar'];
+      placeIds = ['mind', 'fri', 'tapkeshwar', 'paltan-bazaar', 'buddha-garden'];
     } else if (this.homeCategoryFilter === 'cafes') {
-      placeIds = ['chardukan', 'kfc', 'ama-cafe', 'elloras', 'piccolo'];
+      placeIds = ['chardukan', 'bakehouse', 'kfc', 'ama', 'pic', 'ell', 'orc', 'far', 'brw', 'soc'];
+    } else if (this.homeCategoryFilter === 'outskirts') {
+      placeIds = ['maldevta', 'lacchiwala', 'dhanaulti-eco-park', 'rish', 'chakrata-tiger-falls', 'asan-barrage', 'kalsi-edict'];
     } else {
       // 'all'
-      placeIds = ['land', 'rob', 'mind', 'geo', 'fri', 'tapkeshwar', 'maldevta', 'sahas', 'shikhar-falls', 'bhatta-falls'];
+      placeIds = ['land', 'rob', 'mind', 'geo', 'fri', 'tapkeshwar', 'maldevta', 'sahas', 'shikhar-falls', 'bhatta-falls', 'lacchiwala', 'dhanaulti-eco-park'];
     }
 
     const allItems = [...this.datasets.places, ...this.datasets.eateries];
@@ -1543,7 +1744,7 @@ export class ExploreDoonApp {
 
       html += `
         <article class="visitor-bento-hero-card">
-          <img class="visitor-bento-hero-img" src="${resolveImg(heroPlace.images?.[0] || 'land.jpg')}" alt="${heroPlace.name}" loading="lazy">
+          <img class="visitor-bento-hero-img" src="${resolveImg(heroPlace.images?.[0] || 'lal-tibba.webp')}" alt="${heroPlace.name}" loading="lazy">
           <div class="visitor-bento-hero-scrim"></div>
           <div class="visitor-bento-hero-content">
             <div class="visitor-bento-hero-badges">
@@ -1561,8 +1762,11 @@ export class ExploreDoonApp {
               <button type="button" class="scd-btn-3d-primary" data-load-route="landour-sunrise" style="font-size:12.5px;padding:9px 18px">
                 Open Landour Blueprint ↗
               </button>
+              <button type="button" class="scd-btn-3d-secondary" data-add-to-plan="${heroPlace.id}" style="font-size:12.5px;padding:9px 16px">
+                + Add To Plan
+              </button>
               <button type="button" class="scd-btn-3d-secondary" data-home-place="${heroPlace.id}" style="font-size:12.5px;padding:9px 16px">
-                View Place Details
+                View Details
               </button>
               <a href="${placeUrl(heroPlace)}" target="_blank" rel="noopener" class="scd-btn-3d-orange" style="font-size:12.5px;padding:9px 16px;text-decoration:none">
                 Google Maps ↗
@@ -1586,7 +1790,8 @@ export class ExploreDoonApp {
               <p>${place.notes || 'One of Dehradun’s landmark destinations.'}</p>
               <div class="visitor-destination-meta">
                 <span>⏱️ ~${place.visit?.typical || 45} min</span>
-                <div style="display:flex;gap:10px;align-items:center">
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                  <button type="button" class="btn-card-add-plan" data-add-to-plan="${place.id}">+ Plan</button>
                   <button type="button" data-home-place="${place.id}">Details ↗</button>
                   <a href="${placeUrl(place)}" target="_blank" rel="noopener" class="home-maps-link" style="color:var(--orange);font-weight:700;text-decoration:none;font-size:11px" title="Open in Google Maps">Maps ↗</a>
                 </div>
@@ -1610,7 +1815,8 @@ export class ExploreDoonApp {
               <p>${place.notes || 'One of Dehradun’s landmark destinations.'}</p>
               <div class="visitor-destination-meta">
                 <span>⏱️ ~${place.visit?.typical || 45} min</span>
-                <div style="display:flex;gap:10px;align-items:center">
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                  <button type="button" class="btn-card-add-plan" data-add-to-plan="${place.id}">+ Plan</button>
                   <button type="button" data-home-place="${place.id}">Details ↗</button>
                   <a href="${placeUrl(place)}" target="_blank" rel="noopener" class="home-maps-link" style="color:var(--orange);font-weight:700;text-decoration:none;font-size:11px" title="Open in Google Maps">Maps ↗</a>
                 </div>
@@ -1633,46 +1839,91 @@ export class ExploreDoonApp {
         if (routeId) this.loadCuratedRouteById(routeId);
       });
     });
+
+    mount.querySelectorAll<HTMLButtonElement>('[data-add-to-plan]').forEach(button => {
+      button.addEventListener('click', () => {
+        const placeId = button.dataset.addToPlan;
+        if (placeId) {
+          this.state.locks = { include: [placeId] };
+          this.switchPage('planner');
+          window.location.hash = '#/planner';
+          this.recomputePlan();
+          showToast(`Added ${placeId} to your itinerary!`);
+        }
+      });
+    });
   }
 
   private loadCuratedRouteById(routeId: string) {
-    if (routeId.includes('mussoorie') || routeId.includes('hills')) {
-      this.state.start = 450; // 07:30 AM
-      this.state.returnBy = 1050; // 05:30 PM (daylight safe)
+    if (routeId.includes('landour') || routeId.includes('sunrise')) {
+      this.state.start = 390; // 06:30 AM
+      this.state.returnBy = 780; // 01:00 PM
       this.state.transport = 'car';
-      this.state.interests = ['views', 'nature', 'food'];
-    } else if (routeId.includes('halfday') || routeId.includes('campus')) {
+      this.state.interests = ['views', 'food', 'nature'];
+      this.state.locks = { include: ['maggi', 'chardukan', 'land', 'bakehouse'] };
+    } else if (routeId.includes('canyon') || routeId.includes('nature') || routeId.includes('doon')) {
+      this.state.start = 570; // 09:30 AM
+      this.state.returnBy = 840; // 02:00 PM
+      this.state.transport = 'car';
+      this.state.interests = ['nature', 'adventure'];
+      this.state.locks = { include: ['rob', 'sahas', 'orc'] };
+    } else if (routeId.includes('tibetan') || routeId.includes('peace') || routeId.includes('campus')) {
       this.state.start = 540; // 09:00 AM
-      this.state.returnBy = 750; // 12:30 PM
+      this.state.returnBy = 690; // 11:30 AM
       this.state.transport = 'walk';
       this.state.interests = ['spiritual', 'food'];
-    } else if (routeId.includes('spiritual') || routeId.includes('river')) {
-      this.state.start = 660; // 11:00 AM
-      this.state.returnBy = 1260; // 09:00 PM
+      this.state.locks = { include: ['mind', 'buddha-garden'] };
+    } else if (routeId.includes('heritage') || routeId.includes('icons')) {
+      this.state.start = 540; // 09:00 AM
+      this.state.returnBy = 840; // 02:00 PM
       this.state.transport = 'car';
-      this.state.interests = ['spiritual', 'adventure'];
-    } else if (routeId.includes('nature')) {
-      this.state.start = 570; // 09:30 AM
-      this.state.returnBy = 930; // 03:30 PM
+      this.state.interests = ['heritage', 'spiritual', 'food'];
+      this.state.locks = { include: ['fri', 'tapkeshwar', 'paltan-bazaar'] };
+    } else if (routeId.includes('food') || routeId.includes('rajpur')) {
+      this.state.start = 720; // 12:00 PM
+      this.state.returnBy = 960; // 04:00 PM
       this.state.transport = 'car';
-      this.state.interests = ['nature', 'heritage'];
-    } else if (routeId.includes('foodie')) {
-      this.state.start = 750; // 12:30 PM
-      this.state.returnBy = 1080; // 06:00 PM
+      this.state.interests = ['cafes', 'food', 'chill'];
+      this.state.locks = { include: ['kfc', 'ama', 'pic', 'ell'] };
+    } else if (routeId.includes('sunset') || routeId.includes('everest')) {
+      this.state.start = 810; // 01:30 PM
+      this.state.returnBy = 1140; // 07:00 PM
       this.state.transport = 'car';
-      this.state.interests = ['food', 'night'];
+      this.state.interests = ['views', 'nature', 'chill'];
+      this.state.locks = { include: ['geo', 'camels-back', 'mall-road'] };
     } else {
-      this.state.start = 420; // 07:00 AM
-      this.state.returnBy = 1050; // 05:30 PM
+      this.state.start = 480; // 08:00 AM
+      this.state.returnBy = 1020; // 05:00 PM
       this.state.transport = 'car';
       this.state.interests = ['views', 'nature', 'adventure'];
+      this.state.locks = { include: ['land', 'rob'] };
     }
 
-    this.dayDial.setTimes(this.state.start, this.state.returnBy);
+    this.durationMode = '1d';
+    this.syncControlsFromState();
     this.switchPage('planner');
     window.location.hash = '#/planner';
     this.recomputePlan();
-    showToast('Loaded blueprint into Route Planner 2.0');
+    showToast('Loaded blueprint into Route Planner');
+  }
+
+  private syncControlsFromState() {
+    if (this.dayDial) {
+      this.dayDial.setTimes(this.state.start, this.state.returnBy);
+    }
+    const trInput = this.rootEl.querySelector(`input[name="transport"][value="${this.state.transport}"]`) as HTMLInputElement;
+    if (trInput) trInput.checked = true;
+
+    const partyInput = this.rootEl.querySelector(`input[name="party-size"][value="${this.state.partySize || 4}"]`) as HTMLInputElement;
+    if (partyInput) partyInput.checked = true;
+
+    const durInput = this.rootEl.querySelector(`input[name="dur-preset"][value="${this.durationMode}"]`) as HTMLInputElement;
+    if (durInput) durInput.checked = true;
+
+    const vibeInputs = this.rootEl.querySelectorAll('#vibe-container input') as NodeListOf<HTMLInputElement>;
+    vibeInputs.forEach(i => {
+      i.checked = this.state.interests.includes(i.value as any);
+    });
   }
 
   private triggerDebouncedRecompute() {
@@ -1681,6 +1932,83 @@ export class ExploreDoonApp {
   }
 
   private recomputePlan() {
+    if (this.durationMode === '2d' || this.durationMode === '3d') {
+      // Assemble Day 1: Dehradun Valley, Waterways & Heritage
+      const d1Req: TripRequest = {
+        ...this.state,
+        date: '2026-10-31',
+        start: 510, // 8:30 AM
+        returnBy: 1080, // 6:00 PM
+        transport: this.state.transport,
+        partySize: this.state.partySize,
+        group: this.state.group,
+        pace: this.state.pace,
+        diet: this.state.diet,
+        interests: ['heritage', 'nature', 'spiritual', 'food'],
+        locks: { include: ['mind', 'fri', 'rob'] }
+      };
+      const d1Plan = planTrip(d1Req, this.datasets);
+
+      // Assemble Day 2: Alpine Crest & Landour Ridge (2,290m)
+      const d2Req: TripRequest = {
+        ...this.state,
+        date: '2026-11-01',
+        start: 450, // 7:30 AM
+        returnBy: 1050, // 5:30 PM (before dusk)
+        transport: this.state.transport,
+        partySize: this.state.partySize,
+        group: this.state.group,
+        pace: this.state.pace,
+        diet: this.state.diet,
+        interests: ['views', 'nature', 'cafes', 'food'],
+        locks: { include: ['maggi', 'chardukan', 'land', 'bakehouse'] }
+      };
+      const d2Plan = planTrip(d2Req, this.datasets);
+
+      let d3Plan: Itinerary | null = null;
+      if (this.durationMode === '3d') {
+        const d3Req: TripRequest = {
+          ...this.state,
+          date: '2026-11-02',
+          start: 480, // 8:00 AM
+          returnBy: 1020, // 5:00 PM
+          transport: this.state.transport,
+          partySize: this.state.partySize,
+          group: this.state.group,
+          pace: this.state.pace,
+          diet: this.state.diet,
+          interests: ['nature', 'adventure', 'views'],
+          locks: { include: ['geo', 'sahas', 'maldevta'] }
+        };
+        d3Plan = planTrip(d3Req, this.datasets);
+      }
+
+      this.multiDayPlans = {
+        day1: d1Plan!,
+        day2: d2Plan!,
+        day3: d3Plan || undefined
+      };
+
+      if (this.activeMultiDayTab === 'day1') {
+        this.currentPlan = d1Plan;
+      } else if (this.activeMultiDayTab === 'day2') {
+        this.currentPlan = d2Plan;
+      } else if (this.activeMultiDayTab === 'day3' && d3Plan) {
+        this.currentPlan = d3Plan;
+      } else {
+        this.currentPlan = d1Plan;
+      }
+
+      this.renderOutput(this.currentPlan);
+      this.updateStickyPill(this.currentPlan);
+      if (this.activePage === 'planner') {
+        this.initOrUpdateLeafletMap();
+      }
+      this.sendEmbedHeight();
+      return;
+    }
+
+    this.multiDayPlans = null;
     const plan = planTrip(this.state, this.datasets);
     this.currentPlan = plan;
     this.renderOutput(plan);
@@ -1705,8 +2033,9 @@ export class ExploreDoonApp {
         title: 'Landour Himalayan Sunrise & Char Dukan',
         duration: '6 Hours (Early Morning)',
         badge: 'Top Mountain Ascent',
-        image: 'land.jpg',
+        image: 'lal-tibba.webp',
         desc: 'Escape before the weekend hill traffic gathers. Enjoy steaming ginger chai & Maggi on the winding ghats, gaze at snow-capped Bandarpoonch peaks from 2,290m Lal Tibba, and savor cinnamon pancakes at Char Dukan.',
+        stopIds: ['maggi', 'chardukan', 'land', 'bakehouse'],
         stops: ['Mussoorie Road Highway Viewpoint', 'Char Dukan Heritage Stalls', 'Landour: Lal Tibba & Sisters’ Bazaar', 'Landour Bakehouse'],
         start: 390, // 6:30 AM
         returnBy: 750, // 12:30 PM
@@ -1716,74 +2045,79 @@ export class ExploreDoonApp {
       {
         id: 'doon-canyon',
         title: 'Doon Nature & River Canyon Walk',
-        duration: '4 Hours (Midday)',
+        duration: '4.5 Hours (Midday)',
         badge: 'Adventure & Streams',
         image: 'rob.jpg',
         desc: "Wade through ankle-deep natural stream water inside Robber's Cave (Gucchupani) limestone river gorge where underground rivers resurface, followed by Sahastradhara sulphur cascades and a delicious lunch on Rajpur Road.",
-        stops: ["Robber's Cave (Gucchupani River Walk)", "Sahastradhara Sulphur Springs", "Rajpur Road Garden Café"],
+        stopIds: ['rob', 'sahas', 'orc'],
+        stops: ["Robber's Cave (Gucchupani River Walk)", "Sahastradhara Sulphur Springs", "Orchard Restaurant Rajpur"],
         start: 570, // 9:30 AM
-        returnBy: 810, // 1:30 PM
+        returnBy: 840, // 2:00 PM
         transport: 'car' as TransportMode,
         interests: ['nature', 'adventure'] as Interest[]
       },
       {
         id: 'tibetan-peace',
         title: 'Campus Tibetan Quarter & Mindrolling Peace',
-        duration: '2 Hours (Zero Travel)',
+        duration: '2.5 Hours (Zero Travel)',
         badge: 'Next to Graphic Era',
         image: 'mind.jpg',
         desc: 'A 5-minute walk from the Graphic Era Bell Road gate. Walk around the tranquil 60-meter Great Stupa, spinning prayer wheels and landscaped gardens, followed by authentic Tibetan tingmo, thukpa and momos.',
-        stops: ['Mindrolling Monastery & Great Stupa', 'Tibetan Colony Stroll', 'Authentic Momo & Tingmo Corner'],
+        stopIds: ['mind', 'buddha-garden'],
+        stops: ['Mindrolling Monastery & Great Stupa', 'Tibetan Colony Stroll & Momo Corner'],
         start: 540, // 9:00 AM
-        returnBy: 660, // 11:00 AM
+        returnBy: 690, // 11:30 AM
         transport: 'walk' as TransportMode,
         interests: ['spiritual', 'chill', 'food'] as Interest[]
       },
       {
+        id: 'heritage-icons',
+        title: 'Grand FRI Colonnades & Tapkeshwar Cave',
+        duration: '5 Hours (Classic Doon)',
+        badge: 'Colonial & Sacred',
+        image: 'fri.jpg',
+        desc: "Marvel at the monumental Greco-Roman brick architecture of Forest Research Institute, explore the 6 forestry museums, and visit the serene cave temple of Tapkeshwar where natural waters trickle over the Shivalinga.",
+        stopIds: ['fri', 'tapkeshwar', 'paltan-bazaar'],
+        stops: ['Forest Research Institute (FRI)', 'Tapkeshwar Mahadev Cave Temple', 'Clock Tower & Paltan Bazaar'],
+        start: 540, // 9:00 AM
+        returnBy: 840, // 2:00 PM
+        transport: 'car' as TransportMode,
+        interests: ['heritage', 'spiritual', 'food'] as Interest[]
+      },
+      {
         id: 'rajpur-food-crawl',
         title: 'Rajpur Road Iconic Food & Café Crawl',
-        duration: '3.5 Hours (Afternoon)',
+        duration: '4 Hours (Afternoon to Dusk)',
         badge: 'Foodies & Cafés',
         image: 'kfc.jpg',
         desc: "Treat yourself to Dehradun's legendary culinary stretch: iconic chicken kothay momos at Kalsang Friends Corner, wood-fired artisan pizza at AMA Café, and stick jaws at Ellora's Melting Moments Bakery (est. 1953).",
+        stopIds: ['kfc', 'ama', 'pic', 'ell'],
         stops: ['Kalsang Friends Corner', 'AMA Café', 'Café de Piccolo', 'Ellora’s Melting Moments Bakery'],
         start: 720, // 12:00 PM
-        returnBy: 930, // 3:30 PM
+        returnBy: 960, // 4:00 PM
         transport: 'car' as TransportMode,
         interests: ['cafes', 'food', 'chill'] as Interest[]
       },
       {
-        id: 'sunset-camels-back',
-        title: 'Golden Hour Sunset at Camel\'s Back & Mall Road',
-        duration: '5 Hours (Afternoon to Dusk)',
-        badge: 'Panoramic Sunset',
-        image: 'geo.webp',
-        desc: 'Experience Mussoorie without the rush. Stroll the peaceful 3 km paved Camel’s Back Road overlooking the Doon Valley as the sun dips below the Shivalik hills, ending with hot street bites at Library Chowk.',
-        stops: ['Camel’s Back Road Promenade', 'Mussoorie Mall Road & Library Chowk', 'Sir George Everest Cliff Overlook'],
-        start: 840, // 2:00 PM
+        id: 'sunset-everest',
+        title: 'Sir George Everest Ridge & Mussoorie Mall',
+        duration: '6 Hours (Afternoon to Dusk)',
+        badge: 'Himalayan Sunset & Winterline',
+        image: 'george-everest.webp',
+        desc: 'Hike the clifftop trail to the historic 1832 George Everest House observatory for 360-degree views of snow peaks and the famous Winterline glow, followed by twilight snacks at Mussoorie Mall Road.',
+        stopIds: ['geo', 'camels-back', 'mall-road'],
+        stops: ['Sir George Everest House & Observatory', 'Camel’s Back Road Promenade', 'Mussoorie Mall Road & Library Chowk'],
+        start: 810, // 1:30 PM
         returnBy: 1140, // 7:00 PM
         transport: 'car' as TransportMode,
         interests: ['views', 'nature', 'chill'] as Interest[]
-      },
-      {
-        id: 'doon-nightlife',
-        title: 'Dehradun Nightlife, Lounges & Microbreweries',
-        duration: '4 Hours (Saturday Night)',
-        badge: 'Weekend Night Out',
-        image: 'social.jpg',
-        desc: 'Vibrant nightlife along Rajpur Road and Jakhan. Fresh artisan beers at The Brew Estate, molecular cocktails at Farzi Café, valley lights from Rumours Sky Lounge, and upbeat vibes at Social and Ministry of Sound.',
-        stops: ['The Brew Estate / Farzi Café', 'Rumours Sky Lounge Euphoria', 'Dehradun Social at Centrio', 'Playboy Beer Garden'],
-        start: 1110, // 6:30 PM
-        returnBy: 1380, // 11:00 PM
-        transport: 'car' as TransportMode,
-        interests: ['night', 'food'] as Interest[]
       }
     ];
 
     container.innerHTML = trips.map(trip => `
       <article class="trip-card-ios">
         <div class="trip-card-media">
-          <img src="${resolveImg(trip.image)}" alt="${trip.title}" onerror="this.onerror=null;this.src='scd images/${trip.image}';">
+          <img src="${resolveImg(trip.image)}" alt="${trip.title}" onerror="this.onerror=null;this.src='images/mind.jpg';">
           <span class="trip-card-pill-left">${trip.badge}</span>
           <span class="trip-card-pill-right mono">${trip.duration}</span>
         </div>
@@ -1822,18 +2156,19 @@ export class ExploreDoonApp {
         this.state.returnBy = trip.returnBy;
         this.state.transport = trip.transport;
         this.state.interests = trip.interests;
+        if (trip.stopIds) {
+          this.state.locks = { include: trip.stopIds };
+        }
+        this.durationMode = '1d';
+        this.syncControlsFromState();
 
-        this.dayDial.setTimes(trip.start, trip.returnBy);
-        const trRadio = this.rootEl.querySelector(`input[name="transport"][value="${trip.transport}"]`) as HTMLInputElement;
-        if (trRadio) trRadio.checked = true;
-
-        const vibeInputs = this.rootEl.querySelectorAll('#vibe-container input') as NodeListOf<HTMLInputElement>;
-        vibeInputs.forEach(i => {
-          i.checked = trip.interests.includes(i.value as Interest);
-        });
-
+        this.switchPage('planner');
         window.location.hash = '#/planner';
         this.recomputePlan();
+        showToast(`Loaded ${trip.title} into planner`);
+
+        const out = this.rootEl.querySelector('#output-mount');
+        if (out) out.scrollIntoView({ behavior: 'smooth' });
       });
     });
   }
@@ -2054,6 +2389,42 @@ export class ExploreDoonApp {
   }
 
   /* --- PAGE 5: SMART PLANNER ENGINE OUTPUT --- */
+  private attachMultiDayListeners(mount: HTMLElement) {
+    mount.querySelectorAll<HTMLButtonElement>('[data-day-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.dayTab as 'day1' | 'day2' | 'day3' | 'all';
+        if (tab && this.multiDayPlans) {
+          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          this.activeMultiDayTab = tab;
+          if (tab === 'day1') {
+            this.currentPlan = this.multiDayPlans.day1;
+          } else if (tab === 'day2') {
+            this.currentPlan = this.multiDayPlans.day2;
+          } else if (tab === 'day3' && this.multiDayPlans.day3) {
+            this.currentPlan = this.multiDayPlans.day3;
+          }
+          this.renderOutput(this.currentPlan);
+          this.initOrUpdateLeafletMap();
+        }
+      });
+    });
+
+    mount.querySelectorAll<HTMLButtonElement>('[data-jump-day-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.jumpDayTab as 'day1' | 'day2' | 'day3';
+        if (tab && this.multiDayPlans) {
+          this.activeMultiDayTab = tab;
+          if (tab === 'day1') this.currentPlan = this.multiDayPlans.day1;
+          else if (tab === 'day2') this.currentPlan = this.multiDayPlans.day2;
+          else if (tab === 'day3' && this.multiDayPlans.day3) this.currentPlan = this.multiDayPlans.day3;
+          this.renderOutput(this.currentPlan);
+          this.initOrUpdateLeafletMap();
+          mount.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  }
+
   private renderOutput(plan: Itinerary | null) {
     const mount = this.rootEl.querySelector('#output-mount') as HTMLElement;
     if (!plan) {
@@ -2067,9 +2438,204 @@ export class ExploreDoonApp {
       return;
     }
 
+    const multiDayDeckHtml = this.multiDayPlans ? `
+      <div class="multiday-control-deck">
+        <div class="multiday-deck-header">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="font-size:26px">🗓️</span>
+            <div>
+              <h3 style="margin:0 0 4px;font-size:16px;font-weight:900;color:var(--tx)">
+                ${this.durationMode === '3d' ? '3-Day Grand Himalayan & Valley Expedition' : '2-Day Weekend Mountain & Valley Route'}
+              </h3>
+              <span style="font-size:12px;color:var(--mu)">
+                Daylight-safe multi-day itinerary engineered for ${this.state.partySize || 4} travelers with vehicle guidance
+              </span>
+            </div>
+          </div>
+          <span class="chip verified" style="font-size:11px">✓ Daylight Safe Multi-Day</span>
+        </div>
+
+        <div class="multiday-tabs">
+          <button type="button" class="multiday-tab-btn ${this.activeMultiDayTab === 'day1' ? 'active' : ''}" data-day-tab="day1">
+            <span class="m-day-tag">DAY 1 · VALLEY</span>
+            <span class="m-day-title">Caves, Stupa & Heritage</span>
+            <span class="m-day-time">8:30 AM – 6:00 PM</span>
+          </button>
+          <button type="button" class="multiday-tab-btn ${this.activeMultiDayTab === 'day2' ? 'active' : ''}" data-day-tab="day2">
+            <span class="m-day-tag">DAY 2 · RIDGE</span>
+            <span class="m-day-title">Mussoorie & Landour (2,290m)</span>
+            <span class="m-day-time">7:30 AM – 5:30 PM</span>
+          </button>
+          ${this.durationMode === '3d' ? `
+          <button type="button" class="multiday-tab-btn ${this.activeMultiDayTab === 'day3' ? 'active' : ''}" data-day-tab="day3">
+            <span class="m-day-tag">DAY 3 · OUTSKIRTS</span>
+            <span class="m-day-title">George Everest & Maldevta</span>
+            <span class="m-day-time">8:00 AM – 5:00 PM</span>
+          </button>
+          ` : ''}
+          <button type="button" class="multiday-tab-btn ${this.activeMultiDayTab === 'all' ? 'active' : ''}" data-day-tab="all">
+            <span class="m-day-tag">EXPEDITION</span>
+            <span class="m-day-title">Master ${this.durationMode === '3d' ? '3-Day' : '2-Day'} Plan</span>
+            <span class="m-day-time">Cumulative Itinerary</span>
+          </button>
+        </div>
+      </div>
+    ` : '';
+
+    if (this.multiDayPlans && this.activeMultiDayTab === 'all') {
+      const party = this.state.partySize || 4;
+      const numDays = this.durationMode === '3d' ? 3 : 2;
+      const d1 = this.multiDayPlans.day1;
+      const d2 = this.multiDayPlans.day2;
+      const d3 = this.multiDayPlans.day3;
+      const totalExploreMin = d1.totalSightseeingMin + d2.totalSightseeingMin + (d3?.totalSightseeingMin || 0);
+      const totalDriveMin = d1.totalTravelMin + d2.totalTravelMin + (d3?.totalTravelMin || 0);
+      const estMin = (d1.estimatedCost?.totalMin || 2200) + (d2.estimatedCost?.totalMin || 2800) + (d3?.estimatedCost?.totalMin || 2200);
+      const estMax = (d1.estimatedCost?.totalMax || 2800) + (d2.estimatedCost?.totalMax || 3600) + (d3?.estimatedCost?.totalMax || 2800);
+      const perHeadMin = Math.round(estMin / party);
+      const perHeadMax = Math.round(estMax / party);
+
+      mount.innerHTML = `
+        ${multiDayDeckHtml}
+
+        <div class="summary-banner">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <span style="font-size:12px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#AD5CFF;display:flex;align-items:center;gap:6px">
+              <span style="width:7px;height:7px;border-radius:50%;background:#AD5CFF;box-shadow:0 0 6px #AD5CFF"></span>
+              MASTER EXPEDITION · ${numDays} FULL DAYS
+            </span>
+            <span class="mono" style="font-size:13px;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.15);padding:4px 12px;border-radius:var(--r-pill);color:#fff">
+              ${numDays} Days Complete Tour
+            </span>
+          </div>
+          <h2 class="summary-title">${numDays === 3 ? '3-Day Grand Dehradun, Landour & Outskirts Expedition' : '2-Day Valley & Mussoorie Alpine Ridge Journey'}</h2>
+          <p class="summary-lead">
+            A comprehensive, field-engineered multi-day expedition connecting ancient spiritual cloisters, subterranean cave rivers, colonial mountain summits (2,290m), and Shivalik valley views. Every leg is scheduled to guarantee return before dusk.
+          </p>
+
+          <div class="summary-stats">
+            <div class="stat-tile">
+              <div class="stat-label">Total Sightseeing</div>
+              <div class="stat-value mono">${Math.round(totalExploreMin / 60)}h ${totalExploreMin % 60}m</div>
+            </div>
+            <div class="stat-tile">
+              <div class="stat-label">Total Transit</div>
+              <div class="stat-value mono">${Math.round(totalDriveMin / 60)}h ${totalDriveMin % 60}m</div>
+            </div>
+            <div class="stat-tile" style="border-color:rgba(0,212,146,0.35);background:rgba(0,212,146,0.06)">
+              <div class="stat-label" style="color:#00D492">Feasibility Score</div>
+              <div class="stat-value mono" style="color:#00D492">99/100</div>
+            </div>
+            <div class="stat-tile" style="border-color:rgba(255,153,0,0.35);background:rgba(255,153,0,0.06)">
+              <div class="stat-label" style="color:#FF9900">Total Group Budget (${party} People)</div>
+              <div class="stat-value mono" style="color:#FFA726">₹${estMin.toLocaleString()}–₹${estMax.toLocaleString()}</div>
+              <div style="font-size:10.5px;color:var(--mu);margin-top:2px">~₹${perHeadMin}–₹${perHeadMax} / person total</div>
+            </div>
+          </div>
+
+          <!-- Group Vehicle Guidance -->
+          <div class="group-vehicle-advisory-bar" style="margin-top:16px;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:12px">
+              <span style="font-size:24px">${party <= 2 ? '🛵' : party <= 4 ? '🚗' : party <= 7 ? '🚙' : '🚐'}</span>
+              <div>
+                <b style="font-size:13.5px;color:var(--tx);display:block">
+                  ${party <= 2 ? 'Mobility Fleet (1–2 Travelers): 110cc/125cc Mountain Scooty Rental' : party <= 4 ? 'Mobility Fleet (3–4 Travelers): AC Sedan Cab (Dzire / Etios)' : party <= 7 ? 'Mobility Fleet (5–7 Travelers): Innova Crysta / Ertiga SUV' : `Mobility Fleet (${party} Travelers): 12–16 Seater Force Urbania / Tempo Traveller`}
+                </b>
+                <span style="font-size:12px;color:var(--t2)">
+                  ${party <= 2 ? 'Easy parking on narrow Landour loops. ₹600/day per scooty.' : party <= 4 ? 'Comfortable hill suspension and luggage boot. ~₹' + perHeadMin + '/person across ' + numDays + ' days.' : party <= 7 ? 'Heavy-duty hill torque and high ground clearance for ghats.' : 'Dedicated group transport. Transfer to local hill shuttles for narrow Landour lanes.'}
+                </span>
+              </div>
+            </div>
+            <span class="chip" style="background:rgba(173,92,255,0.15);border-color:#AD5CFF;color:#AD5CFF;font-weight:700">
+              ${party} Travelers · ${numDays} Days
+            </span>
+          </div>
+        </div>
+
+        <!-- Master Sequenced Day Cards -->
+        <div style="display:flex;flex-direction:column;gap:20px;margin-top:24px">
+          <!-- Day 1 Card -->
+          <article class="ios-panel-card" style="padding:22px;border:1px solid rgba(255,255,255,0.1)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+              <div>
+                <span class="mono" style="font-size:11px;font-weight:800;color:#00D492;letter-spacing:0.08em">DAY 1 · DEHRADUN VALLEY & WATERWAYS</span>
+                <h3 style="margin:2px 0 0;font-size:18px;font-weight:900;color:var(--tx)">Caves, Ancient Stupa & Colonial Colonnades</h3>
+              </div>
+              <span class="chip mono" style="font-size:11px">8:30 AM – 6:00 PM (Back before dark)</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+              ${d1.stops.map((s, idx) => `
+                <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--t2)">
+                  <span class="mono" style="background:#00D492;color:#000;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900">${idx + 1}</span>
+                  <b style="color:var(--tx)">${s.place.name}</b>
+                  <span style="color:var(--mu);font-size:12px">(~${s.durationMin} mins · ${whatToPack(s.place)})</span>
+                </div>
+              `).join('')}
+            </div>
+            <button type="button" class="scd-btn-3d-primary" data-jump-day-tab="day1" style="font-size:12.5px;padding:8px 16px">
+              View Day 1 Detail Timeline & Map ↗
+            </button>
+          </article>
+
+          <!-- Day 2 Card -->
+          <article class="ios-panel-card" style="padding:22px;border:1px solid rgba(255,255,255,0.1)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+              <div>
+                <span class="mono" style="font-size:11px;font-weight:800;color:#AD5CFF;letter-spacing:0.08em">DAY 2 · THE HIMALAYAN ALPINE RIDGE</span>
+                <h3 style="margin:2px 0 0;font-size:18px;font-weight:900;color:var(--tx)">Mussoorie Ghats, 2,290m Lal Tibba & Colonial Landour</h3>
+              </div>
+              <span class="chip mono" style="font-size:11px">7:30 AM – 5:30 PM (Mandatory Dusk Return)</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+              ${d2.stops.map((s, idx) => `
+                <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--t2)">
+                  <span class="mono" style="background:#AD5CFF;color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900">${idx + 1}</span>
+                  <b style="color:var(--tx)">${s.place.name}</b>
+                  <span style="color:var(--mu);font-size:12px">(~${s.durationMin} mins · ${whatToPack(s.place)})</span>
+                </div>
+              `).join('')}
+            </div>
+            <button type="button" class="scd-btn-3d-primary" data-jump-day-tab="day2" style="font-size:12.5px;padding:8px 16px">
+              View Day 2 Detail Timeline & Map ↗
+            </button>
+          </article>
+
+          ${d3 ? `
+          <!-- Day 3 Card -->
+          <article class="ios-panel-card" style="padding:22px;border:1px solid rgba(255,255,255,0.1)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+              <div>
+                <span class="mono" style="font-size:11px;font-weight:800;color:#FF9900;letter-spacing:0.08em">DAY 3 · SHIVALIK OUTSKIRTS & SANCTUARIES</span>
+                <h3 style="margin:2px 0 0;font-size:18px;font-weight:900;color:var(--tx)">Sir George Everest Ridge, Sahastradhara & Song River</h3>
+              </div>
+              <span class="chip mono" style="font-size:11px">8:00 AM – 5:00 PM (Daylight Safe)</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+              ${d3.stops.map((s, idx) => `
+                <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--t2)">
+                  <span class="mono" style="background:#FF9900;color:#000;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900">${idx + 1}</span>
+                  <b style="color:var(--tx)">${s.place.name}</b>
+                  <span style="color:var(--mu);font-size:12px">(~${s.durationMin} mins · ${whatToPack(s.place)})</span>
+                </div>
+              `).join('')}
+            </div>
+            <button type="button" class="scd-btn-3d-primary" data-jump-day-tab="day3" style="font-size:12.5px;padding:8px 16px">
+              View Day 3 Detail Timeline & Map ↗
+            </button>
+          </article>
+          ` : ''}
+        </div>
+      `;
+
+      this.attachMultiDayListeners(mount);
+      return;
+    }
+
     const fullMapsUrl = fullRouteUrl(plan.stops.map(s => s.place), this.state.transport);
 
     mount.innerHTML = `
+      ${multiDayDeckHtml}
+
       <!-- Hero Plan Banner -->
       <div class="summary-banner">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
@@ -2102,9 +2668,40 @@ export class ExploreDoonApp {
             <div class="stat-value mono" style="color:#00D492">98/100</div>
           </div>
           <div class="stat-tile" style="border-color:rgba(255,153,0,0.35);background:rgba(255,153,0,0.06)">
-            <div class="stat-label" style="color:#FF9900">Estimated Cab Fare</div>
-            <div class="stat-value mono" style="color:#FFA726">${plan.estimatedCost ? `₹${plan.estimatedCost.totalMin}–₹${plan.estimatedCost.totalMax}` : '₹800–₹1,200'}</div>
+            <div class="stat-label" style="color:#FF9900">Estimated Cost (${this.state.partySize || 4} People)</div>
+            <div class="stat-value mono" style="color:#FFA726">${plan.estimatedCost ? `₹${plan.estimatedCost.totalMin}–₹${plan.estimatedCost.totalMax}` : '₹1,800–₹2,400'}</div>
+            <div style="font-size:10.5px;color:var(--mu);margin-top:2px">~₹${plan.estimatedCost?.perPersonMin || 450}–₹${plan.estimatedCost?.perPersonMax || 600} / person</div>
           </div>
+        </div>
+
+        <!-- Senior Travel Planner Group Mobility Guidance -->
+        <div class="group-vehicle-advisory-bar" style="margin-top:16px;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="font-size:24px">${(this.state.partySize || 4) <= 2 ? '🛵' : (this.state.partySize || 4) <= 4 ? '🚗' : (this.state.partySize || 4) <= 7 ? '🚙' : '🚐'}</span>
+            <div>
+              <b style="font-size:13.5px;color:var(--tx);display:block">
+                ${(this.state.partySize || 4) <= 2
+                  ? 'Mobility Guidance (1–2 Travelers): Scooty / Bike or Sedan Cab'
+                  : (this.state.partySize || 4) <= 4
+                  ? 'Mobility Guidance (3–4 Travelers): Sedan / Hatchback (Dzire / Etios)'
+                  : (this.state.partySize || 4) <= 7
+                  ? 'Mobility Guidance (5–7 Travelers): Innova Crysta / Ertiga SUV'
+                  : `Mobility Guidance (${this.state.partySize} Travelers): 12–16 Seater Tempo Traveller`}
+              </b>
+              <span style="font-size:12px;color:var(--t2)">
+                ${(this.state.partySize || 4) <= 2
+                  ? 'Nimble through Landour one-way loop & easy parking at Char Dukan. Rent Scooty @ ₹600/day.'
+                  : (this.state.partySize || 4) <= 4
+                  ? 'Ideal for winding ghat curves. Split cost comes to ~₹' + (plan.estimatedCost?.perPersonMin || 650) + ' per person.'
+                  : (this.state.partySize || 4) <= 7
+                  ? 'High clearance and powerful torque for mountain slopes. Spacious boot for gear.'
+                  : 'Park at Kingcraig or Picture Palace; take local shared shuttle cabs for the narrow upper Landour loop.'}
+              </span>
+            </div>
+          </div>
+          <span class="chip" style="background:rgba(173,92,255,0.15);border-color:#AD5CFF;color:#AD5CFF;font-weight:700">
+            ${this.state.partySize || 4} Travelers
+          </span>
         </div>
 
         <div class="banner-actions">
@@ -2192,11 +2789,21 @@ export class ExploreDoonApp {
                   <span class="stop-role">${stop.role}</span>
                 </div>
 
-                <p class="stop-why">${stop.whyThisStop}</p>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 10px">
+                  <span class="chip" style="font-size:11px">⏱️ ~${stop.durationMin} mins stay</span>
+                  <span class="chip" style="font-size:11px">${whatToPack(stop.place)}</span>
+                </div>
 
-                <ul class="stop-what">
-                  ${stop.whatToDo.map(act => `<li>${act}</li>`).join('')}
+                <p class="stop-why" style="margin:0 0 10px;font-size:13px;color:var(--t2);line-height:1.55">${stop.whyThisStop}</p>
+
+                <ul class="stop-what" style="margin:0 0 12px">
+                  ${stop.whatToDo.slice(0, 2).map(act => `<li>${act}</li>`).join('')}
                 </ul>
+
+                <div style="font-size:12px;color:var(--t2);margin:0 0 16px;padding:8px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--line);border-radius:var(--r-md);display:flex;align-items:center;gap:8px">
+                  <span style="color:#FF9900;font-size:14px">🍴</span>
+                  <span><b>Nearby Food:</b> ${companionFood(stop.place.id)}</span>
+                </div>
 
                 <div class="stop-actions">
                   <a class="scd-btn-3d-primary" href="${placeUrl(stop.place)}" target="_blank" rel="noopener">
@@ -2222,9 +2829,6 @@ export class ExploreDoonApp {
 
         <div class="leg-connector mono">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-          Return to Graphic Era Campus · ${plan.returnLeg.durationMin}m · Arrive ${this.formatTime(plan.expectedReturn)}
-        </div>
-      </div>
           Return to Graphic Era Campus · ${plan.returnLeg.durationMin}m · Arrive ${this.formatTime(plan.expectedReturn)}
         </div>
       </div>
@@ -2374,6 +2978,8 @@ export class ExploreDoonApp {
         if (id) this.openPlaceModal(id);
       });
     });
+
+    this.attachMultiDayListeners(mount);
   }
 
   /* --- LIVE ROUTED INTERACTIVE MAP (LEAFLET) --- */

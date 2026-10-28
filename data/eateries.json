@@ -3,528 +3,1456 @@
     "id": "chardukan",
     "name": "Char Dukan Heritage Stalls",
     "kind": "cafe",
-    "coords": { "lat": 30.4625, "lng": 78.0970, "source": "osm" },
+    "coords": {
+      "lat": 30.4625,
+      "lng": 78.097,
+      "source": "osm"
+    },
     "cluster": "landour",
     "experienceType": "breakfast-local",
-    "affinity": { "food": 0.9, "cafes": 0.9, "chill": 0.8, "views": 0.7 },
+    "affinity": {
+      "food": 0.9,
+      "cafes": 0.9,
+      "chill": 0.8,
+      "views": 0.7
+    },
     "role": "primary",
-    "visit": { "min": 35, "typical": 50, "max": 75 },
-    "parkingWalk": { "car": 10, "bike": 3 },
-    "hours": { "open": "07:00", "close": "20:00", "status": { "status": "verified" } },
-    "meal": { "slots": ["breakfast", "snack"], "style": "quick" },
+    "visit": {
+      "min": 35,
+      "typical": 50,
+      "max": 75
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 3
+    },
+    "hours": {
+      "open": "07:00",
+      "close": "20:00",
+      "status": {
+        "status": "verified"
+      }
+    },
+    "meal": {
+      "slots": [
+        "breakfast",
+        "snack"
+      ],
+      "style": "quick"
+    },
     "budget": 1,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.8, "bike": 0.9, "public": 0.4, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "07:30", "to": "11:00", "why": "Famous roadside hill breakfast beside St Paul's Church" },
+    "suitability": {
+      "car": 0.8,
+      "bike": 0.9,
+      "public": 0.4,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "07:30",
+      "to": "11:00",
+      "why": "Famous roadside hill breakfast beside St Paul's Church"
+    },
     "notes": "Four historic wood-and-tin shops serving hot cheese Maggi, ginger lemon honey tea, bun tikki, and crisp waffles in the crisp morning mountain air.",
-    "tips": ["Tipu's and Anil's Café are the iconic favorites", "Cash or UPI preferred"],
-    "images": ["land.jpg"],
-    "verification": { "status": "verified", "source": "Verified local field visit", "checkedOn": "2026-10-10" },
+    "tips": [
+      "Tipu's and Anil's Café are the iconic favorites",
+      "Cash or UPI preferred"
+    ],
+    "images": [
+      "land.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Verified local field visit",
+      "checkedOn": "2026-10-10"
+    },
     "routeKey": "musso"
   },
   {
     "id": "bakehouse",
     "name": "Landour Bakehouse",
     "kind": "cafe",
-    "coords": { "lat": 30.4610, "lng": 78.0950, "source": "osm" },
+    "coords": {
+      "lat": 30.461,
+      "lng": 78.095,
+      "source": "osm"
+    },
     "cluster": "landour",
     "experienceType": "bakery",
-    "affinity": { "cafes": 1.0, "food": 0.8, "chill": 0.9, "heritage": 0.7 },
+    "affinity": {
+      "cafes": 1,
+      "food": 0.8,
+      "chill": 0.9,
+      "heritage": 0.7
+    },
     "role": "secondary",
-    "visit": { "min": 30, "typical": 45, "max": 60 },
-    "parkingWalk": { "car": 10, "bike": 3 },
-    "hours": { "open": "08:00", "close": "19:30", "status": { "status": "verified" } },
-    "meal": { "slots": ["breakfast", "snack"], "style": "leisurely" },
+    "visit": {
+      "min": 30,
+      "typical": 45,
+      "max": 60
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 3
+    },
+    "hours": {
+      "open": "08:00",
+      "close": "19:30",
+      "status": {
+        "status": "verified"
+      }
+    },
+    "meal": {
+      "slots": [
+        "breakfast",
+        "snack"
+      ],
+      "style": "leisurely"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.7, "bike": 0.8, "public": 0.4, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "08:30", "to": "16:00", "why": "Freshly pulled espresso and 19th-century colonial baking recipes overlooking the pines" },
+    "suitability": {
+      "car": 0.7,
+      "bike": 0.8,
+      "public": 0.4,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "08:30",
+      "to": "16:00",
+      "why": "Freshly pulled espresso and 19th-century colonial baking recipes overlooking the pines"
+    },
     "notes": "Cozy vintage bakery reviving 19th-century recipes from The Landour Cookbook: apple cinnamon pies, lemon curd crepes, gingerbread, and scones.",
-    "tips": ["Seating is intimate and fills up quickly on weekends"],
-    "images": ["land.jpg"],
-    "verification": { "status": "verified", "source": "Verified local field visit" },
+    "tips": [
+      "Seating is intimate and fills up quickly on weekends"
+    ],
+    "images": [
+      "land.jpg"
+    ],
+    "verification": {
+      "status": "verified",
+      "source": "Verified local field visit"
+    },
     "routeKey": "musso"
   },
   {
     "id": "kfc",
     "name": "Kalsang Friends Corner",
     "kind": "meal",
-    "coords": { "lat": 30.3450, "lng": 78.0620, "source": "osm" },
+    "coords": {
+      "lat": 30.345,
+      "lng": 78.062,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "restaurant-sitdown",
-    "affinity": { "food": 1.0, "chill": 0.6 },
+    "affinity": {
+      "food": 1,
+      "chill": 0.6
+    },
     "role": "primary",
-    "visit": { "min": 45, "typical": 60, "max": 80 },
-    "parkingWalk": { "car": 8, "bike": 3 },
-    "hours": { "open": "11:30", "close": "22:30", "status": { "status": "reported" } },
-    "meal": { "slots": ["lunch", "dinner"], "style": "sit-down" },
+    "visit": {
+      "min": 45,
+      "typical": 60,
+      "max": 80
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
+    "hours": {
+      "open": "11:30",
+      "close": "22:30",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "meal": {
+      "slots": [
+        "lunch",
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.9, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "12:30", "to": "21:00", "why": "Hearty authentic Tibetan comfort food" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.9,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "12:30",
+      "to": "21:00",
+      "why": "Hearty authentic Tibetan comfort food"
+    },
     "notes": "Legendary Tibetan & Chinese joint adorned with prayer flags and Tibetan scrolls. Famous for chicken kothay momos, thukpa, and devil momos.",
-    "tips": ["Generous portion sizes; great for groups"],
-    "images": ["kfc.jpg"],
-    "verification": { "status": "reported", "source": "Rajpur Road area listing" },
+    "tips": [
+      "Generous portion sizes; great for groups"
+    ],
+    "images": [
+      "kfc.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Rajpur Road area listing"
+    },
     "routeKey": "city"
   },
   {
     "id": "ama",
     "name": "AMA Café",
     "kind": "cafe",
-    "coords": { "lat": 30.3480, "lng": 78.0650, "source": "osm" },
+    "coords": {
+      "lat": 30.348,
+      "lng": 78.065,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "cafe-city",
-    "affinity": { "cafes": 1.0, "food": 0.8, "chill": 0.8 },
+    "affinity": {
+      "cafes": 1,
+      "food": 0.8,
+      "chill": 0.8
+    },
     "role": "primary",
-    "visit": { "min": 45, "typical": 60, "max": 75 },
-    "parkingWalk": { "car": 8, "bike": 3 },
-    "hours": { "open": "09:00", "close": "22:00", "status": { "status": "reported" } },
-    "meal": { "slots": ["breakfast", "lunch", "snack"], "style": "leisurely" },
+    "visit": {
+      "min": 45,
+      "typical": 60,
+      "max": 75
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
+    "hours": {
+      "open": "09:00",
+      "close": "22:00",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "meal": {
+      "slots": [
+        "breakfast",
+        "lunch",
+        "snack"
+      ],
+      "style": "leisurely"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.9, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "10:00", "to": "18:00", "why": "Relaxed ambiance for artisanal coffee, cheesecakes, and wood-fired pizza" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.9,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "10:00",
+      "to": "18:00",
+      "why": "Relaxed ambiance for artisanal coffee, cheesecakes, and wood-fired pizza"
+    },
     "notes": "Warm Himalayan cafe on Rajpur Road with rustic wooden interiors. Continental breakfast, specialty coffee, pasta and decadent desserts.",
-    "tips": ["Excellent study and conversation environment"],
-    "images": ["ama.avif"],
-    "verification": { "status": "reported", "source": "Verified name per Req 18.1; hours reported" },
+    "tips": [
+      "Excellent study and conversation environment"
+    ],
+    "images": [
+      "ama.avif"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Verified name per Req 18.1; hours reported"
+    },
     "routeKey": "city"
   },
   {
     "id": "pic",
     "name": "Café de Piccolo",
     "kind": "cafe",
-    "coords": { "lat": 30.3580, "lng": 78.0720, "source": "osm" },
+    "coords": {
+      "lat": 30.358,
+      "lng": 78.072,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "cafe-city",
-    "affinity": { "cafes": 0.9, "food": 0.8, "chill": 0.8 },
+    "affinity": {
+      "cafes": 0.9,
+      "food": 0.8,
+      "chill": 0.8
+    },
     "role": "secondary",
-    "visit": { "min": 45, "typical": 60, "max": 75 },
-    "parkingWalk": { "car": 8, "bike": 3 },
-    "hours": { "open": "08:00", "close": "22:30", "status": { "status": "reported" } },
-    "meal": { "slots": ["breakfast", "lunch", "snack", "dinner"], "style": "leisurely" },
+    "visit": {
+      "min": 45,
+      "typical": 60,
+      "max": 75
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
+    "hours": {
+      "open": "08:00",
+      "close": "22:30",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "meal": {
+      "slots": [
+        "breakfast",
+        "lunch",
+        "snack",
+        "dinner"
+      ],
+      "style": "leisurely"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.8, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "08:30", "to": "19:00", "why": "Italian cottage setting for thin-crust pizza, waffles and frappes" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.8,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "08:30",
+      "to": "19:00",
+      "why": "Italian cottage setting for thin-crust pizza, waffles and frappes"
+    },
     "notes": "Charming European-styled white cottage café on Rajpur Road with outdoor veranda seating, artisanal coffees, and thin-crust pizzas.",
-    "tips": ["Outdoor fairy-lit seating is lovely in the late afternoon"],
-    "images": ["pic.avif"],
-    "verification": { "status": "reported", "source": "Public listing ₹800 for two" },
+    "tips": [
+      "Outdoor fairy-lit seating is lovely in the late afternoon"
+    ],
+    "images": [
+      "pic.avif"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Public listing ₹800 for two"
+    },
     "routeKey": "city"
   },
   {
     "id": "ell",
     "name": "Ellora's Melting Moments Bakery",
     "kind": "cafe",
-    "coords": { "lat": 30.3245, "lng": 78.0435, "source": "osm" },
+    "coords": {
+      "lat": 30.3245,
+      "lng": 78.0435,
+      "source": "osm"
+    },
     "cluster": "city-center",
     "experienceType": "bakery",
-    "affinity": { "food": 0.8, "heritage": 0.7, "chill": 0.5 },
+    "affinity": {
+      "food": 0.8,
+      "heritage": 0.7,
+      "chill": 0.5
+    },
     "role": "secondary",
-    "visit": { "min": 25, "typical": 35, "max": 50 },
-    "parkingWalk": { "car": 10, "bike": 3 },
-    "hours": { "open": "08:30", "close": "21:30", "status": { "status": "reported" } },
-    "meal": { "slots": ["breakfast", "snack"], "style": "quick" },
+    "visit": {
+      "min": 25,
+      "typical": 35,
+      "max": 50
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 3
+    },
+    "hours": {
+      "open": "08:30",
+      "close": "21:30",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "meal": {
+      "slots": [
+        "breakfast",
+        "snack"
+      ],
+      "style": "quick"
+    },
     "budget": 1,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.8, "bike": 0.9, "public": 0.9, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "09:00", "to": "19:00", "why": "Dehradun's heritage bakery since 1953" },
+    "suitability": {
+      "car": 0.8,
+      "bike": 0.9,
+      "public": 0.9,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "09:00",
+      "to": "19:00",
+      "why": "Dehradun's heritage bakery since 1953"
+    },
     "notes": "Historic establishment famed across north India for its sticky toffee pudding, plum cakes, butter rusks, and pista biscuits.",
-    "tips": ["Ideal for souvenirs and edible gifts to take home"],
-    "images": ["ell.avif"],
-    "verification": { "status": "reported", "source": "Public listing" },
+    "tips": [
+      "Ideal for souvenirs and edible gifts to take home"
+    ],
+    "images": [
+      "ell.avif"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Public listing"
+    },
     "routeKey": "city"
   },
   {
     "id": "ter",
     "name": "Terrace Café",
     "kind": "cafe",
-    "coords": { "lat": 30.2980, "lng": 78.0210, "source": "osm" },
+    "coords": {
+      "lat": 30.298,
+      "lng": 78.021,
+      "source": "osm"
+    },
     "cluster": "clement-town",
     "experienceType": "cafe-city",
-    "affinity": { "cafes": 0.8, "views": 0.7, "chill": 0.7 },
+    "affinity": {
+      "cafes": 0.8,
+      "views": 0.7,
+      "chill": 0.7
+    },
     "role": "secondary",
-    "visit": { "min": 40, "typical": 55, "max": 75 },
-    "parkingWalk": { "car": 5, "bike": 2 },
+    "visit": {
+      "min": 40,
+      "typical": 55,
+      "max": 75
+    },
+    "parkingWalk": {
+      "car": 5,
+      "bike": 2
+    },
     "hours": null,
-    "meal": { "slots": ["snack", "dinner"], "style": "leisurely" },
+    "meal": {
+      "slots": [
+        "snack",
+        "dinner"
+      ],
+      "style": "leisurely"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.8, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "16:00", "to": "21:00", "why": "Open rooftop breeze over looking the south valley" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.8,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "16:00",
+      "to": "21:00",
+      "why": "Open rooftop breeze over looking the south valley"
+    },
     "notes": "Rooftop café on Saharanpur Road with sunset views over the southern ridges.",
-    "tips": ["Check opening hours on Sunday afternoon"],
-    "images": [],
-    "verification": { "status": "unknown", "source": "Unconfirmed local listing" },
+    "tips": [
+      "Check opening hours on Sunday afternoon"
+    ],
+    "images": [
+      "land.jpg"
+    ],
+    "verification": {
+      "status": "unknown",
+      "source": "Unconfirmed local listing"
+    },
     "routeKey": "city"
   },
   {
     "id": "tbi",
     "name": "T Bistro",
     "kind": "cafe",
-    "coords": { "lat": 30.3420, "lng": 78.0580, "source": "osm" },
+    "coords": {
+      "lat": 30.342,
+      "lng": 78.058,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "cafe-city",
-    "affinity": { "cafes": 0.7, "chill": 0.6 },
+    "affinity": {
+      "cafes": 0.7,
+      "chill": 0.6
+    },
     "role": "optional",
-    "visit": { "min": 35, "typical": 45, "max": 60 },
-    "parkingWalk": { "car": 8, "bike": 3 },
+    "visit": {
+      "min": 35,
+      "typical": 45,
+      "max": 60
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
     "hours": null,
-    "meal": { "slots": ["snack"], "style": "quick" },
+    "meal": {
+      "slots": [
+        "snack"
+      ],
+      "style": "quick"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.8, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "12:00", "to": "19:00", "why": "Specialty teas and authentic Kashmiri kehwa" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.8,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "12:00",
+      "to": "19:00",
+      "why": "Specialty teas and authentic Kashmiri kehwa"
+    },
     "notes": "Known for brewing aromatic Kashmiri kehwa with saffron and slivered almonds.",
-    "tips": ["Check hours before visiting"],
-    "images": ["tbi.jpg"],
-    "verification": { "status": "unknown", "source": "Local mention" },
+    "tips": [
+      "Check hours before visiting"
+    ],
+    "images": [
+      "tbi.jpg"
+    ],
+    "verification": {
+      "status": "unknown",
+      "source": "Local mention"
+    },
     "routeKey": "city"
   },
   {
     "id": "orc",
     "name": "Orchard Restaurant",
     "kind": "meal",
-    "coords": { "lat": 30.3650, "lng": 78.0820, "source": "osm" },
+    "coords": {
+      "lat": 30.365,
+      "lng": 78.082,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "restaurant-sitdown",
-    "affinity": { "food": 0.9, "views": 0.7, "chill": 0.8 },
+    "affinity": {
+      "food": 0.9,
+      "views": 0.7,
+      "chill": 0.8
+    },
     "role": "secondary",
-    "visit": { "min": 60, "typical": 75, "max": 90 },
-    "parkingWalk": { "car": 10, "bike": 4 },
+    "visit": {
+      "min": 60,
+      "typical": 75,
+      "max": 90
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 4
+    },
     "hours": null,
-    "meal": { "slots": ["lunch", "dinner"], "style": "sit-down" },
+    "meal": {
+      "slots": [
+        "lunch",
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.9, "bike": 0.9, "public": 0.6, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "13:00", "to": "21:30", "why": "Dining tucked away on the foothills slope overlooking the seasonal stream" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 0.9,
+      "public": 0.6,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "13:00",
+      "to": "21:30",
+      "why": "Dining tucked away on the foothills slope overlooking the seasonal stream"
+    },
     "notes": "Hidden gem in Old Rajpur offering Tibetan and pan-Asian delicacies with a tranquil forest valley ambiance.",
-    "tips": ["Call ahead for table reservations on weekend evenings"],
-    "images": ["orc.jpg"],
-    "verification": { "status": "unknown", "source": "Public listing" },
+    "tips": [
+      "Call ahead for table reservations on weekend evenings"
+    ],
+    "images": [
+      "orc.jpg"
+    ],
+    "verification": {
+      "status": "unknown",
+      "source": "Public listing"
+    },
     "routeKey": "city"
   },
   {
     "id": "pgr",
     "name": "Punjab Grill",
     "kind": "meal",
-    "coords": { "lat": 30.3540, "lng": 78.0700, "source": "osm" },
+    "coords": {
+      "lat": 30.354,
+      "lng": 78.07,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "restaurant-sitdown",
-    "affinity": { "food": 0.8, "heritage": 0.6 },
+    "affinity": {
+      "food": 0.8,
+      "heritage": 0.6
+    },
     "role": "secondary",
-    "visit": { "min": 60, "typical": 75, "max": 90 },
-    "parkingWalk": { "car": 5, "bike": 2 },
+    "visit": {
+      "min": 60,
+      "typical": 75,
+      "max": 90
+    },
+    "parkingWalk": {
+      "car": 5,
+      "bike": 2
+    },
     "hours": null,
-    "meal": { "slots": ["lunch", "dinner"], "style": "sit-down" },
+    "meal": {
+      "slots": [
+        "lunch",
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 3,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 1.0, "bike": 1.0, "public": 0.9, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "12:30", "to": "22:00", "why": "Upscale North Indian gourmet dining inside Pacific Mall" },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 0.9,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "12:30",
+      "to": "22:00",
+      "why": "Upscale North Indian gourmet dining inside Pacific Mall"
+    },
     "notes": "Refined Mughlai and Punjabi culinary specialties with courteous white-tablecloth service.",
-    "tips": ["Ample Pacific Mall basement parking"],
-    "images": ["pgr.jpg"],
-    "verification": { "status": "unknown", "source": "Pacific Mall directory" },
+    "tips": [
+      "Ample Pacific Mall basement parking"
+    ],
+    "images": [
+      "pgr.jpg"
+    ],
+    "verification": {
+      "status": "unknown",
+      "source": "Pacific Mall directory"
+    },
     "routeKey": "city"
   },
   {
     "id": "far",
     "name": "Farzi Café",
     "kind": "bar",
-    "coords": { "lat": 30.3520, "lng": 78.0680, "source": "osm" },
+    "coords": {
+      "lat": 30.352,
+      "lng": 78.068,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "bar-lounge",
-    "affinity": { "night": 0.9, "food": 0.8, "chill": 0.6 },
+    "affinity": {
+      "night": 0.9,
+      "food": 0.8,
+      "chill": 0.6
+    },
     "role": "primary",
-    "visit": { "min": 75, "typical": 90, "max": 120 },
-    "parkingWalk": { "car": 8, "bike": 3 },
-    "hours": { "open": "13:30", "close": "24:00", "status": { "status": "reported" } },
-    "meal": { "slots": ["dinner"], "style": "sit-down" },
+    "visit": {
+      "min": 75,
+      "typical": 90,
+      "max": 120
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
+    "hours": {
+      "open": "13:30",
+      "close": "24:00",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "meal": {
+      "slots": [
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 3,
     "veg": "both",
     "alcohol": true,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.9, "kids": false, "elders": false, "strenuous": false },
-    "bestTime": { "from": "19:00", "to": "23:00", "why": "Modern molecular gastronomy and craft cocktails on Rajpur Road" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.9,
+      "kids": false,
+      "elders": false,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "19:00",
+      "to": "23:00",
+      "why": "Modern molecular gastronomy and craft cocktails on Rajpur Road"
+    },
     "notes": "Contemporary bistro showcasing avant-garde Indian plates with playful molecular twists and signature mixology.",
-    "tips": ["18+ age verification strictly enforced", "Book return ride before 11:30 PM"],
-    "images": ["farzi.jpg"],
-    "verification": { "status": "reported", "source": "Public listing ₹2,500 for two" },
+    "tips": [
+      "18+ age verification strictly enforced",
+      "Book return ride before 11:30 PM"
+    ],
+    "images": [
+      "farzi.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Public listing ₹2,500 for two"
+    },
     "routeKey": "night"
   },
   {
     "id": "rum",
     "name": "Rumours Rooftop Lounge",
     "kind": "bar",
-    "coords": { "lat": 30.3620, "lng": 78.0760, "source": "osm" },
+    "coords": {
+      "lat": 30.362,
+      "lng": 78.076,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "bar-lounge",
-    "affinity": { "night": 0.9, "views": 0.8, "chill": 0.7 },
+    "affinity": {
+      "night": 0.9,
+      "views": 0.8,
+      "chill": 0.7
+    },
     "role": "primary",
-    "visit": { "min": 75, "typical": 90, "max": 120 },
-    "parkingWalk": { "car": 8, "bike": 3 },
-    "hours": { "open": "11:00", "close": "23:55", "status": { "status": "reported" } },
-    "meal": { "slots": ["dinner"], "style": "sit-down" },
+    "visit": {
+      "min": 75,
+      "typical": 90,
+      "max": 120
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
+    "hours": {
+      "open": "11:00",
+      "close": "23:55",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "meal": {
+      "slots": [
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 3,
     "veg": "both",
     "alcohol": true,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.9, "kids": false, "elders": false, "strenuous": false },
-    "bestTime": { "from": "18:30", "to": "23:00", "why": "Panoramic rooftop overlooking the shimmering foothills" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.9,
+      "kids": false,
+      "elders": false,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "18:30",
+      "to": "23:00",
+      "why": "Panoramic rooftop overlooking the shimmering foothills"
+    },
     "notes": "Spacious open terrace in Euphoria Complex, Jakhan with DJ sessions and heated cabanas.",
-    "tips": ["Evenings get chilly; carry a jacket", "18+ photo ID required"],
-    "images": ["rumors.jpg"],
-    "verification": { "status": "reported", "source": "Public listing" },
+    "tips": [
+      "Evenings get chilly; carry a jacket",
+      "18+ photo ID required"
+    ],
+    "images": [
+      "rumors.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Public listing"
+    },
     "routeKey": "night"
   },
   {
     "id": "gip",
     "name": "The Great Indian Pub",
     "kind": "bar",
-    "coords": { "lat": 30.3550, "lng": 78.0710, "source": "osm" },
+    "coords": {
+      "lat": 30.355,
+      "lng": 78.071,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "bar-lounge",
-    "affinity": { "night": 0.8, "food": 0.6 },
+    "affinity": {
+      "night": 0.8,
+      "food": 0.6
+    },
     "role": "secondary",
-    "visit": { "min": 60, "typical": 80, "max": 110 },
-    "parkingWalk": { "car": 8, "bike": 3 },
-    "hours": { "open": "12:00", "close": "23:30", "status": { "status": "reported" } },
-    "meal": { "slots": ["dinner"], "style": "sit-down" },
+    "visit": {
+      "min": 60,
+      "typical": 80,
+      "max": 110
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
+    "hours": {
+      "open": "12:00",
+      "close": "23:30",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "meal": {
+      "slots": [
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": true,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.9, "kids": false, "elders": false, "strenuous": false },
-    "bestTime": { "from": "19:00", "to": "22:30", "why": "High-energy pub with craft cocktails and live sports screening" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.9,
+      "kids": false,
+      "elders": false,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "19:00",
+      "to": "22:30",
+      "why": "High-energy pub with craft cocktails and live sports screening"
+    },
     "notes": "Lively pub with eclectic interiors on Rajpur Road, ideal for catching up with friends over appetizers.",
-    "tips": ["Weekend tables fill early"],
-    "images": ["tgib.jpg"],
-    "verification": { "status": "reported", "source": "Public weekend listing" },
+    "tips": [
+      "Weekend tables fill early"
+    ],
+    "images": [
+      "tgib.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Public weekend listing"
+    },
     "routeKey": "night"
   },
   {
     "id": "soc",
     "name": "Dehradun Social",
     "kind": "bar",
-    "coords": { "lat": 30.3390, "lng": 78.0510, "source": "osm" },
+    "coords": {
+      "lat": 30.339,
+      "lng": 78.051,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "bar-lounge",
-    "affinity": { "night": 0.8, "food": 0.8, "chill": 0.7 },
+    "affinity": {
+      "night": 0.8,
+      "food": 0.8,
+      "chill": 0.7
+    },
     "role": "primary",
-    "visit": { "min": 60, "typical": 90, "max": 120 },
-    "parkingWalk": { "car": 5, "bike": 2 },
-    "hours": { "open": "11:00", "close": "23:00", "status": { "status": "reported" } },
-    "meal": { "slots": ["lunch", "snack", "dinner"], "style": "sit-down" },
+    "visit": {
+      "min": 60,
+      "typical": 90,
+      "max": 120
+    },
+    "parkingWalk": {
+      "car": 5,
+      "bike": 2
+    },
+    "hours": {
+      "open": "11:00",
+      "close": "23:00",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "meal": {
+      "slots": [
+        "lunch",
+        "snack",
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": true,
-    "suitability": { "car": 1.0, "bike": 1.0, "public": 0.9, "kids": false, "elders": false, "strenuous": false },
-    "bestTime": { "from": "18:00", "to": "22:30", "why": "Vibrant work-meets-play café bar at Centrio Mall" },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 0.9,
+      "kids": false,
+      "elders": false,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "18:00",
+      "to": "22:30",
+      "why": "Vibrant work-meets-play café bar at Centrio Mall"
+    },
     "notes": "Industrial-chic urban hangout at Centrio Mall serving fusion munchies, loaded fries, and signature cocktails.",
-    "tips": ["Convenient mall parking available"],
-    "images": ["social.jpg"],
-    "verification": { "status": "reported", "source": "Centrio Mall listing" },
+    "tips": [
+      "Convenient mall parking available"
+    ],
+    "images": [
+      "social.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Centrio Mall listing"
+    },
     "routeKey": "night"
   },
   {
     "id": "brw",
     "name": "The Brew Estate",
     "kind": "bar",
-    "coords": { "lat": 30.3610, "lng": 78.0750, "source": "osm" },
+    "coords": {
+      "lat": 30.361,
+      "lng": 78.075,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "bar-lounge",
-    "affinity": { "night": 0.8, "food": 0.6 },
+    "affinity": {
+      "night": 0.8,
+      "food": 0.6
+    },
     "role": "secondary",
-    "visit": { "min": 60, "typical": 80, "max": 110 },
-    "parkingWalk": { "car": 8, "bike": 3 },
-    "hours": { "open": "11:30", "close": "23:30", "status": { "status": "reported" } },
-    "meal": { "slots": ["dinner"], "style": "sit-down" },
+    "visit": {
+      "min": 60,
+      "typical": 80,
+      "max": 110
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
+    "hours": {
+      "open": "11:30",
+      "close": "23:30",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "meal": {
+      "slots": [
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": true,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.9, "kids": false, "elders": false, "strenuous": false },
-    "bestTime": { "from": "19:00", "to": "22:30", "why": "Freshly brewed craft beers and wood-fired platters" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.9,
+      "kids": false,
+      "elders": false,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "19:00",
+      "to": "22:30",
+      "why": "Freshly brewed craft beers and wood-fired platters"
+    },
     "notes": "Large microbrewery in Euphoria Complex offering Belgian Wit, German IPA, and brewery pizzas.",
-    "tips": ["Ask for the beer tasting sampler"],
-    "images": ["brew.jpg"],
-    "verification": { "status": "reported", "source": "Public listing" },
+    "tips": [
+      "Ask for the beer tasting sampler"
+    ],
+    "images": [
+      "brew.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Public listing"
+    },
     "routeKey": "night"
   },
   {
     "id": "mos",
     "name": "Ministry of Sound",
     "kind": "club",
-    "coords": { "lat": 30.3390, "lng": 78.0510, "source": "osm" },
+    "coords": {
+      "lat": 30.339,
+      "lng": 78.051,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "club",
-    "affinity": { "night": 1.0, "views": 0.7 },
+    "affinity": {
+      "night": 1,
+      "views": 0.7
+    },
     "role": "primary",
-    "visit": { "min": 90, "typical": 120, "max": 180 },
-    "parkingWalk": { "car": 5, "bike": 2 },
+    "visit": {
+      "min": 90,
+      "typical": 120,
+      "max": 180
+    },
+    "parkingWalk": {
+      "car": 5,
+      "bike": 2
+    },
     "hours": null,
-    "meal": { "slots": ["dinner"], "style": "sit-down" },
+    "meal": {
+      "slots": [
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 3,
     "veg": "both",
     "alcohol": true,
-    "suitability": { "car": 1.0, "bike": 1.0, "public": 0.9, "kids": false, "elders": false, "strenuous": false },
-    "bestTime": { "from": "20:30", "to": "23:30", "why": "Dehradun's premier club experience with an expansive terrace overlooking city lights" },
+    "suitability": {
+      "car": 1,
+      "bike": 1,
+      "public": 0.9,
+      "kids": false,
+      "elders": false,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "20:30",
+      "to": "23:30",
+      "why": "Dehradun's premier club experience with an expansive terrace overlooking city lights"
+    },
     "notes": "Level 6 at Centrio Mall. Top DJ audio setups, VIP cabanas, and open-air rooftop views.",
-    "tips": ["Smart casual dress code strictly enforced; check entry policies and couple entry rules"],
-    "images": ["mos.avif"],
-    "verification": { "status": "reported", "source": "Centrio Mall management; check exact hours" },
+    "tips": [
+      "Smart casual dress code strictly enforced; check entry policies and couple entry rules"
+    ],
+    "images": [
+      "mos.avif"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Centrio Mall management; check exact hours"
+    },
     "routeKey": "night"
   },
   {
     "id": "pbg",
     "name": "Playboy Beer Garden",
     "kind": "bar",
-    "coords": { "lat": 30.3630, "lng": 78.0770, "source": "osm" },
+    "coords": {
+      "lat": 30.363,
+      "lng": 78.077,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "bar-lounge",
-    "affinity": { "night": 0.8, "food": 0.8 },
+    "affinity": {
+      "night": 0.8,
+      "food": 0.8
+    },
     "role": "secondary",
-    "visit": { "min": 60, "typical": 90, "max": 120 },
-    "parkingWalk": { "car": 8, "bike": 3 },
-    "hours": { "open": "12:00", "close": "23:00", "status": { "status": "reported" } },
-    "meal": { "slots": ["dinner"], "style": "sit-down" },
+    "visit": {
+      "min": 60,
+      "typical": 90,
+      "max": 120
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
+    "hours": {
+      "open": "12:00",
+      "close": "23:00",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "meal": {
+      "slots": [
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": true,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.9, "kids": false, "elders": false, "strenuous": false },
-    "bestTime": { "from": "19:00", "to": "22:30", "why": "Open-air beer garden in Jakhan with sushi and live acoustic sessions" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.9,
+      "kids": false,
+      "elders": false,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "19:00",
+      "to": "22:30",
+      "why": "Open-air beer garden in Jakhan with sushi and live acoustic sessions"
+    },
     "notes": "Lush garden setup on Rajpur Road serving craft beers, Asian tapas, and cocktails.",
-    "tips": ["Dedicated valet parking"],
-    "images": ["playboy.avif"],
-    "verification": { "status": "reported", "source": "Public listing" },
+    "tips": [
+      "Dedicated valet parking"
+    ],
+    "images": [
+      "playboy.avif"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Public listing"
+    },
     "routeKey": "night"
   },
   {
     "id": "pyr",
     "name": "Pyramid Microbrewery & Club",
     "kind": "club",
-    "coords": { "lat": 30.3700, "lng": 78.0840, "source": "osm" },
+    "coords": {
+      "lat": 30.37,
+      "lng": 78.084,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "club",
-    "affinity": { "night": 0.8, "food": 0.7 },
+    "affinity": {
+      "night": 0.8,
+      "food": 0.7
+    },
     "role": "secondary",
-    "visit": { "min": 75, "typical": 100, "max": 150 },
-    "parkingWalk": { "car": 10, "bike": 4 },
+    "visit": {
+      "min": 75,
+      "typical": 100,
+      "max": 150
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 4
+    },
     "hours": null,
-    "meal": { "slots": ["dinner"], "style": "sit-down" },
+    "meal": {
+      "slots": [
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 3,
     "veg": "both",
     "alcohol": true,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.7, "kids": false, "elders": false, "strenuous": false },
-    "bestTime": { "from": "20:00", "to": "23:30", "why": "Microbrewery and sky-bar in Malsi with energetic dance floors" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.7,
+      "kids": false,
+      "elders": false,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "20:00",
+      "to": "23:30",
+      "why": "Microbrewery and sky-bar in Malsi with energetic dance floors"
+    },
     "notes": "Pyramid-shaped venue near Malsi deer park featuring on-tap brews and live DJ sets.",
-    "tips": ["Call to confirm entry fees on weekends"],
-    "images": [],
-    "verification": { "status": "unknown", "source": "Unverified local directory" },
+    "tips": [
+      "Call to confirm entry fees on weekends"
+    ],
+    "images": [
+      "brew.jpg"
+    ],
+    "verification": {
+      "status": "unknown",
+      "source": "Unverified local directory"
+    },
     "routeKey": "night"
   },
   {
     "id": "rom",
     "name": "Romeo Lane",
     "kind": "club",
-    "coords": { "lat": 30.3690, "lng": 78.0830, "source": "osm" },
+    "coords": {
+      "lat": 30.369,
+      "lng": 78.083,
+      "source": "osm"
+    },
     "cluster": "rajpur",
     "experienceType": "club",
-    "affinity": { "night": 0.9, "food": 0.8 },
+    "affinity": {
+      "night": 0.9,
+      "food": 0.8
+    },
     "role": "primary",
-    "visit": { "min": 75, "typical": 100, "max": 140 },
-    "parkingWalk": { "car": 10, "bike": 4 },
-    "hours": { "open": "12:00", "close": "23:45", "status": { "status": "reported" } },
-    "meal": { "slots": ["dinner"], "style": "sit-down" },
+    "visit": {
+      "min": 75,
+      "typical": 100,
+      "max": 140
+    },
+    "parkingWalk": {
+      "car": 10,
+      "bike": 4
+    },
+    "hours": {
+      "open": "12:00",
+      "close": "23:45",
+      "status": {
+        "status": "reported"
+      }
+    },
+    "meal": {
+      "slots": [
+        "dinner"
+      ],
+      "style": "sit-down"
+    },
     "budget": 3,
     "veg": "both",
     "alcohol": true,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.8, "kids": false, "elders": false, "strenuous": false },
-    "bestTime": { "from": "19:30", "to": "23:00", "why": "Boutique cocktail lounge with stylish terrace in Malsi" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.8,
+      "kids": false,
+      "elders": false,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "19:30",
+      "to": "23:00",
+      "why": "Boutique cocktail lounge with stylish terrace in Malsi"
+    },
     "notes": "Highly rated restaurant-bar and lounge situated above Tanishq near Starbucks Malsi. Artisanal mixology and Italian dishes.",
-    "tips": ["Advance table reservation strongly advised"],
-    "images": ["romeo.jpg"],
-    "verification": { "status": "reported", "source": "Public rating 4.6/5 across 2000+ reviews" },
+    "tips": [
+      "Advance table reservation strongly advised"
+    ],
+    "images": [
+      "romeo.jpg"
+    ],
+    "verification": {
+      "status": "reported",
+      "source": "Public rating 4.6/5 across 2000+ reviews"
+    },
     "routeKey": "night"
   },
   {
     "id": "hig",
     "name": "The Highland Bakehouse & Pizzeria",
     "kind": "cafe",
-    "coords": { "lat": 30.3500, "lng": 78.0670, "source": "unknown" },
+    "coords": {
+      "lat": 30.35,
+      "lng": 78.067,
+      "source": "unknown"
+    },
     "cluster": "rajpur",
     "experienceType": "cafe-city",
-    "affinity": { "food": 0.8, "cafes": 0.7, "views": 0.5 },
+    "affinity": {
+      "food": 0.8,
+      "cafes": 0.7,
+      "views": 0.5
+    },
     "role": "secondary",
-    "visit": { "min": 40, "typical": 55, "max": 75 },
-    "parkingWalk": { "car": 8, "bike": 3 },
+    "visit": {
+      "min": 40,
+      "typical": 55,
+      "max": 75
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
     "hours": null,
-    "meal": { "slots": ["lunch", "snack"], "style": "leisurely" },
+    "meal": {
+      "slots": [
+        "lunch",
+        "snack"
+      ],
+      "style": "leisurely"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.8, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "12:00", "to": "18:00", "why": "Suggested by AWS SBG team" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.8,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "12:00",
+      "to": "18:00",
+      "why": "Suggested by AWS SBG team"
+    },
     "notes": "Suggested by the AWS SBG team. Please confirm the address and operating hours before visiting.",
-    "tips": ["Call ahead for hours verification"],
-    "images": [],
-    "verification": { "status": "unknown", "source": "AWS SBG team nomination; awaiting verified hours/address" },
+    "tips": [
+      "Call ahead for hours verification"
+    ],
+    "images": [
+      "ell.avif"
+    ],
+    "verification": {
+      "status": "unknown",
+      "source": "AWS SBG team nomination; awaiting verified hours/address"
+    },
     "routeKey": "city"
   },
   {
     "id": "rdr",
     "name": "Readers Coffee House",
     "kind": "cafe",
-    "coords": { "lat": 30.3300, "lng": 78.0450, "source": "unknown" },
+    "coords": {
+      "lat": 30.33,
+      "lng": 78.045,
+      "source": "unknown"
+    },
     "cluster": "city-center",
     "experienceType": "cafe-city",
-    "affinity": { "food": 0.7, "cafes": 0.8, "chill": 0.8 },
+    "affinity": {
+      "food": 0.7,
+      "cafes": 0.8,
+      "chill": 0.8
+    },
     "role": "secondary",
-    "visit": { "min": 35, "typical": 50, "max": 70 },
-    "parkingWalk": { "car": 8, "bike": 3 },
+    "visit": {
+      "min": 35,
+      "typical": 50,
+      "max": 70
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
     "hours": null,
-    "meal": { "slots": ["breakfast", "snack"], "style": "quick" },
+    "meal": {
+      "slots": [
+        "breakfast",
+        "snack"
+      ],
+      "style": "quick"
+    },
     "budget": 1,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.9, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "10:00", "to": "17:00", "why": "Cozy books and specialty brewed coffee" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.9,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "10:00",
+      "to": "17:00",
+      "why": "Cozy books and specialty brewed coffee"
+    },
     "notes": "Suggested by the AWS SBG team. Confirm the address and hours at readerscoffeehouse.in before you go.",
-    "tips": ["Quiet book reading atmosphere"],
-    "images": [],
-    "verification": { "status": "unknown", "source": "Awaiting online confirmation from readerscoffeehouse.in" },
+    "tips": [
+      "Quiet book reading atmosphere"
+    ],
+    "images": [
+      "ama.avif"
+    ],
+    "verification": {
+      "status": "unknown",
+      "source": "Awaiting online confirmation from readerscoffeehouse.in"
+    },
     "routeKey": "city"
   },
   {
     "id": "koi",
     "name": "Koi",
     "kind": "cafe",
-    "coords": { "lat": 30.3450, "lng": 78.0600, "source": "unknown" },
+    "coords": {
+      "lat": 30.345,
+      "lng": 78.06,
+      "source": "unknown"
+    },
     "cluster": "rajpur",
     "experienceType": "cafe-city",
-    "affinity": { "food": 0.7, "cafes": 0.7, "chill": 0.7 },
+    "affinity": {
+      "food": 0.7,
+      "cafes": 0.7,
+      "chill": 0.7
+    },
     "role": "optional",
-    "visit": { "min": 40, "typical": 50, "max": 70 },
-    "parkingWalk": { "car": 8, "bike": 3 },
+    "visit": {
+      "min": 40,
+      "typical": 50,
+      "max": 70
+    },
+    "parkingWalk": {
+      "car": 8,
+      "bike": 3
+    },
     "hours": null,
-    "meal": { "slots": ["lunch", "snack"], "style": "quick" },
+    "meal": {
+      "slots": [
+        "lunch",
+        "snack"
+      ],
+      "style": "quick"
+    },
     "budget": 2,
     "veg": "both",
     "alcohol": false,
-    "suitability": { "car": 0.9, "bike": 1.0, "public": 0.8, "kids": true, "elders": true, "strenuous": false },
-    "bestTime": { "from": "12:00", "to": "17:00", "why": "Suggested venue by AWS SBG team" },
+    "suitability": {
+      "car": 0.9,
+      "bike": 1,
+      "public": 0.8,
+      "kids": true,
+      "elders": true,
+      "strenuous": false
+    },
+    "bestTime": {
+      "from": "12:00",
+      "to": "17:00",
+      "why": "Suggested venue by AWS SBG team"
+    },
     "notes": "Suggested by the AWS SBG team. Confirm the address and hours before visiting.",
-    "tips": ["Call ahead to verify operational status"],
-    "images": [],
-    "verification": { "status": "unknown", "source": "Awaiting verified venue owner details" },
+    "tips": [
+      "Call ahead to verify operational status"
+    ],
+    "images": [
+      "orc.jpg"
+    ],
+    "verification": {
+      "status": "unknown",
+      "source": "Awaiting verified venue owner details"
+    },
     "routeKey": "city"
   }
 ]

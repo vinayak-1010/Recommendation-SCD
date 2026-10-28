@@ -70,14 +70,19 @@
   --tracking-h: -0.02em;
   --tracking-wide: 0.06em;
 
-  /* Motion & Easings */
-  --dur-fast: 150ms;
-  --dur-base: 300ms;
-  --dur-slow: 600ms;
-  --dur-epic: 1000ms;
-  --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Motion & Easings (Snappy Apple iOS Fluid Responses) */
+  --dur-fast: 110ms;
+  --dur-base: 180ms;
+  --dur-slow: 280ms;
+  --dur-epic: 450ms;
+  --dur: 160ms;
+  --dur-press: 90ms;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-ios: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: linear(0, 0.62 8%, 1.08 20%, 0.97 34%, 1.01 50%, 1);
+  --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Radii */
   --r-sm: 8px;

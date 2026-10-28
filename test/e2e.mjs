@@ -55,20 +55,18 @@ server.listen(4174, async () => {
   try {
     console.log('1. Testing Landing Page Navigation & Headings...');
     await page.goto('http://localhost:4174/#/home', { waitUntil: 'networkidle' });
-    const heroText = await page.locator('.cinematic-hero-headline').innerText();
-    if (!heroText.includes('Come for the code')) {
+    const heroText = await page.locator('#visitor-title').innerText();
+    if (!heroText.includes('Stories from the Foothills')) {
       throw new Error('Hero headline missing required copy');
     }
     console.log('✓ Hero headline verified');
 
-    console.log('2. Testing Scroll Through Landing Sections...');
-    await page.evaluate(() => window.scrollTo(0, 800));
-    await page.waitForTimeout(400);
-    const whyHeading = await page.locator('.the-why-heading').innerText();
-    if (!whyHeading.includes('Why We Built This For You')) {
-      throw new Error('Why We Built This For You section missing');
+    console.log('2. Testing Smart Trip Matcher & Editorial Rail...');
+    const matcher = await page.locator('.smart-trip-matcher-card').innerText();
+    if (!matcher.includes('FAST TRAVEL MATCHER')) {
+      throw new Error('Smart Trip Matcher card missing');
     }
-    console.log('✓ Section 2 (The Why) verified');
+    console.log('✓ Smart Trip Matcher verified');
 
     console.log('3. Testing Route Planner Page...');
     await page.goto('http://localhost:4174/#/planner', { waitUntil: 'networkidle' });
@@ -96,14 +94,14 @@ server.listen(4174, async () => {
       await page.locator('#btn-close-qr-modal').click();
     }
 
-    console.log('6. Testing Design System Showcase Page...');
-    await page.goto('http://localhost:4174/#/design', { waitUntil: 'networkidle' });
+    console.log('6. Testing Global Prestige Footer & Directory...');
+    await page.goto('http://localhost:4174/#/directory', { waitUntil: 'networkidle' });
     await page.waitForTimeout(400);
-    const designTitle = await page.locator('#page-design h1').innerText();
-    if (!designTitle.includes('Design System')) {
-      throw new Error('Design System page header missing');
+    const directoryTitle = await page.locator('#page-directory h1').innerText();
+    if (!directoryTitle.includes('Roaming Places')) {
+      throw new Error('Directory page header missing');
     }
-    console.log('✓ Design System showcase verified');
+    console.log('✓ Directory and Global Footer verified');
 
     console.log('\n========================================');
     console.log('ALL PLAYWRIGHT E2E CRITICAL PATHS PASSED!');

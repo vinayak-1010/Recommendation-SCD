@@ -63,8 +63,7 @@ server.listen(4173, async () => {
     { name: 'mobile-375px', width: 375, height: 812, hash: '#/home' },
     { name: 'tablet-768px', width: 768, height: 1024, hash: '#/home' },
     { name: 'desktop-1440px', width: 1440, height: 900, hash: '#/home' },
-    { name: 'planner-1440px', width: 1440, height: 900, hash: '#/planner' },
-    { name: 'design-1440px', width: 1440, height: 900, hash: '#/design' }
+    { name: 'planner-1440px', width: 1440, height: 900, hash: '#/planner' }
   ];
 
   for (const vp of viewports) {
