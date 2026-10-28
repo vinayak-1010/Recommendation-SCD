@@ -251,8 +251,13 @@ export class ExploreDoonApp {
   private leafletMap: any = null;
   private leafletRouteLayer: any = null;
   private leafletMarkersLayer: any = null;
+  private leafletStopMarkers: any[] = [];
   private mapTileTheme: 'voyager' | 'dark' = 'voyager';
   private mapTileLayer: any = null;
+
+  private pinnedStopIds: Set<string> = new Set();
+  private homeCategoryFilter: string = 'all';
+  private homeSearchQuery: string = '';
 
   private state: TripRequest = {
     date: '2026-11-01',
@@ -493,6 +498,24 @@ export class ExploreDoonApp {
               <span>Back to The Story</span>
             </a>
             <span class="mono" style="font-size:12px;color:var(--mu)">PRECISION ALGORITHMIC PLANNER</span>
+          </div>
+
+          <!-- TRIPADVISOR-STYLE CONVERSATIONAL ONE-TAP ROAM PROMPTS -->
+          <div class="tripadvisor-prompt-bar">
+            <div class="prompt-bar-header">
+              <span class="live-dot" style="background:#AD5CFF;box-shadow:0 0 10px #AD5CFF"></span>
+              <span class="mono" style="font-size:11px;font-weight:800;color:var(--ac);letter-spacing:0.08em">TRIPADVISOR CONVERSATIONAL ROAM CHIPS</span>
+              <span style="font-size:11px;color:var(--mu);margin-left:auto">1-Tap Preset Combinations</span>
+            </div>
+            <div class="prompt-chips-scroll" id="planner-prompt-chips">
+              <button type="button" class="prompt-chip" data-trip-mood="walking-cafes">☕ Mostly walking + cafés</button>
+              <button type="button" class="prompt-chip" data-trip-mood="nature-car">🚗 Nature spots by car</button>
+              <button type="button" class="prompt-chip" data-trip-mood="temples-views">🛕 Temples & quiet viewpoints</button>
+              <button type="button" class="prompt-chip" data-trip-mood="mussoorie-peak">⛰️ One-day Mussoorie peak</button>
+              <button type="button" class="prompt-chip" data-trip-mood="sunset-maggi">🌅 Sunset & Maggi viewpoint</button>
+              <button type="button" class="prompt-chip" data-trip-mood="caves-valleys">🌊 River caves & waterfalls</button>
+              <button type="button" class="prompt-chip" data-trip-mood="night-bites">🍸 Nightlife & Rajpur bites</button>
+            </div>
           </div>
 
           <div class="planner-grid-layout">
@@ -1187,9 +1210,78 @@ export class ExploreDoonApp {
       });
     }
 
-    // 13. Initialize Cinematic Landing Interactions
-    initCinematicInteractions(this.rootEl, (routeId) => {
-      this.loadCuratedRouteById(routeId);
+    // 13. Initialize Cinematic Landing Interactions (Visit Abu Dhabi Style)
+    initCinematicInteractions(
+      this.rootEl,
+      (routeId) => {
+        this.loadCuratedRouteById(routeId);
+      },
+      (category) => {
+        this.homeCategoryFilter = category;
+        this.renderHomeDestinationCards();
+      },
+      (query) => {
+        this.homeSearchQuery = query.toLowerCase();
+        this.renderHomeDestinationCards();
+      },
+      (guideKey) => {
+        this.openPracticalGuide(guideKey);
+      }
+    );
+
+    // 13b. Wire up TripAdvisor Prompt Chips in Planner
+    const promptChips = this.rootEl.querySelectorAll<HTMLButtonElement>('.prompt-chip');
+    promptChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        promptChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const mood = chip.dataset.tripMood;
+        if (mood === 'walking-cafes') {
+          this.state.start = 540; // 9:00 AM
+          this.state.returnBy = 750; // 12:30 PM
+          this.state.transport = 'walk';
+          this.state.interests = ['cafes', 'food', 'chill'];
+          showToast('Loaded: Mostly walking + cafés');
+        } else if (mood === 'nature-car') {
+          this.state.start = 570; // 9:30 AM
+          this.state.returnBy = 930; // 3:30 PM
+          this.state.transport = 'car';
+          this.state.interests = ['nature', 'adventure', 'views'];
+          showToast('Loaded: Nature spots by car');
+        } else if (mood === 'temples-views') {
+          this.state.start = 540; // 9:00 AM
+          this.state.returnBy = 900; // 3:00 PM
+          this.state.transport = 'car';
+          this.state.interests = ['spiritual', 'heritage', 'views'];
+          showToast('Loaded: Temples & quiet viewpoints');
+        } else if (mood === 'mussoorie-peak') {
+          this.state.start = 450; // 7:30 AM
+          this.state.returnBy = 1050; // 5:30 PM
+          this.state.transport = 'car';
+          this.state.interests = ['views', 'nature', 'food'];
+          showToast('Loaded: One-day Mussoorie peak');
+        } else if (mood === 'sunset-maggi') {
+          this.state.start = 870; // 2:30 PM
+          this.state.returnBy = 1140; // 7:00 PM
+          this.state.transport = 'car';
+          this.state.interests = ['views', 'chill', 'food'];
+          showToast('Loaded: Sunset & Maggi viewpoints');
+        } else if (mood === 'caves-valleys') {
+          this.state.start = 570; // 9:30 AM
+          this.state.returnBy = 870; // 2:30 PM
+          this.state.transport = 'car';
+          this.state.interests = ['nature', 'adventure'];
+          showToast('Loaded: River caves & waterfalls');
+        } else if (mood === 'night-bites') {
+          this.state.start = 1080; // 6:00 PM
+          this.state.returnBy = 1380; // 11:00 PM
+          this.state.transport = 'car';
+          this.state.interests = ['night', 'food'];
+          showToast('Loaded: Nightlife & Rajpur bites');
+        }
+        this.dayDial.setTimes(this.state.start, this.state.returnBy);
+        this.recomputePlan();
+      });
     });
 
     // 14. Initialize Practical Companion Drawer
@@ -1220,39 +1312,326 @@ export class ExploreDoonApp {
     this.renderGalleryGrid();
   }
 
+  private openPracticalGuide(guideKey: string) {
+    const modal = this.rootEl.querySelector('#place-modal') as HTMLElement;
+    const body = this.rootEl.querySelector('#place-modal-body') as HTMLElement;
+    if (!modal || !body) return;
+
+    const guides: Record<string, { title: string; subtitle: string; tag: string; image: string; readTime: string; sections: { heading: string; text: string; icon?: string }[] }> = {
+      traffic: {
+        title: 'Mussoorie Ghat Traffic & Landour Toll Protocol',
+        subtitle: 'Essential advice for climbing the 1,400m elevation ascent safely',
+        tag: 'Hill Transit & Driving Guidelines',
+        image: 'maggi.jpg',
+        readTime: '3 min read',
+        sections: [
+          { heading: 'Peak Congestion Hours', text: 'Weekend hill traffic peaks between 10:30 AM and 3:30 PM at Kuthalgate barrier and Picture Palace toll. Leaving Graphic Era by 7:30 AM guarantees empty uphill roads and fresh alpine morning breezes.', icon: '⏰' },
+          { heading: 'The Landour Cantonment Loop', text: 'Landour has a strict one-way loop: enter via Sisters\' Bazaar (uphill) and descend via Char Dukan and Mullingar. Large vehicles can get stuck on narrow hairpin bends; scooters and compact hatchbacks are strongly recommended.', icon: '🚗' },
+          { heading: 'Return Daylight Deadline', text: 'Mussoorie ghats have rapid twilight, fog, and steep turns. Always begin your descent from the ridge before 5:00 PM to return to the valley floor safely before complete dark (5:34 PM).', icon: '⚠️' },
+          { heading: 'Eco Tax & Barrier Protocol', text: 'Kolhukhet checkpost collects an Uttarakhand Green Cess of ₹150–₹200 per vehicle. FASTag and UPI are accepted, but keep cash ready as mountain network coverage fluctuates.', icon: '💳' }
+        ]
+      },
+      monastery: {
+        title: 'Mindrolling Tibetan Monastery & Great Stupa Etiquette',
+        subtitle: 'Sacred serenity 5 minutes from Graphic Era University',
+        tag: 'Culture, Mindfulness & Sacred Traditions',
+        image: 'mind.jpg',
+        readTime: '2 min read',
+        sections: [
+          { heading: 'Clockwise Kora Circumambulation', text: 'When walking around the 60-meter Great Stupa and prayer wheel galleries, always walk clockwise (sunwise) in accordance with Tibetan Buddhist tradition. Spin prayer wheels gently with your right hand.', icon: '🕊️' },
+          { heading: 'Shrine Room Code of Conduct', text: 'Remove all footwear before entering the temple sanctum. Maintain a quiet, contemplative whisper. Photography and video recordings are strictly prohibited inside the main shrine rooms.', icon: '🛕' },
+          { heading: 'Visiting & Garden Hours', text: 'The landscaped ornamental gardens are open daily from 9:00 AM to 7:00 PM. Main shrine halls open for visitors between 10:00 AM – 12:00 PM and 2:00 PM – 5:00 PM.', icon: '🌿' },
+          { heading: 'Tibetan Market & Culinary Trail', text: 'Right outside the monastery gate is Clement Town\'s vibrant Tibetan colony. Treat yourself to handmade steamed chicken tingmo, spiced thukpa noodle soup, and butter tea.', icon: '🥟' }
+        ]
+      },
+      winterline: {
+        title: 'The Himalayan Winterline: Best Sunset Spots & Timings',
+        subtitle: 'A breathtaking optical false horizon visible from the Mussoorie ridge',
+        tag: 'Rare Atmospheric Phenomenon',
+        image: 'geo.webp',
+        readTime: '3 min read',
+        sections: [
+          { heading: 'What is the Winterline?', text: 'As the sun dips beneath the horizon, dust particles trapped above the cold Doon Valley invert against warm upper air, creating a razor-sharp glowing line of violet, amber, and crimson across the western sky.', icon: '🌅' },
+          { heading: 'The Only Two Places on Earth', text: 'This specific optical stratification is documented in only two regions globally: the Swiss Alpine foothills and the southern crest of Mussoorie.', icon: '🌍' },
+          { heading: 'Prime Season & Sunset Window', text: 'Best seen between mid-October and February. The optimal viewing window is exactly 5:05 PM to 5:35 PM on clear cloudless evenings.', icon: '⏱️' },
+          { heading: 'Top 3 Vantage Points', text: '1. Sir George Everest House Cliff Peak (2,050m) — 360° panoramic valley views.<br>2. Lal Tibba Telescope Deck (2,290m) — highest elevation view.<br>3. Camel\'s Back Road Promenade — tranquil sunset walk overlooking the valley.', icon: '🏔️' }
+        ]
+      },
+      caves: {
+        title: 'Robber\'s Cave (Gucchupani): Footwear & Stream Safety',
+        subtitle: 'Wading through the 600m subterranean limestone river gorge',
+        tag: 'Nature Exploration & River Safety',
+        image: 'rob.jpg',
+        readTime: '2 min read',
+        sections: [
+          { heading: 'What to Expect Inside', text: 'A dramatic 600m limestone canyon where an underground river resurfaces. You will be walking and wading through cold flowing water varying from ankle to knee depth.', icon: '🌊' },
+          { heading: 'Footwear & Slipper Rental', text: 'Do NOT wear expensive sneakers or leather shoes. Sturdy rubber slippers are available for rent at the entrance stalls for ₹20–₹30. Slippers prevent slipping on mossy underwater stones.', icon: '👟' },
+          { heading: 'Waterproofing Electronics', text: 'Ensure phones and wallets are placed inside zipped, water-resistant pouches. Cold mountain water sprays and sudden deep spots can submerge loose pockets.', icon: '📱' },
+          { heading: 'Best Timing & Refreshments', text: 'Arrive around 9:30 AM to 11:00 AM before weekend picnic crowds arrive. After exiting, enjoy piping hot cheese Maggi and chai at the riverside shacks.', icon: '☕' }
+        ]
+      }
+    };
+
+    const guide = guides[guideKey] || guides.traffic;
+    body.innerHTML = `
+      <div class="sheet-grab-bar"></div>
+      <div style="position:relative;aspect-ratio:16/9;overflow:hidden;border-top-left-radius:24px;border-top-right-radius:24px;margin-top:6px">
+        <img src="${resolveImg(guide.image)}" alt="${guide.title}" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src='images/mind.jpg';">
+        <button id="modal-close-btn" style="position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(5,7,14,0.8);border:1px solid rgba(255,255,255,0.25);color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center">&times;</button>
+        <span class="chip verified" style="position:absolute;bottom:14px;left:14px">${guide.tag}</span>
+        <span class="mono" style="position:absolute;bottom:14px;right:14px;background:rgba(0,0,0,0.7);padding:4px 10px;border-radius:99px;font-size:11px;color:#fff">${guide.readTime}</span>
+      </div>
+
+      <div style="padding:24px">
+        <h2 style="font-size:22px;font-weight:900;color:var(--tx);margin-bottom:6px">${guide.title}</h2>
+        <p style="font-size:14px;color:var(--t2);line-height:1.55;margin-bottom:20px">${guide.subtitle}</p>
+
+        <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px">
+          ${guide.sections.map(sec => `
+            <div style="background:var(--panel);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+                <span style="font-size:18px">${sec.icon || '📌'}</span>
+                <b style="font-size:14px;color:var(--tx)">${sec.heading}</b>
+              </div>
+              <p style="font-size:13px;color:var(--t2);line-height:1.6;margin:0">${sec.text}</p>
+            </div>
+          `).join('')}
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="#/planner" class="scd-btn-3d-primary" style="flex:1;text-align:center;justify-content:center" id="guide-plan-route-btn">
+            Build Itinerary in Planner ↗
+          </a>
+          <button type="button" class="scd-btn-3d-secondary" id="guide-modal-close-action" style="padding-inline:20px">
+            Close Guide
+          </button>
+        </div>
+      </div>
+    `;
+
+    modal.classList.add('open');
+    modal.style.display = 'flex';
+
+    body.querySelector('#modal-close-btn')?.addEventListener('click', () => {
+      modal.classList.remove('open');
+      modal.style.display = 'none';
+    });
+    body.querySelector('#guide-modal-close-action')?.addEventListener('click', () => {
+      modal.classList.remove('open');
+      modal.style.display = 'none';
+    });
+    body.querySelector('#guide-plan-route-btn')?.addEventListener('click', () => {
+      modal.classList.remove('open');
+      modal.style.display = 'none';
+    });
+  }
+
   private renderHomeDestinationCards() {
     const mount = this.rootEl.querySelector('#home-destination-grid') as HTMLElement;
     if (!mount) return;
-    const featuredIds = ['tapkeshwar', 'rob', 'fri', 'maldevta', 'land', 'geo', 'clouds-end', 'shikhar-falls', 'sahas', 'dehradun-zoo', 'paltan-bazaar', 'bhatta-falls'];
-    const places = featuredIds
-      .map(id => this.datasets.places.find(place => place.id === id))
-      .filter((place): place is Place => Boolean(place));
 
-    mount.innerHTML = places.map(place => {
-      const image = place.images?.[0] || 'mind.jpg';
-      return `
-        <article class="visitor-destination-card">
-          <button class="visitor-destination-media" type="button" data-home-place="${place.id}" aria-label="See details for ${place.name}">
-            <img src="${resolveImg(image)}" alt="${place.name}" loading="lazy" onerror="this.onerror=null;this.src='images/mind.jpg';">
-            <span class="visitor-destination-area">${areaLabel(place.cluster)}</span>
-          </button>
-          <div class="visitor-destination-content">
-            <h3>${place.name}</h3>
-            <p>${place.notes}</p>
-            <div class="visitor-destination-meta">
-              <span>⏱️ ~${place.visit.typical} min</span>
-              <div style="display:flex;gap:10px;align-items:center">
-                <button type="button" data-home-place="${place.id}">Details ↗</button>
-                <a href="${placeUrl(place)}" target="_blank" rel="noopener" class="home-maps-link" style="color:var(--orange);font-weight:700;text-decoration:none;font-size:11px" title="Open in Google Maps">Maps ↗</a>
-              </div>
+    // 1. Guides category: Render practical guide cards in place or focus
+    if (this.homeCategoryFilter === 'guides') {
+      mount.innerHTML = `
+        <article class="practical-guide-card" data-guide-key="traffic">
+          <div class="practical-guide-top">
+            <span class="guide-tag">Hill Transit</span>
+            <span class="guide-read-time mono">3 min read</span>
+          </div>
+          <h3 class="guide-title">Mussoorie Ghat Traffic & Landour Toll Rules</h3>
+          <p class="guide-desc">The road climbs 1,400m across 30+ hairpin curves. Learn when to ascend before the weekend rush and navigate Landour's tight one-way loop.</p>
+          <div class="guide-footer">
+            <span class="guide-tip-chip">💡 Leave by 7:30 AM</span>
+            <button type="button" class="guide-read-btn">Read Full Guide ↗</button>
+          </div>
+        </article>
+        <article class="practical-guide-card" data-guide-key="monastery">
+          <div class="practical-guide-top">
+            <span class="guide-tag" style="color:#AD5CFF;border-color:rgba(173,92,255,0.3)">Culture & Faith</span>
+            <span class="guide-read-time mono">2 min read</span>
+          </div>
+          <h3 class="guide-title">Mindrolling Monastery & Great Stupa Etiquette</h3>
+          <p class="guide-desc">Just 5 minutes from Graphic Era. Walking clockwise around the 60m Stupa, respectful attire, and silent photography protocols.</p>
+          <div class="guide-footer">
+            <span class="guide-tip-chip">🕊️ Clockwise Kora</span>
+            <button type="button" class="guide-read-btn">Read Full Guide ↗</button>
+          </div>
+        </article>
+        <article class="practical-guide-card" data-guide-key="winterline">
+          <div class="practical-guide-top">
+            <span class="guide-tag" style="color:#FF9900;border-color:rgba(255,153,0,0.3)">Optical Wonder</span>
+            <span class="guide-read-time mono">3 min read</span>
+          </div>
+          <h3 class="guide-title">The Himalayan Winterline: Best Sunset Spots</h3>
+          <p class="guide-desc">Visible only in Mussoorie and Switzerland. Why this atmospheric phenomenon appears between October and February, and where to catch it.</p>
+          <div class="guide-footer">
+            <span class="guide-tip-chip">🌅 Best at 5:15 PM</span>
+            <button type="button" class="guide-read-btn">Read Full Guide ↗</button>
+          </div>
+        </article>
+        <article class="practical-guide-card" data-guide-key="caves">
+          <div class="practical-guide-top">
+            <span class="guide-tag" style="color:#00D492;border-color:rgba(0,212,146,0.3)">Nature & Safety</span>
+            <span class="guide-read-time mono">2 min read</span>
+          </div>
+          <h3 class="guide-title">Robber's Cave: Footwear & Stream Safety</h3>
+          <p class="guide-desc">Walking inside the natural limestone gorge involves wading in knee-deep water. Where to rent slippers and how to safeguard phones.</p>
+          <div class="guide-footer">
+            <span class="guide-tip-chip">👟 Rent Slippers ₹20</span>
+            <button type="button" class="guide-read-btn">Read Full Guide ↗</button>
+          </div>
+        </article>
+      `;
+      mount.querySelectorAll<HTMLElement>('.practical-guide-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const key = card.dataset.guideKey;
+          if (key) this.openPracticalGuide(key);
+        });
+      });
+      return;
+    }
+
+    // 2. Filter places by category
+    let placeIds: string[] = [];
+    if (this.homeCategoryFilter === 'valleys') {
+      placeIds = ['rob', 'sahas', 'shikhar-falls', 'maldevta', 'bhatta-falls'];
+    } else if (this.homeCategoryFilter === 'ridges') {
+      placeIds = ['land', 'geo', 'clouds-end', 'mall-road', 'bhatta-falls'];
+    } else if (this.homeCategoryFilter === 'heritage') {
+      placeIds = ['mind', 'fri', 'tapkeshwar', 'paltan-bazaar'];
+    } else if (this.homeCategoryFilter === 'cafes') {
+      placeIds = ['chardukan', 'kfc', 'ama-cafe', 'elloras', 'piccolo'];
+    } else {
+      // 'all'
+      placeIds = ['land', 'rob', 'mind', 'geo', 'fri', 'tapkeshwar', 'maldevta', 'sahas', 'shikhar-falls', 'bhatta-falls'];
+    }
+
+    const allItems = [...this.datasets.places, ...this.datasets.eateries];
+    let places = placeIds
+      .map(id => allItems.find(p => p.id === id))
+      .filter((p): p is Place => Boolean(p));
+
+    // Search query filter
+    if (this.homeSearchQuery) {
+      const q = this.homeSearchQuery.toLowerCase();
+      places = allItems.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        (p.notes && p.notes.toLowerCase().includes(q)) ||
+        (p.cluster && p.cluster.toLowerCase().includes(q)) ||
+        (p.tags && p.tags.some((t: string) => t.toLowerCase().includes(q)))
+      ).slice(0, 12);
+    }
+
+    if (places.length === 0) {
+      mount.innerHTML = `
+        <div style="grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--t2)">
+          <div style="font-size:32px;margin-bottom:8px">🔍</div>
+          <h3 style="color:var(--tx);font-size:18px">No destinations match "${this.homeSearchQuery}"</h3>
+          <p style="font-size:13px;margin-top:6px">Try searching for "Lal Tibba", "Robber's Cave", "Mindrolling", or "Bakeries".</p>
+        </div>
+      `;
+      return;
+    }
+
+    const isAllMode = this.homeCategoryFilter === 'all' && !this.homeSearchQuery;
+    let html = '';
+
+    if (isAllMode) {
+      // 1. Visit Abu Dhabi-style Large 2-Column Hero Anchor Card
+      const heroPlace = this.datasets.places.find(p => p.id === 'land') || places[0];
+      const otherPlaces = places.filter(p => p.id !== heroPlace.id);
+
+      html += `
+        <article class="visitor-bento-hero-card">
+          <img class="visitor-bento-hero-img" src="${resolveImg(heroPlace.images?.[0] || 'land.jpg')}" alt="${heroPlace.name}" loading="lazy">
+          <div class="visitor-bento-hero-scrim"></div>
+          <div class="visitor-bento-hero-content">
+            <div class="visitor-bento-hero-badges">
+              <span class="bento-hero-pill" style="background:#AD5CFF;color:#fff">Himalayan Summit · 2,290m</span>
+              <span class="bento-hero-pill" style="background:rgba(255,255,255,0.15);color:#fff">6h Recommended Roam</span>
+              <span class="bento-hero-pill" style="background:rgba(0,212,146,0.2);color:#00D492;border:1px solid #00D492">✓ Verified Route</span>
+            </div>
+            <h3 style="font-size:clamp(22px,3vw,30px);font-weight:900;color:#fff;line-height:1.2;margin-bottom:10px">
+              The Whispering Pines of Landour: Cobblestone Trails, 2,290m Vistas & Heritage Bakeries
+            </h3>
+            <p style="font-size:13.5px;color:rgba(255,255,255,0.85);line-height:1.6;margin-bottom:18px">
+              Ascend past the deodar groves to Lal Tibba's telescope ridge overlooking snow peaks. Stroll Sisters' Bazaar, savor cinnamon pancakes at Char Dukan, and return safely before hill dusk.
+            </p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <button type="button" class="scd-btn-3d-primary" data-load-route="landour-sunrise" style="font-size:12.5px;padding:9px 18px">
+                Open Landour Blueprint ↗
+              </button>
+              <button type="button" class="scd-btn-3d-secondary" data-home-place="${heroPlace.id}" style="font-size:12.5px;padding:9px 16px">
+                View Place Details
+              </button>
+              <a href="${placeUrl(heroPlace)}" target="_blank" rel="noopener" class="scd-btn-3d-orange" style="font-size:12.5px;padding:9px 16px;text-decoration:none">
+                Google Maps ↗
+              </a>
             </div>
           </div>
         </article>
       `;
-    }).join('');
+
+      // 2. Secondary Destination Cards
+      html += otherPlaces.map(place => {
+        const image = place.images?.[0] || 'mind.jpg';
+        return `
+          <article class="visitor-destination-card">
+            <button class="visitor-destination-media" type="button" data-home-place="${place.id}" aria-label="See details for ${place.name}">
+              <img src="${resolveImg(image)}" alt="${place.name}" loading="lazy" onerror="this.onerror=null;this.src='images/mind.jpg';">
+              <span class="visitor-destination-area">${areaLabel(place.cluster)}</span>
+            </button>
+            <div class="visitor-destination-content">
+              <h3>${place.name}</h3>
+              <p>${place.notes || 'One of Dehradun’s landmark destinations.'}</p>
+              <div class="visitor-destination-meta">
+                <span>⏱️ ~${place.visit?.typical || 45} min</span>
+                <div style="display:flex;gap:10px;align-items:center">
+                  <button type="button" data-home-place="${place.id}">Details ↗</button>
+                  <a href="${placeUrl(place)}" target="_blank" rel="noopener" class="home-maps-link" style="color:var(--orange);font-weight:700;text-decoration:none;font-size:11px" title="Open in Google Maps">Maps ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    } else {
+      // Filtered or search mode: standard clean cards
+      html = places.map(place => {
+        const image = place.images?.[0] || 'mind.jpg';
+        return `
+          <article class="visitor-destination-card">
+            <button class="visitor-destination-media" type="button" data-home-place="${place.id}" aria-label="See details for ${place.name}">
+              <img src="${resolveImg(image)}" alt="${place.name}" loading="lazy" onerror="this.onerror=null;this.src='images/mind.jpg';">
+              <span class="visitor-destination-area">${areaLabel(place.cluster)}</span>
+            </button>
+            <div class="visitor-destination-content">
+              <h3>${place.name}</h3>
+              <p>${place.notes || 'One of Dehradun’s landmark destinations.'}</p>
+              <div class="visitor-destination-meta">
+                <span>⏱️ ~${place.visit?.typical || 45} min</span>
+                <div style="display:flex;gap:10px;align-items:center">
+                  <button type="button" data-home-place="${place.id}">Details ↗</button>
+                  <a href="${placeUrl(place)}" target="_blank" rel="noopener" class="home-maps-link" style="color:var(--orange);font-weight:700;text-decoration:none;font-size:11px" title="Open in Google Maps">Maps ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    mount.innerHTML = html;
 
     mount.querySelectorAll<HTMLButtonElement>('[data-home-place]').forEach(button => {
       button.addEventListener('click', () => this.openPlaceModal(button.dataset.homePlace || ''));
+    });
+
+    mount.querySelectorAll<HTMLButtonElement>('[data-load-route]').forEach(button => {
+      button.addEventListener('click', () => {
+        const routeId = button.dataset.loadRoute;
+        if (routeId) this.loadCuratedRouteById(routeId);
+      });
     });
   }
 
@@ -1733,6 +2112,9 @@ export class ExploreDoonApp {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             Open Full Route in Google Maps
           </a>
+          <button class="scd-btn-3d-secondary" id="btn-regenerate-unpinned" type="button" title="Regenerate unpinned recommendations">
+            🔄 Regenerate Unpinned
+          </button>
           <a class="scd-btn-3d-secondary" id="btn-whatsapp-share" href="${generateWhatsAppShareUrl(plan, this.state.date, fullMapsUrl)}" target="_blank" rel="noopener" style="background:#25D366;color:#fff;border-color:#1EBE5D" title="Share plan on WhatsApp">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
             Share on WhatsApp
@@ -1772,54 +2154,77 @@ export class ExploreDoonApp {
 
       <!-- Timeline Stops -->
       <div class="timeline">
-        ${plan.stops.map((stop, i) => `
-          <div class="leg-connector mono">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m12 6 4 6-4 6"/></svg>
-            ${stop.leg.durationMin}m (${stop.leg.distanceKm} km) · ${stop.leg.trafficStatus}
-          </div>
-
-          <article class="stop-card">
-            <div class="stop-cover" data-inspect-id="${stop.place.id}">
-              <img src="${resolveImg(stop.place.images?.[0])}" alt="${stop.place.name}" onerror="this.onerror=null;this.src='scd images/' + '${stop.place.images?.[0] || 'mind.jpg'}';">
-              <span class="stop-time-badge mono">${this.formatTime(stop.arrival)} – ${this.formatTime(stop.departure)}</span>
-              <div class="stop-chips">
-                <span class="chip ${stop.place.verification.status === 'verified' ? 'verified' : 'unverified'}">
-                  ${stop.place.verification.status === 'verified' ? '✓ Verified' : 'Check Hours'}
-                </span>
-                <span class="chip">${stop.place.cluster.replace('-', ' ')}</span>
-                <span class="chip" style="background:rgba(173,92,255,0.3);border-color:var(--ac)">🔍 Tap to preview</span>
-              </div>
+        ${plan.stops.map((stop, i) => {
+          const chapterName = i === 0
+            ? 'Chapter 1 · Morning Departure & Fresh Air'
+            : i === 1
+            ? 'Chapter 2 · Core Discovery & Scenic Valley Roam'
+            : i === 2
+            ? 'Chapter 3 · Midday Pitstop & Mountain Flavors'
+            : 'Chapter 4 · Golden Hour & Daylight Safe Return';
+          const isPinned = this.pinnedStopIds.has(stop.place.id);
+          return `
+            <div class="leg-connector mono">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m12 6 4 6-4 6"/></svg>
+              ${stop.leg.durationMin}m (${stop.leg.distanceKm} km) · ${stop.leg.trafficStatus}
             </div>
 
-            <div class="stop-body">
-              <div class="stop-title-row">
-                <h3 class="stop-name">${stop.place.name}</h3>
-                <span class="stop-role">${stop.role}</span>
+            <div class="chapter-badge"><span>⏱️</span> ${chapterName}</div>
+            <article class="stop-card ${isPinned ? 'pinned-stop' : ''}" data-stop-card-index="${i}" data-stop-place-id="${stop.place.id}">
+              <div class="stop-cover" data-inspect-id="${stop.place.id}">
+                <img src="${resolveImg(stop.place.images?.[0])}" alt="${stop.place.name}" onerror="this.onerror=null;this.src='scd images/' + '${stop.place.images?.[0] || 'mind.jpg'}';">
+                <span class="stop-time-badge mono">${this.formatTime(stop.arrival)} – ${this.formatTime(stop.departure)}</span>
+                <div class="stop-chips">
+                  <span class="chip ${stop.place.verification.status === 'verified' ? 'verified' : 'unverified'}">
+                    ${stop.place.verification.status === 'verified' ? '✓ Verified' : 'Check Hours'}
+                  </span>
+                  <span class="chip">${stop.place.cluster.replace('-', ' ')}</span>
+                  ${isPinned ? `<span class="chip" style="background:rgba(0,212,146,0.25);border-color:#00D492;color:#00D492">📌 Pinned in Plan</span>` : ''}
+                </div>
               </div>
 
-              <p class="stop-why">${stop.whyThisStop}</p>
+              <div class="stop-body">
+                <div class="stop-title-row">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span class="mono" style="background:#AD5CFF;color:#fff;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:900">${i + 1}</span>
+                    <h3 class="stop-name" style="margin:0">${stop.place.name}</h3>
+                  </div>
+                  <span class="stop-role">${stop.role}</span>
+                </div>
 
-              <ul class="stop-what">
-                ${stop.whatToDo.map(act => `<li>${act}</li>`).join('')}
-              </ul>
+                <p class="stop-why">${stop.whyThisStop}</p>
 
-              <div class="stop-actions">
-                <a class="scd-btn-3d-primary" href="${placeUrl(stop.place)}" target="_blank" rel="noopener">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  Google Maps Directions
-                </a>
-                ${stop.alternatives?.length ? `
-                  <button class="scd-btn-3d-secondary" data-swap-id="${stop.place.id}" data-alt-id="${stop.alternatives[0].place.id}">
-                    Swap for ${stop.alternatives[0].place.name}
+                <ul class="stop-what">
+                  ${stop.whatToDo.map(act => `<li>${act}</li>`).join('')}
+                </ul>
+
+                <div class="stop-actions">
+                  <a class="scd-btn-3d-primary" href="${placeUrl(stop.place)}" target="_blank" rel="noopener">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Google Maps Directions
+                  </a>
+                  <button type="button" class="btn-pin-stop ${isPinned ? 'is-pinned' : ''}" data-pin-id="${stop.place.id}">
+                    ${isPinned ? '✓ Pinned in Plan' : '📌 Pin Stop'}
                   </button>
-                ` : ''}
+                  <button type="button" class="scd-btn-3d-secondary" data-inspect-id="${stop.place.id}">
+                    ℹ️ Insider Tips
+                  </button>
+                  ${stop.alternatives?.length ? `
+                    <button class="scd-btn-3d-secondary" data-swap-id="${stop.place.id}" data-alt-id="${stop.alternatives[0].place.id}">
+                      Swap for ${stop.alternatives[0].place.name}
+                    </button>
+                  ` : ''}
+                </div>
               </div>
-            </div>
-          </article>
-        `).join('')}
+            </article>
+          `;
+        }).join('')}
 
         <div class="leg-connector mono">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          Return to Graphic Era Campus · ${plan.returnLeg.durationMin}m · Arrive ${this.formatTime(plan.expectedReturn)}
+        </div>
+      </div>
           Return to Graphic Era Campus · ${plan.returnLeg.durationMin}m · Arrive ${this.formatTime(plan.expectedReturn)}
         </div>
       </div>
@@ -1898,6 +2303,71 @@ export class ExploreDoonApp {
       });
     });
 
+    // Stop Pinning
+    mount.querySelectorAll<HTMLButtonElement>('[data-pin-id]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const pinId = btn.dataset.pinId;
+        if (pinId) {
+          if (this.pinnedStopIds.has(pinId)) {
+            this.pinnedStopIds.delete(pinId);
+            showToast('Unpinned stop');
+          } else {
+            this.pinnedStopIds.add(pinId);
+            showToast('Pinned stop in your itinerary');
+          }
+          this.renderOutput(this.currentPlan);
+        }
+      });
+    });
+
+    // Regenerate Unpinned Stops
+    const regenBtn = mount.querySelector('#btn-regenerate-unpinned');
+    if (regenBtn) {
+      regenBtn.addEventListener('click', () => {
+        if (!plan) return;
+        const unpinnedStop = plan.stops.find(s => !this.pinnedStopIds.has(s.place.id) && s.alternatives?.length);
+        if (unpinnedStop && unpinnedStop.alternatives?.length) {
+          const res = this.replanEngine.replan(plan, this.state, {
+            type: 'swap',
+            stopId: unpinnedStop.place.id,
+            altId: unpinnedStop.alternatives[0].place.id
+          });
+          if (res.success && res.itinerary) {
+            this.currentPlan = res.itinerary;
+            this.renderOutput(res.itinerary);
+            this.initOrUpdateLeafletMap();
+            showToast(`Swapped ${unpinnedStop.place.name} for ${unpinnedStop.alternatives[0].place.name}`);
+            return;
+          }
+        }
+        this.recomputePlan();
+        showToast('Regenerated fresh combinations for unpinned slots');
+      });
+    }
+
+    // Stop Card Hover & Click -> Leaflet Marker
+    mount.querySelectorAll<HTMLElement>('.stop-card').forEach(card => {
+      const idxStr = card.dataset.stopCardIndex;
+      if (idxStr !== undefined) {
+        const idx = parseInt(idxStr, 10);
+        card.addEventListener('mouseenter', () => {
+          const item = this.leafletStopMarkers.find(m => m.idx === idx);
+          if (item && this.leafletMap) {
+            item.marker.openPopup();
+          }
+        });
+        card.addEventListener('click', (e) => {
+          if ((e.target as HTMLElement).closest('button, a')) return;
+          const item = this.leafletStopMarkers.find(m => m.idx === idx);
+          if (item && this.leafletMap) {
+            this.leafletMap.panTo(item.pt, { animate: true, duration: 0.5 });
+            item.marker.openPopup();
+          }
+        });
+      }
+    });
+
     mount.querySelectorAll('[data-inspect-id]').forEach(cover => {
       cover.addEventListener('click', () => {
         const id = cover.getAttribute('data-inspect-id');
@@ -1953,6 +2423,7 @@ export class ExploreDoonApp {
     this.leafletMap.invalidateSize();
     this.leafletRouteLayer.clearLayers();
     this.leafletMarkersLayer.clearLayers();
+    this.leafletStopMarkers = [];
 
     // Prepare stop coordinates
     const stops = this.currentPlan ? this.currentPlan.stops.map(s => s.place) : [];
@@ -2002,9 +2473,24 @@ export class ExploreDoonApp {
           </div>
         `;
 
-        L.marker(pt, { icon: pinIcon })
+        const marker = L.marker(pt, { icon: pinIcon })
           .bindPopup(popupContent, { className: 'custom-leaflet-popup' })
           .addTo(this.leafletMarkersLayer);
+
+        marker.on('click', () => {
+          const card = this.rootEl.querySelector(`[data-stop-card-index="${idx}"]`);
+          if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            (card as HTMLElement).style.boxShadow = '0 0 24px rgba(173, 92, 255, 0.7)';
+            (card as HTMLElement).style.borderColor = 'var(--ac)';
+            setTimeout(() => {
+              (card as HTMLElement).style.boxShadow = '';
+              (card as HTMLElement).style.borderColor = '';
+            }, 2000);
+          }
+        });
+
+        this.leafletStopMarkers.push({ marker, pt, idx });
       }
     });
 

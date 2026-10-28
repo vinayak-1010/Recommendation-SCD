@@ -317,3 +317,361 @@ html {
 .apple-tab-link:active {
   transform: scale(0.96);
 }
+
+/* ==========================================================================
+   VISIT ABU DHABI ARTICLE-HUB & TRIPADVISOR WORKFLOW EXTENSIONS
+   ========================================================================== */
+
+/* 1. Hero Search & Jump Bar */
+.visitor-search-wrap {
+  margin: 22px 0 28px;
+  max-width: 680px;
+}
+.visitor-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(18, 18, 22, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  padding: 4px 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  backdrop-filter: blur(16px);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.visitor-search-box:focus-within {
+  border-color: var(--ac);
+  box-shadow: 0 0 0 3px rgba(173, 92, 255, 0.25);
+}
+.visitor-search-box svg {
+  color: var(--ac);
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+.visitor-search-box input {
+  width: 100%;
+  height: 46px;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+}
+.visitor-search-box input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+#home-search-clear {
+  background: transparent;
+  border: 0;
+  color: var(--t2);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.visitor-search-pills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.home-jump-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #F5F5F7;
+  padding: 5px 11px;
+  border-radius: var(--r-pill);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.home-jump-pill:hover {
+  background: var(--ac-soft);
+  border-color: var(--ac);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* 2. Visit Abu Dhabi Editorial Category Rail */
+.editorial-category-rail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 6px 4px 18px;
+  margin-bottom: 24px;
+  scrollbar-width: none;
+}
+.editorial-category-rail::-webkit-scrollbar {
+  display: none;
+}
+.editorial-cat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 10px 18px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--t2);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s var(--ease-apple);
+}
+.editorial-cat-pill:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--tx);
+  background: var(--sec);
+}
+.editorial-cat-pill.active {
+  background: linear-gradient(135deg, rgba(173, 92, 255, 0.22) 0%, rgba(142, 53, 234, 0.12) 100%);
+  border-color: var(--ac);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(173, 92, 255, 0.25);
+}
+
+/* 3. Asymmetric Bento Hero Anchor Card */
+.visitor-bento-hero-card {
+  grid-column: span 2;
+  position: relative;
+  min-height: 340px;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: #15151C;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(24px, 4vw, 36px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+  transition: transform 0.24s var(--ease-apple), border-color 0.24s;
+}
+.visitor-bento-hero-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--ac);
+}
+.visitor-bento-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.5s var(--ease-apple);
+}
+.visitor-bento-hero-card:hover .visitor-bento-hero-img {
+  transform: scale(1.03);
+}
+.visitor-bento-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(10,10,12,0.1) 0%, rgba(10,10,12,0.65) 50%, rgba(10,10,12,0.95) 100%);
+}
+.visitor-bento-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+.visitor-bento-hero-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.bento-hero-pill {
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* 4. Practical Guides Grid & Cards */
+.practical-guides-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+.practical-guide-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+  cursor: pointer;
+  transition: transform 0.22s var(--ease-apple), border-color 0.22s, background 0.22s;
+}
+.practical-guide-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--ac);
+  background: color-mix(in srgb, var(--card) 85%, var(--ac-soft));
+}
+.practical-guide-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.guide-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange);
+  border: 1px solid rgba(255, 153, 0, 0.3);
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+}
+.guide-read-time {
+  font-size: 11px;
+  color: var(--mu);
+}
+.guide-title {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--tx);
+  margin-bottom: 8px;
+}
+.guide-desc {
+  font-size: 12.5px;
+  color: var(--t2);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+.guide-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.guide-tip-chip {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--tx);
+}
+.guide-read-btn {
+  background: transparent;
+  border: 0;
+  color: var(--ac);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 5. TripAdvisor-style Prompt Chips & Stop Pinning in Planner */
+.tripadvisor-prompt-bar {
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(24, 24, 31, 0.95) 0%, rgba(18, 18, 22, 0.95) 100%);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+}
+.prompt-bar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.prompt-chips-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.prompt-chips-scroll::-webkit-scrollbar {
+  display: none;
+}
+.prompt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  padding: 8px 15px;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--tx);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.prompt-chip:hover {
+  background: var(--ac-soft);
+  border-color: var(--ac);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.prompt-chip.active {
+  background: var(--ac);
+  border-color: var(--ac-hover);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 14px rgba(173, 92, 255, 0.5);
+}
+.stop-card.pinned-stop {
+  border-color: #00D492 !important;
+  box-shadow: 0 0 18px rgba(0, 212, 146, 0.22) !important;
+}
+.btn-pin-stop {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--sec);
+  color: var(--t2);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-pin-stop:hover {
+  border-color: #00D492;
+  color: #fff;
+}
+.btn-pin-stop.is-pinned {
+  border-color: #00D492;
+  background: rgba(0, 212, 146, 0.16);
+  color: #00D492;
+}
+.chapter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(173, 92, 255, 0.15);
+  color: var(--ac);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 1100px) {
+  .practical-guides-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .visitor-bento-hero-card { grid-column: span 1; min-height: 280px; }
+}
+@media (max-width: 640px) {
+  .practical-guides-grid { grid-template-columns: 1fr; }
+  .visitor-bento-hero-card { grid-column: span 1; min-height: 250px; }
+  .visitor-search-box input { font-size: 12.5px; height: 40px; }
+  .prompt-chip { font-size: 11.5px; padding: 6px 11px; }
+}
